@@ -1,0 +1,135 @@
+{
+  "Recommend": [
+    {
+      "Title": "Recommended"
+    },
+    {
+      "Title": "New Releases"
+    },
+    {
+      "Title": "Saske"
+    }, 
+    {
+      "Title": "Most Viewed"
+    },
+    {
+      "Title": "Popular"
+    }
+  ],
+  "Category": [
+    {
+    "Title": "Comedy",
+    "Image": "https://lux.fm/uploads/media_news/2022/08/630f5c61deb8e876816802.jpg?w=640&v=77"
+    },
+        {
+    "Title": "Action",
+    "Image": "https://m.media-amazon.com/images/M/MV5BNTk2NzEyNTQtZTQ5MS00MjAyLTgzMDMtNDNkYTBkM2M2OTU3XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_.jpg"
+    },
+        {
+    "Title": "SciFi",
+    "Image": "https://m.media-amazon.com/images/M/MV5BNTk2NzEyNTQtZTQ5MS00MjAyLTgzMDMtNDNkYTBkM2M2OTU3XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_.jpg"
+    },
+        {
+    "Title": "Fy",
+    "Image": "https://m.media-amazon.com/images/M/MV5BNTk2NzEyNTQtZTQ5MS00MjAyLTgzMDMtNDNkYTBkM2M2OTU3XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_.jpg"
+    },
+        {
+    "Title": "Comedy22",
+    "Image": "https://m.media-amazon.com/images/M/MV5BNTk2NzEyNTQtZTQ5MS00MjAyLTgzMDMtNDNkYTBkM2M2OTU3XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_.jpg"
+    }
+  ],
+  "Movies": [
+  {
+    "Title": "Hawk Sapranov",
+    "Image": "https://www.kathimerini.gr/wp-content/uploads/2022/09/squid_game_kath-768x480.jpg",
+    "Description": "Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue  former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.",
+    "Category": "Action",
+    "Year": "2022",
+    "Recommend": "Most Viewed",
+    "Episodes": [
+      {
+        "Title": "Squid Games",
+        "Image": "https://www.kathimerini.gr/wp-content/uploads/2022/09/squid_game_kath-768x480.jpg",
+        "Video": "https://nbcnews2.akamaized.net/hls/live/723426/NBCNewsPlaymaker24x7Linear99a3a827-ua/master.m3u8",
+        "Description": "Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue  former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.",
+        "Duration" : "1h 24m"
+        }
+      ]
+    },
+        {
+    "Title": "Ready Noima Spotify",
+    "Image": "https://i.ytimg.com/vi/YQ35ZuPyMts/maxresdefault.jpg",
+    "Description": "Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue  former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.",
+    "Category": "Action",
+    "Year": "2022",
+    "Recommend": "Saske",
+    "Episodes": [
+      {
+        "Title": "Noima - Ready",
+        "Image": "https://i.ytimg.com/vi/YQ35ZuPyMts/maxresdefault.jpg",
+        "Video": "https://nbcnews2.akamaized.net/hls/live/723426/NBCNewsPlaymaker24x7Linear99a3a827-ua/master.m3u8",
+        "Description": "Ready Spotify Noima",
+        "Duration" : "1h 11m"
+        }
+      ]
+    },
+    {
+    "Title": "Ready Noima Spotify",
+    "Image": "https://i.ytimg.com/vi/YQ35ZuPyMts/maxresdefault.jpg",
+    "Description": "Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue  former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.",
+    "Category": "Action",
+    "Year": "2022",
+    "Recommend": "Saske",
+    "Episodes": [
+      {
+        "Title": "Noima - Ready",
+        "Image": "https://i.ytimg.com/vi/YQ35ZuPyMts/maxresdefault.jpg",
+        "Video": "https://nbcnews2.akamaized.net/hls/live/723426/NBCNewsPlaymaker24x7Linear99a3a827-ua/master.m3u8",
+        "Description": "Ready Spotify Noima",
+        "Duration" : "1h 11m"
+        }
+      ]
+    },
+  {
+    "Title": "Mad Clip",
+    "Image": "https://m.media-amazon.com/images/M/MV5BMDZiYTI1ZjUtNmNiOC00MWUwLTk0ZGMtM2IzMjA0NWYxM2ZhXkEyXkFqcGdeQXVyMTEyODA5NzA3._V1_.jpg",
+    "Description": "Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue  former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.",
+    "Category": "Action",
+    "Year": "2022",
+    "Recommend": "Popular",
+    "Episodes": [
+      {
+        "Title": "Squid Games",
+        "Image": "https://m.media-amazon.com/images/M/MV5BMDZiYTI1ZjUtNmNiOC00MWUwLTk0ZGMtM2IzMjA0NWYxM2ZhXkEyXkFqcGdeQXVyMTEyODA5NzA3._V1_.jpg",
+        "Video": "https://nbcnews2.akamaized.net/hls/live/723426/NBCNewsPlaymaker24x7Linear99a3a827-ua/master.m3u8",
+        "Description": "Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue  former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.",
+        "Duration" : "1h 07m"
+        },
+        {
+        "Title": "Squid Games",
+        "Image": "https://m.media-amazon.com/images/M/MV5BMDZiYTI1ZjUtNmNiOC00MWUwLTk0ZGMtM2IzMjA0NWYxM2ZhXkEyXkFqcGdeQXVyMTEyODA5NzA3._V1_.jpg",
+        "Video": "https://nbcnews2.akamaized.net/hls/live/723426/NBCNewsPlaymaker24x7Linear99a3a827-ua/master.m3u8",
+        "Description": "Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue  former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.",
+        "Duration" : "3h 45m"
+        }
+      ]
+    },
+  {
+    "Title": "Squid Games 2",
+    "Image": "https://wallpaperaccess.com/full/1221705.jpg",
+    "Description": "Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue  former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.",
+    "Category": "Action",
+    "Year": "2022",
+    "Recommend": "Most Viewed",
+    "Episodes": [
+      {
+        "Title": "Squid Games",
+        "Image": "https://wallpaperaccess.com/full/1221705.jpg",
+        "Video": "https://nbcnews2.akamaized.net/hls/live/723426/NBCNewsPlaymaker24x7Linear99a3a827-ua/master.m3u8",
+        "Description": "Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue  former prostitutes and other victims of the international criminal network.Filmmakers Jared and Michelle Brock travel to 10 countries to explore the issue of sex-trafficking; they interview psychologists, police, former prostitutes and other victims of the international criminal network.",
+        "Duration" : "1h 28m"
+        }
+      ]
+    }
+  ]
+}
