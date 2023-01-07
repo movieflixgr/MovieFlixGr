@@ -25,7 +25,7 @@
       "Title": "Ξένες Ταινίες \n (Με Ελληνικούς Υπότιτλους)",
       "Image": "https://www.whats-on-netflix.com/wp-content/uploads/2021/08/netflix-library-photo-scaled.jpg",
       "JSON": "https://movieflixgr.github.io/KTMY/main.json",
-      "isUnlocked": false
+      "isUnlocked": true
     },
     {
       "Title": "Ελληνικές Ταινίες \n (Παλαιός Κινηματογράφος)",
