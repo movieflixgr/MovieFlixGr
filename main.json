@@ -1,87 +1,59 @@
 {
+  "Status": [
+    {
+      "isLive": true,
+      "Message": "There Is No Content Available Right Now!"
+    }
+  ],
+  "Rating": [
+    {
+      "isRatingVisible": true,
+      "RatingUrl": "https://play.google.com/store/apps/details?id=com.streammediallc.ets",
+      "isInfoVisible": true,
+      "InfoText": "Η συγκεκριμένη εφαρμογή παρέχει στους χρήστες την δυνατότητα να έχουν άμεση πρόσβαση σε μια συλλογή Ελληνικών Τηλεοπτικών Σειρών, οι οποίες προέρχονται από τις επίσημες πηγές των τηλεοπτικών τους παρόχων. Ο βασικός στόχος της συγκεκριμένης εφαρμογής είναι η προώθηση των δωρεάν Ελληνικών Τηλεοπτικών Σειρών σε παγκόσμιο επίπεδο (π.χ. Έλληνες του εξωτερικού). \n*Με την εγκατάσταση της συγκεκριμένης εφαρμογής, οι χρήστες αποδέχονται την πλήρη αποποίηση των δημιουργών από οποιαδήποτε νομική ευθύνη περί πνευματικών δικαιωμάτων, εφόσον εντός της εφαρμογής χρησιμοποιούνται οι επίσημες πηγές οπτικοακουστικού υλικού, το οποίο παρέχεται δωρεάν στο διαδίκτυο. Οποιοσδήποτε νόμιμος κάτοχος πνευματικών δικαιωμάτων επιθυμεί να αφαιρεθεί οποιαδήποτε Σειρά, η οποία περιλαμβάνεται εντός της συγκεκριμένης εφαρμογής, οφείλει να επικοινωνήσει με την ομάδα προγραμματιστών προτού προβεί σε οποιαδήποτε νομική πράξη.",
+      "SubmissionUrl": "https://stackoverflow.com/questions/18655940/linearlayoutlayoutparams-cannot-be-cast-to-android-widget-framelayoutlayoutpar"
+    }
+  ],
+  "Movies": [
+    {
+      "Title": "Ελληνικές Ταινίες \n (Σύγχρονες)",
+      "Image": "https://ratpack.bbend.net/media/com_news/galleries/2021/04/23/10966/photos/full/agglia.jpg",
+      "JSON": "https://movieflixgr.github.io/ET/main.json",
+      "isUnlocked": true
+    },
+    {
+      "Title": "Ξένες Ταινίες \n (Με Ελληνικούς Υπότιτλους)",
+      "Image": "https://www.whats-on-netflix.com/wp-content/uploads/2021/08/netflix-library-photo-scaled.jpg",
+      "JSON": "https://movieflixgr.github.io/KTMY/main.json",
+      "isUnlocked": false
+    },
+    {
+      "Title": "Ελληνικές Ταινίες \n (Παλαιός Κινηματογράφος)",
+      "Image": "https://www.flowmagazine.gr/wp-content/uploads/o_palios_ellinikos_kinimatografos_featured.jpg",
+      "JSON": "https://movieflixgr.github.io/ETPK/main.json",
+      "isUnlocked": false
+    }
+  ],
   "Series": [
     {
-      "Title": "Maestro",
-      "ImageBack": "https://i1.prth.gr/images/1168x656/files/2023-01-05/maestro8998988.jpg",
-      "ImageMain": "https://m.media-amazon.com/images/M/MV5BNjNhZmY4MTMtY2Y5OC00M2M2LWE2ODEtMzE2YjZmZDdiOWM1XkEyXkFqcGdeQXVyNzg5OTk2OA@@._V1_.jpg",
-      "Description": "O Ορέστης ταξιδεύει σε ένα μικρό νησί στην εποχή της πανδημίας προκειμένου να στήσει, από την αρχή, ένα Φεστιβάλ μουσικής. Αντιμέτωπος με τη μικρή κοινωνία του νησιού και όλες τις παθογένειές της, θα βρεθεί μπλεγμένος σε μία ακραία ερωτική ιστορία που θα αποτελέσει κίνητρο για να εκδηλωθούν όλα τα κοινωνικά προβλήματα τα οποία μαστίζουν μια ολόκληρη ομάδα ανθρώπων. Είναι όλοι συνδεδεμένοι μεταξύ τους και μ’ έναν τρόπο συνένοχοι σε αυτό που θα ακολουθήσει.Ο Ορέστης είναι μουσικός και φτάνει στους Παξούς με αφορμή τη διοργάνωση του Φεστιβάλ μουσικής του νησιού. Εκεί θα γνωρίσει όλη τη μικρή κοινωνία. Η συνάντησή του με τη νεαρή Κλέλια θα είναι η αφορμή για να βρεθεί μπλεγμένος σε ακραίες καταστάσεις.",
-      "Year": "2022",
-      "Genre": "Έγκλημα, Δράμα, Μυστήριο",
-      "Duration": "~50λ",
-      "isUnlocked": true,
-      "Seasons": [
-        {
-          "Title": "Α΄ Κύκλος",
-          "Image": "https://elculture.gr/wp-content/uploads/2022/10/maestro-mega-1.jpg",
-          "Year": "2022",
-          "isUnlocked": true,
-          "Episodes": [
-            {
-              "Title": "Επεισόδιο 9",
-              "Image": "https://diavaseto.gr/wp-content/uploads/2022/10/10_13_2022_22_42_47.jpg",
-              "Video": "https://www.cdn.vidce.net/d/bYZ1d4bKGwhFPOzxk8ztlg/1673712330/video/Maestro/1x09.mp4",
-              "Description": "",
-              "isUnlocked": true
-            },
-            {
-              "Title": "Επεισόδιο 8",
-              "Image": "https://diavaseto.gr/wp-content/uploads/2022/10/10_13_2022_22_42_47.jpg",
-              "Video": "https://www.cdn.vidce.net/d/bYZ1d4bKGwhFPOzxk8ztlg/1673712330/video/Maestro/1x08.mp4",
-              "Description": "",
-              "isUnlocked": true
-            },
-            {
-              "Title": "Επεισόδιο 7",
-              "Image": "https://diavaseto.gr/wp-content/uploads/2022/10/10_13_2022_22_42_47.jpg",
-              "Video": "https://www.cdn.vidce.net/d/bYZ1d4bKGwhFPOzxk8ztlg/1673712330/video/Maestro/1x07.mp4",
-              "Description": "",
-              "isUnlocked": true
-            },
-            {
-              "Title": "Επεισόδιο 6",
-              "Image": "https://diavaseto.gr/wp-content/uploads/2022/10/10_13_2022_22_42_47.jpg",
-              "Video": "https://www.cdn.vidce.net/d/bYZ1d4bKGwhFPOzxk8ztlg/1673712330/video/Maestro/1x06.mp4",
-              "Description": "",
-              "isUnlocked": true
-            },
-            {
-              "Title": "Επεισόδιο 5",
-              "Image": "https://diavaseto.gr/wp-content/uploads/2022/10/10_13_2022_22_42_47.jpg",
-              "Video": "https://www.cdn.vidce.net/d/bYZ1d4bKGwhFPOzxk8ztlg/1673712330/video/Maestro/1x05.mp4",
-              "Description": "",
-              "isUnlocked": true
-            },
-            {
-              "Title": "Επεισόδιο 4",
-              "Image": "https://diavaseto.gr/wp-content/uploads/2022/10/10_13_2022_22_42_47.jpg",
-              "Video": "https://www.cdn.vidce.net/d/bYZ1d4bKGwhFPOzxk8ztlg/1673712330/video/Maestro/1x04.mp4",
-              "Description": "",
-              "isUnlocked": true
-            },
-            {
-              "Title": "Επεισόδιο 3",
-              "Image": "https://diavaseto.gr/wp-content/uploads/2022/10/10_13_2022_22_42_47.jpg",
-              "Video": "https://www.cdn.vidce.net/d/bYZ1d4bKGwhFPOzxk8ztlg/1673712330/video/Maestro/1x03.mp4",
-              "Description": "",
-              "isUnlocked": true
-            },
-            {
-              "Title": "Επεισόδιο 2",
-              "Image": "https://diavaseto.gr/wp-content/uploads/2022/10/10_13_2022_22_42_47.jpg",
-              "Video": "https://www.cdn.vidce.net/d/bYZ1d4bKGwhFPOzxk8ztlg/1673712330/video/Maestro/1x02.mp4",
-              "Description": "",
-              "isUnlocked": true
-            },
-            {
-              "Title": "Επεισόδιο 1",
-              "Image": "https://diavaseto.gr/wp-content/uploads/2022/10/10_13_2022_22_42_47.jpg",
-              "Video": "https://www.cdn.vidce.net/d/bYZ1d4bKGwhFPOzxk8ztlg/1673712330/video/Maestro/1x01.mp4",
-              "Description": "",
-              "isUnlocked": true
-            }
-          ]
-        }
-      ]
+      "Title": "Τηλεοπτικές",
+      "Image": "https://mikrofwno.gr/wp-content/uploads/2021/09/seires-2021-2022-mikrofwno-3.jpg",
+      "JSON": "https://movieflixgr.github.io/ETS/main.json",
+      "isUnlocked": true
+    }
+  ],
+  "Kids": [
+    {
+      "Title": "Μεταγλωτισμένες Ταινίες",
+      "Image": "https://www.infokids.gr/wp-content/uploads/2022/02/encanto-review_4s6e-1200x675.jpg",
+      "JSON": "https://movieflixgr.github.io/MPT/main.json",
+      "isUnlocked": true
+    },
+    {
+      "Title": "Μεταγλωτισμένες paidik;a",
+      "Image": "https://media.dm-static.com/images/f_auto,q_auto,c_fit,h_1200,w_1200/v1662606141/products/pim/4260488130811-3258630/nature-love-msm-tabletten-mit-vitamin-c-365-st",
+      "JSON": "https://movieflixgr.github.io/PYK/main.json",
+      "isUnlocked": true
     }
   ]
 }
