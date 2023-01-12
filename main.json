@@ -2,7 +2,7 @@
   "Status": [
     {
       "isLive": true,
-      "Message": "Δεν υπάρχει διαθέσιμο περιεχόμενο αυτή την στιγμή! \n Παρακαλούμε προσπαθήστε ξανά αργότερα!"
+      "Message": "There Is No Content Available Right Now!"
     }
   ],
   "Rating": [
@@ -46,17 +46,29 @@
       "Image": "https://mikrofwno.gr/wp-content/uploads/2021/09/seires-2021-2022-mikrofwno-3.jpg",
       "JSON": "https://movieflixgr.github.io/KSMY/main.json",
       "isUnlocked": true
+    },
+    {
+      "Title": "Ξένες Σειρές \n (Με Ελληνικούς Υπότιτλους)",
+      "Image": "https://mikrofwno.gr/wp-content/uploads/2021/09/seires-2021-2022-mikrofwno-3.jpg",
+      "JSON": "https://movieflixgr.github.io/ETS/main.json",
+      "isUnlocked": true
     }
   ],
   "Kids": [
     {
-      "Title": "Μεταγλωτισμένες Ταινίες",
+      "Title": "Μεταγλωτισμένες Παιδικές Ταίνιες",
       "Image": "https://www.infokids.gr/wp-content/uploads/2022/02/encanto-review_4s6e-1200x675.jpg",
       "JSON": "https://movieflixgr.github.io/MPT/main.json",
       "isUnlocked": true
     },
     {
-      "Title": "Μεταγλωτισμένες paidik;a",
+      "Title": "Μεταγλωτισμένες Παιδικές Σειρές",
+      "Image": "https://media.dm-static.com/images/f_auto,q_auto,c_fit,h_1200,w_1200/v1662606141/products/pim/4260488130811-3258630/nature-love-msm-tabletten-mit-vitamin-c-365-st",
+      "JSON": "https://movieflixgr.github.io/MPS/main.json",
+      "isUnlocked": true
+    },
+    {
+      "Title": "Παιδικά Κανάλια",
       "Image": "https://media.dm-static.com/images/f_auto,q_auto,c_fit,h_1200,w_1200/v1662606141/products/pim/4260488130811-3258630/nature-love-msm-tabletten-mit-vitamin-c-365-st",
       "JSON": "https://movieflixgr.github.io/PYK/main.json",
       "isUnlocked": true
