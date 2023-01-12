@@ -15,7 +15,7 @@
     }
   ],
   "Movies": [
-     {
+    {
       "Title": "Ξένες Ταινίες \n (Με Ελληνικούς Υπότιτλους)",
       "Image": "https://www.whats-on-netflix.com/wp-content/uploads/2021/08/netflix-library-photo-scaled.jpg",
       "JSON": "https://movieflixgr.github.io/KTMY/main.json",
@@ -23,7 +23,7 @@
     },
     {
       "Title": "Ελληνικές Ταινίες \n (Σύγχρονες)",
-      "Image": "https://ratpack.bbend.net/media/com_news/galleries/2021/04/23/10966/photos/full/agglia.jpg",
+      "Image": "https://cityportal.gr/wp-content/uploads/2019/12/10_agapimenes_ellinikes_tainies.jpg",
       "JSON": "https://movieflixgr.github.io/ET/main.json",
       "isUnlocked": false
     },
@@ -35,9 +35,9 @@
     }
   ],
   "Series": [
-     {
+    {
       "Title": "Ελληνικές Σειρές",
-      "Image": "https://mikrofwno.gr/wp-content/uploads/2021/09/seires-2021-2022-mikrofwno-3.jpg",
+      "Image": "https://eretikos.gr/wp-content/uploads/2022/08/sirial.webp",
       "JSON": "https://movieflixgr.github.io/ES/main.json",
       "isUnlocked": true
     },
@@ -49,7 +49,7 @@
     },
     {
       "Title": "Ξένες Σειρές \n (Με Ελληνικούς Υπότιτλους)",
-      "Image": "https://mikrofwno.gr/wp-content/uploads/2021/09/seires-2021-2022-mikrofwno-3.jpg",
+      "Image": "https://offloadmedia.feverup.com/secretldn.com/wp-content/uploads/2020/03/18074959/72354623_743029929493734_4704406170316788179_n-1024x912.jpg",
       "JSON": "https://movieflixgr.github.io/KSMY/main.json",
       "isUnlocked": false
     }
@@ -57,19 +57,19 @@
   "Kids": [
     {
       "Title": "Μεταγλωτισμένες Παιδικές Ταίνιες",
-      "Image": "https://www.infokids.gr/wp-content/uploads/2022/02/encanto-review_4s6e-1200x675.jpg",
+      "Image": "https://i.pinimg.com/736x/17/98/f0/1798f0e79d761c7d2b3b169e8f36d4cc.jpg",
       "JSON": "https://movieflixgr.github.io/MPT/main.json",
       "isUnlocked": true
     },
     {
       "Title": "Μεταγλωτισμένες Παιδικές Σειρές",
-      "Image": "https://media.dm-static.com/images/f_auto,q_auto,c_fit,h_1200,w_1200/v1662606141/products/pim/4260488130811-3258630/nature-love-msm-tabletten-mit-vitamin-c-365-st",
+      "Image": "https://deadline.com/wp-content/uploads/2022/11/MH_Clean.jpg",
       "JSON": "https://movieflixgr.github.io/MPS/main.json",
       "isUnlocked": false
     },
     {
       "Title": "Παιδικά Κανάλια",
-      "Image": "https://media.dm-static.com/images/f_auto,q_auto,c_fit,h_1200,w_1200/v1662606141/products/pim/4260488130811-3258630/nature-love-msm-tabletten-mit-vitamin-c-365-st",
+      "Image": "https://media1.popsugar-assets.com/files/thumbor/137KqO7Jfs_zQ2GGiAHgLUqAHkU/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2021/05/26/739/n/24155406/6f24e5c65e5331bb_download_1_/i/CoComelon.jpeg",
       "JSON": "https://movieflixgr.github.io/PYK/main.json",
       "isUnlocked": false
     }
