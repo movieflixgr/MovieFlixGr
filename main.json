@@ -68,10 +68,10 @@
       "isUnlocked": false
     },
     {
-      "Title": "Παιδικά Κανάλια",
+      "Title": "Παιδικά YouTube Κανάλια",
       "Image": "https://media1.popsugar-assets.com/files/thumbor/137KqO7Jfs_zQ2GGiAHgLUqAHkU/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2021/05/26/739/n/24155406/6f24e5c65e5331bb_download_1_/i/CoComelon.jpeg",
       "JSON": "https://movieflixgr.github.io/PYK/main.json",
-      "isUnlocked": false
+      "isUnlocked": true
     }
   ]
 }
