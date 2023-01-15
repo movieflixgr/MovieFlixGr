@@ -31,7 +31,7 @@
       "Title": "Ελληνικές Ταινίες \n (Παλιός Κινηματογράφος)",
       "Image": "https://www.flowmagazine.gr/wp-content/uploads/o_palios_ellinikos_kinimatografos_featured.jpg",
       "JSON": "https://movieflixgr.github.io/EPT/main.json",
-      "isUnlocked": false
+      "isUnlocked": true
     }
   ],
   "Series": [
