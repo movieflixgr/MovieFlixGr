@@ -25,7 +25,7 @@
       "Title": "Ελληνικές Ταινίες \n (Σύγχρονες)",
       "Image": "https://cityportal.gr/wp-content/uploads/2019/12/10_agapimenes_ellinikes_tainies.jpg",
       "JSON": "https://movieflixgr.github.io/ET/main.json",
-      "isUnlocked": false
+      "isUnlocked": true
     },
     {
       "Title": "Ελληνικές Ταινίες \n (Παλιός Κινηματογράφος)",
