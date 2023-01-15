@@ -23,7 +23,7 @@
     },
     {
       "Title": "Ελληνικές Ταινίες \n (Σύγχρονες)",
-      "Image": "https://cityportal.gr/wp-content/uploads/2019/12/10_agapimenes_ellinikes_tainies.jpg",
+      "Image": "https://www.lifo.gr/sites/default/files/styles/lifo_lightbox_open/public/articles/2021-07-22/ertflix1.PNG?itok=BrIugAog",
       "JSON": "https://movieflixgr.github.io/ET/main.json",
       "isUnlocked": true
     },
@@ -37,7 +37,7 @@
   "Series": [
     {
       "Title": "Ελληνικές Σειρές",
-      "Image": "https://www.lifo.gr/sites/default/files/styles/lifo_lightbox_open/public/articles/2021-07-22/ertflix1.PNG?itok=BrIugAog",
+      "Image": "https://youfly.com/wp-content/uploads/2022/06/ellinikes-seires-2022-2023-1.jpg",
       "JSON": "https://movieflixgr.github.io/ES/main.json",
       "isUnlocked": true
     },
