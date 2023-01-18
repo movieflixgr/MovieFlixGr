@@ -1,8 +1,8 @@
 {
   "Status": [
     {
-      "isLive": true,
-      "Message": "There Is No Content Available Right Now!"
+      "isLive": false,
+      "Message": "Πετράκη τι λέει;"
     }
   ],
   "Rating": [
