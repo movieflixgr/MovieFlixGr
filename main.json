@@ -19,7 +19,7 @@
       "Title": "Ξένες Ταινίες \n (Με Ελληνικούς Υπότιτλους)",
       "Image": "https://www.whats-on-netflix.com/wp-content/uploads/2021/08/netflix-library-photo-scaled.jpg",
       "JSON": "https://movieflixgr.github.io/KTMY/main.json",
-      "isUnlocked": true
+      "isUnlocked": false
     },
     {
       "Title": "Ελληνικές Ταινίες \n (Σύγχρονες)",
@@ -51,7 +51,7 @@
       "Title": "Ξένες Σειρές \n (Με Ελληνικούς Υπότιτλους)",
       "Image": "https://offloadmedia.feverup.com/secretldn.com/wp-content/uploads/2020/03/18074959/72354623_743029929493734_4704406170316788179_n-1024x912.jpg",
       "JSON": "https://movieflixgr.github.io/KSMY/main.json",
-      "isUnlocked": true
+      "isUnlocked": false
     }
   ],
   "Kids": [
