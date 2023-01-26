@@ -1,7 +1,7 @@
 {
   "Status": [
     {
-      "isLive": false, 
+      "isLive": true, 
 "Message" : "Η συγκεκριμένη έκδοση πλέον δεν υποστηρίζεται!\nΕξαιτίας του προβλήμματος αναπαραγωγής ταινιών και σειρών, έχουμε κυκλοφορήσει την νέα έκδοση!\nΠαρακαλούμε πολύ εγκαταστήστε την νέα διαθέσιμη ενημέρωση μέσω του Google Play Store για να συνεχίσετε να απολαμβάνετε δωρεάν το περιεχόμενο της εφαρμογής!"
 
     }
@@ -26,13 +26,13 @@
       "Title": "Ελληνικές Ταινίες \n (Σύγχρονες)",
       "Image": "https://www.lifo.gr/sites/default/files/styles/lifo_lightbox_open/public/articles/2021-07-22/ertflix1.PNG?itok=BrIugAog",
       "JSON": "https://movieflixgr.github.io/ET/main.json",
-      "isUnlocked": true
+      "isUnlocked": false
     },
     {
       "Title": "Ελληνικές Ταινίες \n (Παλιός Κινηματογράφος)",
       "Image": "https://www.flowmagazine.gr/wp-content/uploads/o_palios_ellinikos_kinimatografos_featured.jpg",
       "JSON": "https://movieflixgr.github.io/EPT/main.json",
-      "isUnlocked": true
+      "isUnlocked": false
     }
   ],
   "Series": [
@@ -40,13 +40,13 @@
       "Title": "Ελληνικές Σειρές",
       "Image": "https://youfly.com/wp-content/uploads/2022/06/ellinikes-seires-2022-2023-1.jpg",
       "JSON": "https://movieflixgr.github.io/ES/main.json",
-      "isUnlocked": true
+      "isUnlocked": false
     },
     {
       "Title": "Ελληνικές Τηλεοπτικές Σειρές",
       "Image": "https://mikrofwno.gr/wp-content/uploads/2021/09/seires-2021-2022-mikrofwno-3.jpg",
       "JSON": "https://movieflixgr.github.io/ETS/main.json",
-      "isUnlocked": true
+      "isUnlocked": false
     },
     {
       "Title": "Ξένες Σειρές \n (Με Ελληνικούς Υπότιτλους)",
@@ -60,7 +60,7 @@
       "Title": "Μεταγλωτισμένες Παιδικές Ταίνιες",
       "Image": "https://i.pinimg.com/736x/17/98/f0/1798f0e79d761c7d2b3b169e8f36d4cc.jpg",
       "JSON": "https://movieflixgr.github.io/MPT/main.json",
-      "isUnlocked": true
+      "isUnlocked": false
     },
     {
       "Title": "Μεταγλωτισμένες Παιδικές Σειρές",
@@ -72,7 +72,7 @@
       "Title": "Παιδικά YouTube Κανάλια",
       "Image": "https://media1.popsugar-assets.com/files/thumbor/137KqO7Jfs_zQ2GGiAHgLUqAHkU/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2021/05/26/739/n/24155406/6f24e5c65e5331bb_download_1_/i/CoComelon.jpeg",
       "JSON": "https://movieflixgr.github.io/PYK/main.json",
-      "isUnlocked": true
+      "isUnlocked": false
     }
   ]
 }
