@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GreekMovies</title>
+  <title>Redirect Page</title>
   <!-- Choose a different theme from the Pace.js themes -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.min.css">
   <style>
@@ -13,7 +13,7 @@
       justify-content: center;
       height: 100vh;
       margin: 0;
-      background-color: #00074e; /* Change the background color */
+      background-color: #000222; /* Change the background color */
       color: #ffdd00; /* Change the text color */
     }
   </style>
@@ -26,6 +26,20 @@
       // Redirect to your site after the progress bar is complete
       window.location.href = 'https://sites.google.com/view/greekmoviesapp';
     });
+
+    Pace.options = {
+      ajax: {
+        trackMethods: ['GET', 'POST']
+      },
+      restartOnRequestAfter: false,
+      restartOnPushState: false,
+      restartOnBack: false,
+      startOnPageLoad: false,
+      elements: false,
+      eventLag: false,
+      minTime: 0,
+      color: '#ffdd00', // Change the loading bar color
+    };
   </script>
 </body>
 </html>
