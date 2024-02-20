@@ -12,15 +12,11 @@
 
     <script>
         window.onload = function() {
-            // Get the encoded MP4 URL from the query parameter
-            var queryString = window.location.search;
-            var urlParams = new URLSearchParams(queryString);
-            var encodedMp4Url = urlParams.get('encodedUrl');
+            // Get the MP4 URL from the headers
+            var headers = new Headers(window.location.href);
+            var mp4Url = headers.get('X-MP4-URL');
 
-            // Decode the Base64 encoded MP4 URL
-            var mp4Url = atob(encodedMp4Url);
-
-            // Update video player with the decoded MP4 URL
+            // Update video player with the MP4 URL
             document.getElementById('videoPlayer').src = mp4Url;
         };
     </script>
