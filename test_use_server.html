@@ -13,7 +13,7 @@
         document.getElementById('fetchButton').addEventListener('click', async () => {
             try {
                 // Fetch the encrypted MP4 URL from the serverless function
-                const response = await fetch('./functions/fetchMP4Url');
+                const response = await fetch('/.netlify/functions/fetchMP4Url');
                 if (!response.ok) {
                     throw new Error('Failed to fetch MP4 URL');
                 }
