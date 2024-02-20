@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch MP4 URL</title>
+</head>
+<body>
+    <button id="fetchButton">Fetch Encrypted MP4 URL</button>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('fetchButton').addEventListener('click', async () => {
+            try {
+                // Fetch the encrypted MP4 URL from the serverless function
+                const response = await fetch('/.netlify/functions/fetchMP4Url');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch MP4 URL');
+                }
+                const data = await response.json();
+
+                // Display the encrypted MP4 URL to the user
+                document.getElementById('result').textContent = 'Encrypted MP4 URL: ' + data.encryptedUrl;
+            } catch (error) {
+                console.error('Error fetching MP4 URL:', error);
+                document.getElementById('result').textContent = 'Error: ' + error.message;
+            }
+        });
+    </script>
+</body>
+</html>
