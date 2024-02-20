@@ -14,7 +14,10 @@
         window.onload = function() {
             // Get the MP4 URL from the headers
             var headers = new Headers(window.location.href);
-            var mp4Url = headers.get('X-MP4-URL');
+            var encodedMp4Url = headers.get('X-MP4-URL');
+
+            // Decode the Base64 encoded MP4 URL
+            var mp4Url = atob(encodedMp4Url);
 
             // Update video player with the MP4 URL
             document.getElementById('videoPlayer').src = mp4Url;
