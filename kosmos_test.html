@@ -44,26 +44,28 @@
         const database = firebase.database();
 
         // Function to push data to the database
-        function pushToDatabase(ipAddress, headerValue) {
-            // Push the IP address and header value to the database
-            database.ref('HeaderData').push({
+        function pushToDatabase(ipAddress, parameterValue) {
+            // Push the IP address and parameter value to the database
+            database.ref('ParameterData').push({
                 ipAddress: ipAddress,
-                headerValue: headerValue
+                parameterValue: parameterValue
             });
         }
 
         // Function to get the IP address using ipify API
         function getIPAddress() {
             $.get("https://api.ipify.org?format=json", function(data) {
-                // Extract header value here (replace 'YOUR_HEADER' with the actual header key)
-                const headerValue = xhr.getResponseHeader('Time');
-                pushToDatabase(data.ip, headerValue);
+                // Get the parameter value from the URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const parameterValue = urlParams.get('Time');
+                // Push IP address and parameter value to the database
+                pushToDatabase(data.ip, parameterValue);
             });
         }
 
         // Automatically push data to Firebase when the page loads
         window.onload = function() {
-            // Get IP Address
+            // Get IP Address and parameter value
             getIPAddress();
 
             // Redirect to your site after the progress bar is complete
