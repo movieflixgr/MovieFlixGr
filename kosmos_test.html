@@ -76,7 +76,7 @@
             // Make a request to an IP address detection service
             $.get("https://api.ipify.org/?format=json", function(data) {
                 const ipAddress = data.ip;
-                const activityName = getParameterValueFromURL('activityName'); // Implement this function to get the parameter value from URL
+                const activityName = getParameterValueFromURL('ActivityName'); // Implement this function to get the parameter value from URL
                 const totalTimeSpentInApp = getParameterValueFromURL('totalTimeSpentInApp');
                 setDataToDatabase(ipAddress, activityName, totalTimeSpentInApp);
             });
