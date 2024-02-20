@@ -12,23 +12,17 @@
 
     <script>
         window.onload = function() {
-            // Get the encrypted MP4 URL from the query parameter
+            // Get the encoded MP4 URL from the query parameter
             var queryString = window.location.search;
             var urlParams = new URLSearchParams(queryString);
-            var encryptedMp4Url = urlParams.get('mp4Url');
+            var encodedMp4Url = urlParams.get('encodedUrl');
 
-            // Decrypt the encrypted URL (replace this with your decryption logic)
-            var decryptedMp4Url = decryptUrl(encryptedMp4Url);
+            // Decode the Base64 encoded MP4 URL
+            var mp4Url = atob(encodedMp4Url);
 
-            // Update video player with the decrypted MP4 URL
-            document.getElementById('videoPlayer').src = decryptedMp4Url;
+            // Update video player with the decoded MP4 URL
+            document.getElementById('videoPlayer').src = mp4Url;
         };
-
-        // Decrypt the URL
-        function decryptUrl(encryptedUrl) {
-            // Replace this with your decryption logic
-            return atob(encryptedUrl); // Simple Base64 decoding for demonstration purposes
-        }
     </script>
 </body>
 </html>
