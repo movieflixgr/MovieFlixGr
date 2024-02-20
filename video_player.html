@@ -1,3 +1,4 @@
+<!-- player.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,20 +39,21 @@
     </div>
 
     <script>
-        // Get the video URL parameter from the query string
-        const urlParams = new URLSearchParams(window.location.search);
-        const videoUrl = urlParams.get('video');
+        // Function to get video URL from hash fragment
+        function getVideoUrlFromHash() {
+            const hash = window.location.hash.substring(1); // Remove '#' from hash
+            return decodeURIComponent(hash); // Decode URL-encoded hash
+        }
 
-        // Get the video element
-        const videoElement = document.getElementById('videoPlayer');
-
-        // Set the source of the video element based on the parameter
+        // Get video URL from hash fragment
+        const videoUrl = getVideoUrlFromHash();
         if (videoUrl) {
+            const videoElement = document.getElementById('videoPlayer');
             const sourceElement = document.createElement('source');
             sourceElement.src = videoUrl;
             videoElement.appendChild(sourceElement);
         } else {
-            console.error('No video URL parameter provided.');
+            console.error('No video URL provided in the hash fragment.');
         }
     </script>
 </body>
