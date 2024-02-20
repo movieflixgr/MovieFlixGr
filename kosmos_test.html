@@ -74,9 +74,9 @@
         }
         
         // Function to extract parameter value from URL (replace this with your implementation)
-        function getParameterValueFromURL() {
+        function getParameterValueFromURL(name) {
             const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('totalTimeSpentInApp');
+            return urlParams.get(name);
         }
 
         // Automatically push data to Firebase when the page loads
