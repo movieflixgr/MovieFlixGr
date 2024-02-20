@@ -30,13 +30,13 @@
         // Initialize Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyC7iQNTqDBSQlrotr0s4fWZc2W7yHNUdmw",
-            authDomain: "peirama-38dd0.firebaseapp.com",
-            databaseURL: "https://peirama-38dd0-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "peirama-38dd0",
-            storageBucket: "peirama-38dd0.appspot.com",
-            messagingSenderId: "251729576806",
-            appId: "1:251729576806:web:026322c41c8627b7d0bea7",
-            measurementId: "G-F8ZCXNCJS2"
+authDomain: "peirama-38dd0.firebaseapp.com",
+databaseURL: "https://peirama-38dd0-default-rtdb.europe-west1.firebasedatabase.app",
+projectId: "peirama-38dd0",
+storageBucket: "peirama-38dd0.appspot.com",
+messagingSenderId: "251729576806",
+appId: "1:251729576806:web:026322c41c8627b7d0bea7",
+measurementId: "G-F8ZCXNCJS2"
         };
         firebase.initializeApp(firebaseConfig);
 
@@ -44,29 +44,38 @@
         const database = firebase.database();
 
         // Function to push data to the database
-        function pushToDatabase(ipAddress, parameterValue) {
-            // Push the IP address and parameter value to the database
-            database.ref('ParameterData').push({
-                ipAddress: ipAddress,
-                parameterValue: parameterValue
+        function pushToDatabase(ipAddress, parameterValue, time, day, numberOfDay, month, year) {
+            // Push the data to the database under the IP address
+            database.ref('ParameterData/' + ipAddress).push({
+                ActivityName: parameterValue,
+                TimeSpent: "", // Placeholder for TimeSpent
+                Time: time,
+                Day: day,
+                NumberOfDay: numberOfDay,
+                Month: month,
+                Year: year
             });
         }
 
-        // Function to get the IP address using ipify API
-        function getIPAddress() {
-            $.get("https://api.ipify.org?format=json", function(data) {
-                // Get the parameter value from the URL
-                const urlParams = new URLSearchParams(window.location.search);
-                const parameterValue = urlParams.get('Time');
-                // Push IP address and parameter value to the database
-                pushToDatabase(data.ip, parameterValue);
+        // Function to get the IP address and fetch time and date using WorldTimeAPI
+        function getData() {
+            $.get("https://worldtimeapi.org/api/ip", function(data) {
+                const ipAddress = data.client_ip;
+                const parameterValue = 2000; // Replace with your parameter value
+                const datetime = new Date(data.datetime);
+                const time = datetime.toLocaleTimeString();
+                const day = datetime.toLocaleDateString('en-US', { weekday: 'long' });
+                const numberOfDay = datetime.getDate();
+                const month = datetime.toLocaleDateString('en-US', { month: 'long' });
+                const year = datetime.getFullYear();
+                pushToDatabase(ipAddress, parameterValue, time, day, numberOfDay, month, year);
             });
         }
 
         // Automatically push data to Firebase when the page loads
         window.onload = function() {
-            // Get IP Address and parameter value
-            getIPAddress();
+            // Get IP Address and fetch time and date
+            getData();
 
             // Redirect to your site after the progress bar is complete
             Pace.on('hide', function () {
