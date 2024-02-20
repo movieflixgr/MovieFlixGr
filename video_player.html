@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Video Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        video {
+            width: 100%;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dynamic Video Player</h1>
+        <video id="videoPlayer" controls autoplay>
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <script>
+        // Get the video URL parameter from the query string
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoUrl = urlParams.get('video');
+
+        // Get the video element
+        const videoElement = document.getElementById('videoPlayer');
+
+        // Set the source of the video element based on the parameter
+        if (videoUrl) {
+            const sourceElement = document.createElement('source');
+            sourceElement.src = videoUrl;
+            videoElement.appendChild(sourceElement);
+        } else {
+            console.error('No video URL parameter provided.');
+        }
+    </script>
+</body>
+</html>
