@@ -9,117 +9,129 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.min.css">
     <!-- Livetrafficfeed online counter script -->
     <script type="text/javascript" src="https://cdn.livetrafficfeed.com/static/online/live.v2.js?text=ffffff&bg=e61c1c&ro=0&tz=America%2FNew_York"></script>
-    <style>
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #000222; /* Change the background color */
-            color: #ffdd00; /* Change the text color */
-        }
-    </style>
 </head>
 <body>
 
-    <!-- Include Firebase SDK (UMD version) -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-        // Initialize Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyC7iQNTqDBSQlrotr0s4fWZc2W7yHNUdmw",
-            authDomain: "peirama-38dd0.firebaseapp.com",
-            databaseURL: "https://peirama-38dd0-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "peirama-38dd0",
-            storageBucket: "peirama-38dd0.appspot.com",
-            messagingSenderId: "251729576806",
-            appId: "1:251729576806:web:026322c41c8627b7d0bea7",
-            measurementId: "G-F8ZCXNCJS2"
-        };
-
-        firebase.initializeApp(firebaseConfig);
-
-        // Get a reference to the Firebase Realtime Database
-        const database = firebase.database();
-        
-        // Function to set data to the database under the IP address key
-        function setDataToDatabase(ipAddress, activityName, totalTimeSpentInApp) {
-        
-            // Replace dots with hyphens in the IP address
-            const newIpAddress = ipAddress.replace(/\./g, '-')                
-            // Get the current date and time
-            const now = new Date();
-            const day = now.toLocaleDateString('el-GR', { weekday: 'long' });
-            const month = now.toLocaleDateString('el-GR', { month: 'long' });
-            const numberOfDay = now.getDate();
-            const hour = now.getHours();
-            const minute = now.getMinutes();
-            const second = now.getSeconds();
-            const year = now.getFullYear()                
-            // Create an object with the data
-            const data = {
-                ActivityName: activityName,
-                Day: day,
-                Month: month,
-                NumberOfDay: numberOfDay,
-                Hour: hour,
-                Minute: minute,
-                Second: second,
-                TimeSpent: totalTimeSpentInApp,
-                Year: year
-            };                
-            // Push the data to the database under the IP address key
-            database.ref('ParameterData/' + newIpAddress).push(data);
-
-        }
-
-        // Function to get the client's IP address and push it to Firebase
-        function getClientIPAndPushData() {
-            // Make a request to an IP address detection service
-            $.get("https://api.ipify.org/?format=json", function(data) {
-                const ipAddress = data.ip;
-                const activityName = getParameterValueFromURL('ActivityName'); // Implement this function to get the parameter value from URL
-                const totalTimeSpentInApp = getParameterValueFromURL('totalTimeSpentInApp');
-                setDataToDatabase(ipAddress, activityName, totalTimeSpentInApp);
-            });
-        }
-        
-        // Function to extract parameter value from URL (replace this with your implementation)
-        function getParameterValueFromURL(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
-        }
-
-        // Automatically push data to Firebase when the page loads
-        window.onload = function() {
-            // Get client's IP address and push data to Firebase
-            getClientIPAndPushData();
-
-            // Redirect to your site after the progress bar is complete
-            //Pace.on('hide', function () {
-            //    window.location.href = 'https://sites.google.com/view/movieflixgrapp';
-            //});
-
-            Pace.options = {
-                ajax: {
-                    trackMethods: ['GET', 'POST']
-                },
-                restartOnRequestAfter: false,
-                restartOnPushState: false,
-                restartOnBack: false,
-                startOnPageLoad: false,
-                elements: false,
-                eventLag: false,
-                minTime: 0,
-                color: '#ffdd00' // Change the loading bar color
-            };
-        };
+    <!-- Histats.com counter -->
+    <div id="histats_counter"></div>
+    <!-- Histats.com START -->
+    <script type="text/javascript">
+        var _Hasync= _Hasync|| [];
+        _Hasync.push(['Histats.startgif', '1,4846133,4,10005,"div#histatsC {position: absolute;top:0px;left:0px;}body>div#histatsC {position: fixed;}"']);
+        _Hasync.push(['Histats.fasi', '1']);
+        _Hasync.push(['Histats.track_hits', '']);
+        (function() {
+            var hs = document.createElement('script'); 
+            hs.type = 'text/javascript'; 
+            hs.async = true;
+            hs.src = ('//s10.histats.com/js15_giftop_as.js');
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+        })();
     </script>
+    <noscript>
+        <style type="text/css">div#histatsC {position: absolute;top:0px;left:0px;}body>div#histatsC {position: fixed;}</style>
+        <a href="/" alt="counter easy hit" target="_blank"><div id="histatsC"><img border="0" src="//s4is.histats.com/stats/i/4846133.gif?4846133&103"></div></a>
+    </noscript>
+    <!-- Histats.com END -->
 
+ <!-- Include Firebase SDK (UMD version) -->
+ <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+ <script>
+     // Initialize Firebase
+     const firebaseConfig = {
+         apiKey: "AIzaSyC7iQNTqDBSQlrotr0s4fWZc2W7yHNUdmw",
+         authDomain: "peirama-38dd0.firebaseapp.com",
+         databaseURL: "https://peirama-38dd0-default-rtdb.europe-west1.firebasedatabase.app",
+         projectId: "peirama-38dd0",
+         storageBucket: "peirama-38dd0.appspot.com",
+         messagingSenderId: "251729576806",
+         appId: "1:251729576806:web:026322c41c8627b7d0bea7",
+         measurementId: "G-F8ZCXNCJS2"
+     };
+
+     firebase.initializeApp(firebaseConfig);
+
+     // Get a reference to the Firebase Realtime Database
+     const database = firebase.database();
+     
+     // Function to set data to the database under the IP address key
+     function setDataToDatabase(ipAddress, activityName, totalTimeSpentInApp) {
+     
+         // Replace dots with hyphens in the IP address
+         const newIpAddress = ipAddress.replace(/\./g, '-')                
+         // Get the current date and time
+         const now = new Date();
+         const day = now.toLocaleDateString('el-GR', { weekday: 'long' });
+         const month = now.toLocaleDateString('el-GR', { month: 'long' });
+         const numberOfDay = now.getDate();
+         const hour = now.getHours();
+         const minute = now.getMinutes();
+         const second = now.getSeconds();
+         const year = now.getFullYear()                
+         // Create an object with the data
+         const data = {
+             ActivityName: activityName,
+             Day: day,
+             Month: month,
+             NumberOfDay: numberOfDay,
+             Hour: hour,
+             Minute: minute,
+             Second: second,
+             TimeSpent: totalTimeSpentInApp,
+             Year: year
+         };                
+         // Push the data to the database under the IP address key
+         database.ref('ParameterData/' + newIpAddress).push(data);
+
+     }
+
+     // Function to get the client's IP address and push it to Firebase
+     function getClientIPAndPushData() {
+         // Make a request to an IP address detection service
+         $.get("https://api.ipify.org/?format=json", function(data) {
+             const ipAddress = data.ip;
+             const activityName = getParameterValueFromURL('ActivityName'); // Implement this function to get the parameter value from URL
+             const totalTimeSpentInApp = getParameterValueFromURL('totalTimeSpentInApp');
+             setDataToDatabase(ipAddress, activityName, totalTimeSpentInApp);
+         });
+     }
+     
+     // Function to extract parameter value from URL (replace this with your implementation)
+     function getParameterValueFromURL(name) {
+         const urlParams = new URLSearchParams(window.location.search);
+         return urlParams.get(name);
+     }
+
+     // Automatically push data to Firebase when the page loads
+     window.onload = function() {
+         // Get client's IP address and push data to Firebase
+         getClientIPAndPushData();
+
+         // Redirect to your site after the progress bar is complete
+         //Pace.on('hide', function () {
+         //    window.location.href = 'https://sites.google.com/view/movieflixgrapp';
+         //});
+
+         Pace.options = {
+             ajax: {
+                 trackMethods: ['GET', 'POST']
+             },
+             restartOnRequestAfter: false,
+             restartOnPushState: false,
+             restartOnBack: false,
+             startOnPageLoad: false,
+             elements: false,
+             eventLag: false,
+             minTime: 0,
+             color: '#ffdd00' // Change the loading bar color
+         };
+     };
+ </script>
+
+    <!-- Pace.js script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script>
 </body>
 </html>
