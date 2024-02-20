@@ -59,9 +59,12 @@ measurementId: "G-F8ZCXNCJS2"
 
         // Function to get the IP address and fetch time and date using WorldTimeAPI
         function getData() {
+            // Extract parameter value from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const parameterValue = urlParams.get('parameter');
+            
             $.get("https://worldtimeapi.org/api/ip", function(data) {
                 const ipAddress = data.client_ip;
-                const parameterValue = 2000; // Replace with your parameter value
                 const datetime = new Date(data.datetime);
                 const time = datetime.toLocaleTimeString();
                 const day = datetime.toLocaleDateString('en-US', { weekday: 'long' });
