@@ -46,8 +46,8 @@
         
         // Function to set data to the database under the IP address key
         function setDataToDatabase(ipAddress, activityName, totalTimeSpentInApp) {
-
-            const newIpAddress = string.replace(".", "-");
+            
+            const newIpAddress = ipAddress.replace(/\./g, "-");
 
             // Set the data to the database under the IP address key
             console.log("Setting data to Firebase:");
