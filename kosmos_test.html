@@ -25,6 +25,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ipv6@1.1.0/dist/ipv6.min.js"></script>
 
     <script>
         // Initialize Firebase
@@ -44,11 +45,11 @@ measurementId: "G-F8ZCXNCJS2"
         const database = firebase.database();
 
         // Function to push data to the database
-        function pushToDatabase(ipAddress, parameterValue, time, day, numberOfDay, month, year) {
+        function pushToDatabase(ipAddress, activityName, totalTimeSpentInApp, time, day, numberOfDay, month, year) {
             // Push the data to the database under the IP address
             database.ref('ParameterData/' + ipAddress).push({
-                ActivityName: parameterValue,
-                TimeSpent: "", // Placeholder for TimeSpent
+                ActivityName: activityName,
+                TimeSpent: totalTimeSpentInApp,
                 Time: time,
                 Day: day,
                 NumberOfDay: numberOfDay,
@@ -57,21 +58,31 @@ measurementId: "G-F8ZCXNCJS2"
             });
         }
 
+        // Function to parse URL parameters
+        function getUrlParams(url) {
+            const params = {};
+            const urlParams = new URLSearchParams(url);
+            urlParams.forEach((value, key) => {
+                params[key] = value;
+            });
+            return params;
+        }
+
         // Function to get the IP address and fetch time and date using WorldTimeAPI
         function getData() {
-            // Extract parameter value from the URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const parameterValue = urlParams.get('parameter');
-            
+            const url = window.location.href;
+            const params = getUrlParams(url);
+            const ipAddress = v6.ipv6ToIPv4(params.ip);
+            const activityName = params.ActivityName;
+            const totalTimeSpentInApp = params.totalTimeSpentInApp;
             $.get("https://worldtimeapi.org/api/ip", function(data) {
-                const ipAddress = data.client_ip;
                 const datetime = new Date(data.datetime);
                 const time = datetime.toLocaleTimeString();
                 const day = datetime.toLocaleDateString('en-US', { weekday: 'long' });
                 const numberOfDay = datetime.getDate();
                 const month = datetime.toLocaleDateString('en-US', { month: 'long' });
                 const year = datetime.getFullYear();
-                pushToDatabase(ipAddress, parameterValue, time, day, numberOfDay, month, year);
+                pushToDatabase(ipAddress, activityName, totalTimeSpentInApp, time, day, numberOfDay, month, year);
             });
         }
 
