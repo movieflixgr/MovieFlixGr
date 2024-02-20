@@ -12,9 +12,10 @@
 
     <script>
         window.onload = function() {
-            // Get the MP4 URL from the headers
-            var headers = new Headers(window.location.href);
-            var encodedMp4Url = headers.get('X-MP4-URL');
+            // Get the Base64 encoded MP4 URL from the query parameter
+            var queryString = window.location.search;
+            var urlParams = new URLSearchParams(queryString);
+            var encodedMp4Url = urlParams.get('X-MP4-URL');
 
             // Decode the Base64 encoded MP4 URL
             var mp4Url = atob(encodedMp4Url);
