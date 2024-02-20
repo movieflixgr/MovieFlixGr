@@ -46,28 +46,32 @@
         
         // Function to set data to the database under the IP address key
         function setDataToDatabase(ipAddress, activityName, totalTimeSpentInApp) {
-            
-            const newIpAddress = ipAddress.replace(/\./g, "-");
-
-            // Set the data to the database under the IP address key
-            console.log("Setting data to Firebase:");
-            console.log("IP Address:", newIpAddress);
-            console.log("Activity Name:", activityName);
-            console.log("Total Time Spent In App:", totalTimeSpentInApp);
-
-            // Set the data to the database under the IP address key
-
-            database.ref('ParameterData/' + newIpAddress).set({
-
+        
+            // Replace dots with hyphens in the IP address
+            const newIpAddress = ipAddress.replace(/\./g, '-')                
+            // Get the current date and time
+            const now = new Date();
+            const day = now.toLocaleDateString('el-GR', { weekday: 'long' });
+            const month = now.toLocaleDateString('el-GR', { month: 'long' });
+            const numberOfDay = now.getDate();
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+            const second = now.getSeconds();
+            const year = now.getFullYear()                
+            // Create an object with the data
+            const data = {
                 ActivityName: activityName,
+                Day: day,
+                Month: month,
+                NumberOfDay: numberOfDay,
+                Hour: hour,
+                Minute: minute,
+                Second: second,
                 TimeSpent: totalTimeSpentInApp,
-                Day: new Date().toLocaleDateString('el-GR', { weekday: 'long' }),
-                NumberOfDay: new Date().getDate(),
-                Month: new Date().toLocaleDateString('el-GR', { month: 'long' }),
-                Year: new Date().getFullYear(),
-                Time: new Date().toLocaleTimeString()
-
-            });
+                Year: year
+            };                
+            // Push the data to the database under the IP address key
+            database.ref('ParameterData/' + newIpAddress).push(data);
 
         }
 
