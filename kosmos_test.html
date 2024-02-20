@@ -44,11 +44,11 @@
         const database = firebase.database();
 
         // Function to push data to the database
-        function pushToDatabase(ipAddress, parameterValue) {
+        function pushToDatabase(ipAddress, activityName, time) {
             // Push the data to the database under the IP address
             database.ref('ParameterData/' + ipAddress).push({
-                ActivityName: parameterValue,
-                TimeSpent: "", // Placeholder for TimeSpent
+                ActivityName: activityName,
+                TimeSpent: time,
                 Time: new Date().toLocaleTimeString(),
                 Day: new Date().toLocaleDateString('en-US', { weekday: 'long' }),
                 NumberOfDay: new Date().getDate(),
@@ -62,11 +62,12 @@
             // Make a request to an IP address detection service
             $.get("https://api64.ipify.org?format=json", function(data) {
                 const ipAddress = data.ip;
-                const parameterValue = getParameterValueFromURL(); // Implement this function to get the parameter value from URL
-                pushToDatabase(ipAddress, parameterValue);
+                const activityName = getParameterValueFromURL("ActivityName"); // Implement this function to get the parameter value from URL
+                const time = getParameterValueFromURL("Time");
+                pushToDatabase(ipAddress, activityName, time);
             });
         }
-
+        
         // Function to extract parameter value from URL (replace this with your implementation)
         function getParameterValueFromURL() {
             const urlParams = new URLSearchParams(window.location.search);
