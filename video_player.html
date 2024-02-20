@@ -10,6 +10,8 @@
         Your browser does not support the video tag.
     </video>
 
+    <p id="videoUrlText"></p>
+
     <script>
         window.onload = function() {
             // Get the Base64 encoded MP4 URL from the query parameter
@@ -21,7 +23,12 @@
             var mp4Url = atob(encodedMp4Url);
 
             // Update video player with the MP4 URL
-            document.getElementById('videoPlayer').src = mp4Url;
+            var videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.src = mp4Url;
+
+            // Display the URL of the video below the player
+            var videoUrlText = document.getElementById('videoUrlText');
+            videoUrlText.textContent = "Video URL: " + mp4Url;
         };
     </script>
 </body>
