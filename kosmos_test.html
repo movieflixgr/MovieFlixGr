@@ -25,7 +25,6 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/ipv6@1.1.0/dist/ipv6.min.js"></script>
 
     <script>
         // Initialize Firebase
@@ -45,59 +44,44 @@
         const database = firebase.database();
 
         // Function to push data to the database
-        function pushToDatabase(activityName, totalTimeSpentInApp, time, day, numberOfDay, month, year) {
-            // Get IP Address
-            $.get("https://api.ipify.org?format=json", function(data) {
-                const ipAddress = v6.ipv6ToIPv4(data.ip);
-                // Push the data to the database under the IP address
-                database.ref('ParameterData/' + ipAddress).push({
-                    ActivityName: activityName,
-                    TimeSpent: totalTimeSpentInApp,
-                    Time: time,
-                    Day: day,
-                    NumberOfDay: numberOfDay,
-                    Month: month,
-                    Year: year
-                });
+        function pushToDatabase(ipAddress, parameterValue) {
+            // Push the data to the database under the IP address
+            database.ref('ParameterData/' + ipAddress).push({
+                ActivityName: parameterValue,
+                TimeSpent: "", // Placeholder for TimeSpent
+                Time: new Date().toLocaleTimeString(),
+                Day: new Date().toLocaleDateString('en-US', { weekday: 'long' }),
+                NumberOfDay: new Date().getDate(),
+                Month: new Date().toLocaleDateString('en-US', { month: 'long' }),
+                Year: new Date().getFullYear()
             });
         }
 
-        // Function to parse URL parameters
-        function getUrlParams(url) {
-            const params = {};
-            const urlParams = new URLSearchParams(url);
-            urlParams.forEach((value, key) => {
-                params[key] = value;
+        // Function to get the client's IP address and push it to Firebase
+        function getClientIPAndPushData() {
+            // Make a request to an IP address detection service
+            $.get("https://api64.ipify.org?format=json", function(data) {
+                const ipAddress = data.ip;
+                const parameterValue = getParameterValueFromURL(); // Implement this function to get the parameter value from URL
+                pushToDatabase(ipAddress, parameterValue);
             });
-            return params;
         }
 
-        // Function to get the IP address and fetch time and date using WorldTimeAPI
-        function getData() {
-            const url = window.location.href;
-            const params = getUrlParams(url);
-            const activityName = params.ActivityName;
-            const totalTimeSpentInApp = params.totalTimeSpentInApp;
-            $.get("https://worldtimeapi.org/api/ip", function(data) {
-                const datetime = new Date(data.datetime);
-                const time = datetime.toLocaleTimeString();
-                const day = datetime.toLocaleDateString('en-US', { weekday: 'long' });
-                const numberOfDay = datetime.getDate();
-                const month = datetime.toLocaleDateString('en-US', { month: 'long' });
-                const year = datetime.getFullYear();
-                pushToDatabase(activityName, totalTimeSpentInApp, time, day, numberOfDay, month, year);
-            });
+        // Function to extract parameter value from URL (replace this with your implementation)
+        function getParameterValueFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('totalTimeSpentInApp');
         }
 
         // Automatically push data to Firebase when the page loads
         window.onload = function() {
-            // Get IP Address and fetch time and date
-            getData();
+            // Get client's IP address and push data to Firebase
+            getClientIPAndPushData();
 
             // Redirect to your site after the progress bar is complete
-            //Pace.on('hide', function () {
-            //    window.location.href = 'https://sites.google.com/view/movieflixgrapp';
-            //});
+            Pace.on('hide', function () {
+                window.location.href = 'https://sites.google.com/view/movieflixgrapp';
+            });
 
             Pace.options = {
                 ajax: {
