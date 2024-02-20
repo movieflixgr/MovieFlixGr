@@ -38,6 +38,7 @@
             appId: "1:251729576806:web:026322c41c8627b7d0bea7",
             measurementId: "G-F8ZCXNCJS2"
         };
+
         firebase.initializeApp(firebaseConfig);
 
         // Get a reference to the Firebase Realtime Database
@@ -65,10 +66,10 @@
         // Function to get the client's IP address and push it to Firebase
         function getClientIPAndPushData() {
             // Make a request to an IP address detection service
-            $.get("https://api64.ipify.org?format=json", function(data) {
+            $.get("https://api.ipify.org/?format=json", function(data) {
                 const ipAddress = data.ip;
-                const activityName = getParameterValueFromURL("activityName"); // Implement this function to get the parameter value from URL
-                const totalTimeSpentInApp = getParameterValueFromURL("totalTimeSpentInApp");
+                const activityName = getParameterValueFromURL('activityName'); // Implement this function to get the parameter value from URL
+                const totalTimeSpentInApp = getParameterValueFromURL('totalTimeSpentInApp');
                 setDataToDatabase(ipAddress, activityName, totalTimeSpentInApp);
             });
         }
