@@ -10,25 +10,19 @@
         Your browser does not support the video tag.
     </video>
 
-    <p id="videoUrlText"></p>
-
     <script>
         window.onload = function() {
-            // Get the Base64 encoded MP4 URL from the query parameter
-            var queryString = window.location.search;
-            var urlParams = new URLSearchParams(queryString);
-            var encodedMp4Url = urlParams.get('X-MP4-URL');
+            // Get the MP4 URL from the intent data
+            var mp4Url = window.location.href;
+            var index = mp4Url.indexOf('?');
+            if (index !== -1) {
+                mp4Url = mp4Url.substring(index + 1);
+                var params = new URLSearchParams(mp4Url);
+                var videoUrl = params.get("mp4Url");
 
-            // Decode the Base64 encoded MP4 URL
-            var mp4Url = atob(encodedMp4Url);
-
-            // Update video player with the MP4 URL
-            var videoPlayer = document.getElementById('videoPlayer');
-            videoPlayer.src = mp4Url;
-
-            // Display the URL of the video below the player
-            var videoUrlText = document.getElementById('videoUrlText');
-            videoUrlText.textContent = "Video URL: " + mp4Url;
+                // Update video player with the MP4 URL
+                document.getElementById('videoPlayer').src = videoUrl;
+            }
         };
     </script>
 </body>
