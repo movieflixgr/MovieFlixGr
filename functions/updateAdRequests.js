@@ -28,40 +28,59 @@ const sheets = google.sheets({ version: 'v4', auth });
 
 exports.handler = async (event, context) => {
   try {
-    // Increment the value by 1
+    // Get today's date
+    const today = new Date().toISOString().split('T')[0];
     const sheetName = 'MovieFlix Ad Requests';
-    const cell = 'C2';
+    const range = `A:A`;
+
+    // Query the Google Sheet to find today's date
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
-      range: `C2`, // Adjusted to specify a single cell
+      range: range,
     });
-    const values = response.data.values;
-    const newValue = parseInt(values[0][0]) + 1;
+    const dates = response.data.values;
 
-    // Prepare the updated value
-    const updateValue = [[newValue]];
+    // Find the index of today's date in the Dates column
+    let todayIndex = -1;
+    if (dates) {
+      todayIndex = dates.findIndex((row) => row[0] === today);
+    }
 
-    // Update the sheet with the new value
-    const updateResponse = await sheets.spreadsheets.values.update({
-      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
-      range: `C2`, // Adjusted to specify a single cell
-      valueInputOption: 'RAW',
-      resource: {
-        values: updateValue
-      }
-    });
+    // If today's date is not found, append a new row
+    if (todayIndex === -1) {
+      const newRowValues = [[today, 1]]; // Date and Requests columns
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
+        range: sheetName,
+        valueInputOption: 'RAW',
+        resource: {
+          values: newRowValues,
+        },
+      });
+    } else {
+      // If today's date is found, update the Requests column value
+      const rangeToUpdate = `${sheetName}!B${todayIndex + 1}:C${todayIndex + 1}`; // B and C columns (Date and Requests)
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
+        range: rangeToUpdate,
+        valueInputOption: 'RAW',
+        resource: {
+          values: [[today, parseInt(dates[todayIndex][1]) + 1]],
+        },
+      });
+    }
 
     // Return successful response
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Value updated successfully', newValue: newValue })
+      body: JSON.stringify({ message: 'Value updated successfully' }),
     };
   } catch (error) {
     console.error('Error updating Google Sheet:', error);
     // Return error response
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Internal server error' })
+      body: JSON.stringify({ error: 'Internal server error' }),
     };
   }
 };
