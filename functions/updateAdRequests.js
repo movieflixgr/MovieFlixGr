@@ -29,11 +29,11 @@ const sheets = google.sheets({ version: 'v4', auth });
 exports.handler = async (event, context) => {
   try {
     // Parse JSON data from the request body
-    const { spreadsheetId, sheetName, rowData } = JSON.parse(event.body);
+    const { '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', sheetName, rowData } = JSON.parse(event.body);
 
     // Prepare request body
     const request = {
-      spreadsheetId,
+      '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
       range: `${sheetName}!A1:C`, // Assuming data is in columns A, B, and C, starting from row 1
       valueInputOption: 'USER_ENTERED',
       resource: {
