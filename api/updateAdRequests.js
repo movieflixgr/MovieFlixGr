@@ -60,7 +60,7 @@ module.exports = async (req, res) => {
     }
 
     // If today's date is not found, append a new row
-    if (todayIndex === -1) {
+    if ( === -1) {
       const newRowValues = [[now, 1]]; // Date and Requests columns
       await sheets.spreadsheets.values.append({
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
@@ -170,7 +170,7 @@ module.exports = async (req, res) => {
   
       await sheets.spreadsheets.values.update({
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-        range: `${String.fromCharCode(65 + values[0].length)}${todayIndex + 3}`, // Range for today's value in the new column
+        range: `${String.fromCharCode(65 + values[0].length)}${todayIndex + 5}`, // Range for today's value in the new column
         valueInputOption: 'RAW',
         resource: {
           values: [[1]], // Increment the value
