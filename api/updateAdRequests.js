@@ -90,3 +90,6 @@ exports.handler = async (event, context) => {
     };
   }
 };
+
+// Export the handler function
+module.exports = handler;
