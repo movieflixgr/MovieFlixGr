@@ -61,7 +61,7 @@ module.exports = async (req, res) => {
 
     // If today's date is not found, append a new row
     if (todayIndex === -1) {
-      const newRowValues = [[today, 1]]; // Date and Requests columns
+      const newRowValues = [[now, 1]]; // Date and Requests columns
       await sheets.spreadsheets.values.append({
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
         range: range,
