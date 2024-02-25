@@ -35,8 +35,9 @@ module.exports = async (req, res) => {
 
     // Get today's date
     const today = new Date().toISOString().split('T')[0];
-    const range = `A:B`; // Update range to include both Date and Requests columns
-
+    const numColumns = values[0].length; // Get the number of columns in the header row
+    const range = `A:${String.fromCharCode(65 + numColumns - 1)}`; // Range from A to the last column letter
+    
     // Query the Google Sheet to find today's date
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
