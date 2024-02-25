@@ -8,7 +8,7 @@ functions:
   # Define the serverless function and its file path
   updateAdRequests:
     # Path to the serverless function file
-    handler: functions/updateAdRequests.js
+    handler: api/updateAdRequests.js
 
 # Specify routes, if needed
 # routes:
