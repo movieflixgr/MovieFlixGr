@@ -78,73 +78,40 @@ module.exports = async (req, res) => {
       });
     }
 
-
     // Find the index of the type in the header row
-
     let typeIndex = -1;
-
     if (values && values[0]) {
-
       typeIndex = values[0].indexOf(type);
-
     }
 
-    // If type's index is not found, append a new column
-
+    // If type's index is not found, append a new column named "Type"
     if (typeIndex === -1) {
-
-      const newColumnLetter = String.fromCharCode(65 + values[0].length); // Calculate the new column letter
-
       await sheets.spreadsheets.values.append({
-
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-
-        range: `${newColumnLetter}1`, // Append at the end of existing columns
-
+        range: 'B1:B1', // Append at the end of existing columns, starting from the second column
         valueInputOption: 'RAW',
-
         resource: {
-
           values: [[type]], // Add the type to the header row
-
         },
-
       });
-
       typeIndex = values[0].length; // Update the typeIndex
-
     }
 
     // Update the value in the column for the specified type
-
     if (todayIndex !== -1 && typeIndex !== -1) {
-
       let currentValue = 0;
-
       if (!isNaN(parseInt(values[todayIndex][typeIndex]))) {
-
         currentValue = parseInt(values[todayIndex][typeIndex]);
-
       }
-
-      const rangeToUpdate = `${String.fromCharCode(65 + typeIndex)}${todayIndex + 1}`; // Column letter (A for index 0, B for index 1, etc.)
-
+      const rangeToUpdate = `${String.fromCharCode(66 + typeIndex)}${todayIndex + 1}`; // Column letter (B for index 0, C for index 1, etc.)
       await sheets.spreadsheets.values.update({
-
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-
         range: rangeToUpdate,
-
         valueInputOption: 'RAW',
-
         resource: {
-
           values: [[currentValue + 1]], // Increment the value
-
         },
-
       });
-
     }
 
     // Once the asynchronous operation is completed, send the response
