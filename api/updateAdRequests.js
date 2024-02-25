@@ -133,8 +133,8 @@ module.exports = async (req, res) => {
 
       }
 
-      const rangeToUpdate = `${typeColumnLetter}${todayIndex + 1}`; // Corrected range concatenation
-
+      const rangeToUpdate = `${String.fromCharCode(65 + values[0].length)}${todayIndex + 1}`;
+      
       await sheets.spreadsheets.values.update({
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
         range: rangeToUpdate,
