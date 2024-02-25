@@ -51,7 +51,7 @@ exports.handler = async (event, context) => {
       const newRowValues = [[today, 1]]; // Date and Requests columns
       await sheets.spreadsheets.values.append({
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
-        range: sheetName,
+        range: range,
         valueInputOption: 'RAW',
         resource: {
           values: newRowValues,
@@ -59,7 +59,7 @@ exports.handler = async (event, context) => {
       });
     } else {
       // If today's date is found, update the Requests column value
-      const rangeToUpdate = `${sheetName}!B${todayIndex + 1}:C${todayIndex + 1}`; // B and C columns (Date and Requests)
+      const rangeToUpdate = `$B${todayIndex + 1}:C${todayIndex + 1}`; // B and C columns (Date and Requests)
       await sheets.spreadsheets.values.update({
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
         range: rangeToUpdate,
