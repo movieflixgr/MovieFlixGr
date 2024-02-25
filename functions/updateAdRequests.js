@@ -33,7 +33,7 @@ exports.handler = async (event, context) => {
     const cell = 'C2';
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
-      range: `${sheetName}!${cell}`, // Adjusted to specify a single cell
+      range: `${sheetName}!C2`, // Adjusted to specify a single cell
     });
     const values = response.data.values;
     const newValue = parseInt(values[0][0]) + 1;
@@ -44,7 +44,7 @@ exports.handler = async (event, context) => {
     // Update the sheet with the new value
     const updateResponse = await sheets.spreadsheets.values.update({
       spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
-      range: `${sheetName}!${cell}`, // Adjusted to specify a single cell
+      range: `${sheetName}!C2`, // Adjusted to specify a single cell
       valueInputOption: 'RAW',
       resource: {
         values: updateValue
