@@ -1,6 +1,6 @@
 {
   "builds": [
-    { "src": "api/", "use": "@vercel/node", "config": { "commands": ["npm install googleapis"] } }
+    { "src": "", "use": "@vercel/node", "config": { "commands": ["npm install googleapis"] } }
   ],
   "version": 2
 }
