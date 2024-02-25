@@ -38,13 +38,11 @@ module.exports = async (req, res) => {
 
     // Query the Google Sheet to find today's date
     const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-      range: range,
+      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI'
     });
     const values = response.data.values;
 
     const numColumns = values[0].length; // Get the number of columns in the header row
-    const range = `A:${String.fromCharCode(65 + numColumns - 1)}`; // Range from A to the last column letter
 
     // Find the index of today's date in the Dates column
     let todayIndex = -1;
