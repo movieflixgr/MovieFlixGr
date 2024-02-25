@@ -49,7 +49,7 @@ const handler = async (event, context) => {
 
     // Query the Google Sheet to find today's date
     const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: 'your-spreadsheet-id',
+      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
       range: range,
     });
     const values = response.data.values;
@@ -64,7 +64,7 @@ const handler = async (event, context) => {
     if (todayIndex === -1) {
       const newRowValues = [[today, 1]]; // Date and Requests columns
       await sheets.spreadsheets.values.append({
-        spreadsheetId: 'your-spreadsheet-id',
+        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
         range: range,
         valueInputOption: 'RAW',
         resource: {
