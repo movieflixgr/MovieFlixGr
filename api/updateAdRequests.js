@@ -79,12 +79,12 @@ module.exports = async (req, res) => {
     }
 
     // Once the asynchronous operation is completed, send the response
-    res.status(200).end(JSON.stringify("{status:200, message:'Value Changed!'}"));
+    res.status(200).end(JSON.stringify({status:200, message:'Value Changed!'}));
     
   } catch (error) {
 
     // If an error occurs during the asynchronous operation, handle it here
-    res.status(500).end(JSON.stringify("{status:500, message:'Internal Server Error'}"));
+    res.status(500).end(JSON.stringify({status:500, message:'Internal Server Error'}));
 
   }
 
