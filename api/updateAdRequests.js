@@ -132,11 +132,12 @@ module.exports = async (req, res) => {
         currentValue = parseInt(values[todayIndex][typeIndex]);
 
       }
-
-      console.log("Index of today's date:", values.findIndex((row) => row[0] === now));
-      console.log("Range to update:", rangeToUpdate);
       
-      const rangeToUpdate = `${String.fromCharCode(65 + values[0].length)}${values.findIndex((row) => row[0] === now)}`;
+      const rangeToUpdate = `${String.fromCharCode(65 + values[0].length)}${todayIndex}`;
+
+      console.log("Index of today's date:", todayIndex);
+      console.log("Column letter:", String.fromCharCode(65 + values[0].length));
+      console.log("Range to update:", rangeToUpdate);
       
       console.log("Range to update:", rangeToUpdate);
       
