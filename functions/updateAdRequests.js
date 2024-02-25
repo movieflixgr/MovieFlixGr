@@ -28,26 +28,35 @@ const sheets = google.sheets({ version: 'v4', auth });
 
 exports.handler = async (event, context) => {
   try {
-    // Parse JSON data from the request body
-    const { '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', sheetName, rowData } = JSON.parse(event.body);
-
-    // Prepare request body
-    const request = {
-      '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-      range: `${sheetName}!A1:C`, // Assuming data is in columns A, B, and C, starting from row 1
-      valueInputOption: 'USER_ENTERED',
-      resource: {
-        values: [rowData]
-      }
+    // Increment the value by 1
+    const {
+      sheetName = 'MovieFlix Ad Requests',
+      range = 'C2'
     };
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
+      range: `${sheetName}!${range}`
+    });
+    const values = response.data.values;
+    const newValue = parseInt(values[0][0]) + 1;
 
-    // Make update request to Google Sheets API
-    const response = await sheets.spreadsheets.values.append(request);
+    // Prepare the updated value
+    const updateValue = [[newValue]];
+
+    // Update the sheet with the new value
+    const updateResponse = await sheets.spreadsheets.values.update({
+      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
+      range: `${sheetName}!${range}`,
+      valueInputOption: 'RAW',
+      resource: {
+        values: updateValue
+      }
+    });
 
     // Return successful response
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Data updated successfully' })
+      body: JSON.stringify({ message: 'Value updated successfully', newValue: newValue })
     };
   } catch (error) {
     console.error('Error updating Google Sheet:', error);
