@@ -28,6 +28,7 @@ const sheets = google.sheets({ version: 'v4', auth });
 
 exports.handler = async (event, context) => {
   try {
+    // Parse JSON data from the request body
     const { spreadsheetId, sheetName, rowData } = JSON.parse(event.body);
 
     // Prepare request body
@@ -43,12 +44,14 @@ exports.handler = async (event, context) => {
     // Make update request to Google Sheets API
     const response = await sheets.spreadsheets.values.append(request);
 
+    // Return successful response
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Data updated successfully', response })
+      body: JSON.stringify({ message: 'Data updated successfully' })
     };
   } catch (error) {
     console.error('Error updating Google Sheet:', error);
+    // Return error response
     return {
       statusCode: 500,
       body: JSON.stringify({ error: 'Internal server error' })
