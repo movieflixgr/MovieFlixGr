@@ -77,7 +77,7 @@ module.exports = async (event, context) => {
     }
 
     // Return successful response
-    const result = {
+    return {
       statusCode: 200,
       headers: {
         "Content-Type": "application/json"
@@ -85,20 +85,17 @@ module.exports = async (event, context) => {
       body: JSON.stringify({ message: 'Value updated successfully' })
     };
     
-    return result;
-    
   } catch (error) {
 
     // Return successful response
-    const result = {
+        
+    return {
       statusCode: 500,
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ message: 'Error updating Google Sheet' })
     };
-        
-    return result;
-    
+
   }
 };
