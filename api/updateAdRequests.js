@@ -33,16 +33,17 @@ module.exports = async (req, res) => {
     // Get the value of the "Type" query parameter
     const type = req.query.Type;
 
+    const range = `A:Z`; // Range from A to the last column letter
+
     // Get today's date
     const today = new Date().toISOString().split('T')[0];
 
     // Query the Google Sheet to find today's date
     const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI'
+      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+      range: range,
     });
     const values = response.data.values;
-
-    const numColumns = values[0].length; // Get the number of columns in the header row
 
     // Find the index of today's date in the Dates column
     let todayIndex = -1;
