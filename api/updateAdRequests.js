@@ -89,7 +89,7 @@ module.exports = async (req, res) => {
 
       for (let i = 0; i < values[0].length; i++) {
 
-        if (values[0][i] === type) {
+        if (values[0][i] === "Banner") {
 
           console.log("Value: " + values[0][i]);
 
@@ -139,26 +139,30 @@ module.exports = async (req, res) => {
 
     } else {
 
-      await sheets.spreadsheets.values.update({
+      // Append a new column for the specified type
+  
+      await sheets.spreadsheets.values.append({  
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-        range: `${String.fromCharCode(65 + row[0].length + 1)}0}`,
+        range: `A${values[0].length + 1}`, // Append at the end of the header row
         valueInputOption: 'RAW',
         resource: {
-          values: [[Type]], // Increment the value
+  
+          values: [[type]], // Value for the new column
+  
         },
-
+    
       });
 
+      // Update the value for today in the new column
+  
       await sheets.spreadsheets.values.update({
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-        range: `${String.fromCharCode(65 + row[0].length + 1)}${findIndex}}`,
+        range: `${String.fromCharCode(65 + values[0].length)}${todayIndex + 1}`, // Range for today's value in the new column
         valueInputOption: 'RAW',
         resource: {
           values: [[1]], // Increment the value
-        },
-
+        },  
       });
-
     }
 
     // Once the asynchronous operation is completed, send the response
