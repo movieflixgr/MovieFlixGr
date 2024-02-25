@@ -33,21 +33,6 @@ module.exports = async (event, context) => {
 
   try {
 
-    // Simulating an asynchronous operation that returns a promise
-    const result = await new Promise((resolve, reject) => {
-
-      // Simulating an asynchronous operation that takes some time
-
-      setTimeout(() => {
-
-        // Resolve the promise with a value
-
-        resolve('Promise resolved!');
-
-      }, 9000);
-
-    });
-
     // Calculate the time difference in seconds
     const secondsAfterInit = (Date.now() - initTimestamp) / 1000;
     console.log(`Execution started ${secondsAfterInit} seconds after initialization.`);
@@ -80,6 +65,11 @@ module.exports = async (event, context) => {
           values: newRowValues,
         },
       });
+      
+      // Calculate the time difference in seconds
+      const secondsAfterInit2000 = (Date.now() - initTimestamp) / 1000;
+      console.log(`Execution started ${secondsAfterInit2000} seconds after 2000.`);
+
     } else {
       // If today's date is found, update the Requests column value
       let currentRequests = 0;
@@ -98,6 +88,11 @@ module.exports = async (event, context) => {
           values: [[newRequests]], // Wrap the value in an array
         },
       });
+
+      // Calculate the time difference in seconds
+      const secondsAfterInit200 = (Date.now() - initTimestamp) / 1000;
+      console.log(`Execution started ${secondsAfterInit200} seconds after 200.`);
+
     }
 
     secondsAfterInit = (Date.now() - initTimestamp) / 1000;
