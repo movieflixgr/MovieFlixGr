@@ -36,8 +36,16 @@ module.exports = async (req, res) => {
     const range = `A:Z`; // Range from A to the last column letter
 
     // Get today's date
-    const today = new Date().toISOString().split('T')[0];
-
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Adding 1 because getMonth() returns zero-based month
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const hours = String(currentDate.getHours()).padStart(2, '0');
+    const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+    const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+    
+    const now = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    
     // Query the Google Sheet to find today's date
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
@@ -48,7 +56,7 @@ module.exports = async (req, res) => {
     // Find the index of today's date in the Dates column
     let todayIndex = -1;
     if (values) {
-      todayIndex = values.findIndex((row) => row[0] === today);
+      todayIndex = values.findIndex((row) => row[0] === now);
     }
 
     // If today's date is not found, append a new row
@@ -63,10 +71,10 @@ module.exports = async (req, res) => {
         },
       });
     } else {
-      // If today's date is found, update the Requests column value
+      // If 's date is found, update the Requests column value
       let currentRequests = 0;
-      if (!isNaN(parseInt(values[todayIndex][1]))) {
-        currentRequests = parseInt(values[todayIndex][1]);
+      if (!isNaN(parseInt(values[Index][1]))) {
+        currentRequests = parseInt(values[Index][1]);
       }
       const rangeToUpdate = `$B${todayIndex + 1}`; // B column (Requests)
       await sheets.spreadsheets.values.update({
