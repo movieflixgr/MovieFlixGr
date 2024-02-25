@@ -1,8 +1,5 @@
 const { google } = require('googleapis');
 
-// Flag to prevent multiple executions
-let isExecuting = false;
-
 // Google Sheets API credentials
 const credentials = {
   // Your service account credentials here
@@ -29,27 +26,15 @@ const auth = new google.auth.JWT(
 
 const sheets = google.sheets({ version: 'v4', auth });
 
-// Define the handler function
-const handler = async (event, context) => {
-  // Check if function is already executing
-  if (isExecuting) {
-    console.log('Function is already executing. Skipping...');
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ message: 'Function is already executing' }),
-    };
-  }
-
+exports.handler = async (event, context) => {
   try {
-    isExecuting = true;
-
     // Get today's date
     const today = new Date().toISOString().split('T')[0];
     const range = `A:B`; // Update range to include both Date and Requests columns
 
     // Query the Google Sheet to find today's date
     const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
       range: range,
     });
     const values = response.data.values;
@@ -64,7 +49,7 @@ const handler = async (event, context) => {
     if (todayIndex === -1) {
       const newRowValues = [[today, 1]]; // Date and Requests columns
       await sheets.spreadsheets.values.append({
-        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
         range: range,
         valueInputOption: 'RAW',
         resource: {
@@ -82,7 +67,7 @@ const handler = async (event, context) => {
       console.log('New Requests:', newRequests);
       const rangeToUpdate = `$B${todayIndex + 1}`; // B column (Requests)
       await sheets.spreadsheets.values.update({
-        spreadsheetId: 'your-spreadsheet-id',
+        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
         range: rangeToUpdate,
         valueInputOption: 'RAW',
         resource: {
@@ -103,10 +88,5 @@ const handler = async (event, context) => {
       statusCode: 500,
       body: JSON.stringify({ error: 'Internal server error' }),
     };
-  } finally {
-    isExecuting = false;
   }
 };
-
-// Export the handler function
-module.exports = handler;
