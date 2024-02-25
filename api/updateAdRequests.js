@@ -79,56 +79,70 @@ module.exports = async (req, res) => {
       });
     }
 
-// Find the index of the column containing the type in the header row
-let typeIndex = -1;
-if (values && values[0]) {
-  console.log("Value: " + values[0][2]);
-  for (let i = 0; i < values[0].length; i++) {
-    if (values[0][i] === "Banner") {
-      console.log("Value: " + values[0][i]);
-      typeIndex = i;
-      break;
+    // Find the index of the column containing the type in the header row
+
+    let typeIndex = -1;
+
+    if (values && values[0]) {
+
+      console.log("Value: " + values[0][2]);
+
+      for (let i = 0; i < values[0].length; i++) {
+
+        if (values[0][i] === "Banner") {
+
+          console.log("Value: " + values[0][i]);
+
+          typeIndex = i;
+
+          break;
+
+        }
+
+      }
+
     }
-  }
-}
 
-// Find the letter of the column containing the type in the header row
-let typeColumnLetter = '';
-if (typeIndex !== -1) {
-  typeColumnLetter = String.fromCharCode(65 + typeIndex); // Convert index to column letter
-}
+    // Find the letter of the column containing the type in the header row
 
-console.log("Type Index: " + typeColumnLetter + typeIndex);
+    let typeColumnLetter = '';
 
-// If type's index is not found, append a new column named "Type"
-if (typeIndex === -1) {
-  await sheets.spreadsheets.values.append({
-    spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-    range: 'B1:B1', // Append at the end of existing columns, starting from the second column
-    valueInputOption: 'RAW',
-    resource: {
-      values: [[type]], // Add the type to the header row
-    },
-  });
-  typeIndex = values[0].length; // Update the typeIndex
-}
+    if (typeIndex !== -1) {
 
-// Update the value in the column for the specified type
-if (todayIndex !== -1 && typeIndex !== -1) {
-  let currentValue = 0;
-  if (!isNaN(parseInt(values[todayIndex][typeIndex]))) {
-    currentValue = parseInt(values[todayIndex][typeIndex]);
-  }
-  const rangeToUpdate = `${String.fromCharCode(66 + typeIndex)}${todayIndex + 1}`; // Column letter (B for index 0, C for index 1, etc.)
-  await sheets.spreadsheets.values.update({
-    spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-    range: rangeToUpdate,
-    valueInputOption: 'RAW',
-    resource: {
-      values: [[currentValue + 1]], // Increment the value
-    },
-  });
-}
+      typeColumnLetter = String.fromCharCode(65 + typeIndex); // Convert index to column letter
+
+    }
+
+
+    console.log("Type Index: " + typeColumnLetter + typeIndex);
+
+
+    // Update the value in the column for the specified type
+
+
+    if (todayIndex !== -1 && typeIndex !== -1) {
+  
+      let currentValue = 0;
+
+      if (!isNaN(parseInt(values[todayIndex][typeIndex]))) {
+
+        currentValue = parseInt(values[todayIndex][typeIndex]);
+
+      }
+
+      const rangeToUpdate = `${typeColumnLetter}${todayIndex + 1}`; // Corrected range concatenation
+
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+        range: rangeToUpdate,
+        valueInputOption: 'RAW',
+        resource: {
+          values: [[currentValue + 1]], // Increment the value
+        },
+
+      });
+
+    }
 
     // Once the asynchronous operation is completed, send the response
     
