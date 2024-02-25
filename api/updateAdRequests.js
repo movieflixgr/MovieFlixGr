@@ -26,7 +26,8 @@ const auth = new google.auth.JWT(
 
 const sheets = google.sheets({ version: 'v4', auth });
 
-exports.handler = async (event, context) => {
+// Define the handler function
+const handler = async (event, context) => {
   try {
     // Get today's date
     const today = new Date().toISOString().split('T')[0];
