@@ -71,10 +71,10 @@ module.exports = async (req, res) => {
         },
       });
     } else {
-      // If 's date is found, update the Requests column value
+      // If today's date is found, update the Requests column value
       let currentRequests = 0;
-      if (!isNaN(parseInt(values[Index][1]))) {
-        currentRequests = parseInt(values[Index][1]);
+      if (!isNaN(parseInt(values[todayIndex][1]))) {
+        currentRequests = parseInt(values[todayIndex][1]);
       }
       const rangeToUpdate = `$B${todayIndex + 1}`; // B column (Requests)
       await sheets.spreadsheets.values.update({
