@@ -1,0 +1,6 @@
+{
+  "builds": [
+    { "src": "api/", "use": "@vercel/node", "config": { "commands": ["npm install"] } }
+  ],
+  "version": 2
+}
