@@ -1,9 +1,3 @@
-module.exports = async (event, context) => {
-  return {
-    statusCode: 200,
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ message: 'Success' })
-  };
+module.exports = function handler(req, res) {
+  res.status(200).end('Hello Cron!');
 };
