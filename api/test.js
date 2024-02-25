@@ -1,11 +1,9 @@
-// Define the handler function
-const handler = async (event, context) => {
-  // Return successful response
+module.exports = async (event, context) => {
   return {
     statusCode: 200,
-    body: JSON.stringify({ message: 'Success' }),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ message: 'Success' })
   };
 };
-
-// Export the handler function
-module.exports = handler;
