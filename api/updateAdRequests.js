@@ -78,13 +78,16 @@ module.exports = async (req, res) => {
       });
     }
 
+// Find the index of the type in the header row
+let typeIndex = -1;
+if (values && values[0]) {
+  typeIndex = values[0].indexOf(type);
+}
+
 // Find the letter of the column containing the type in the header row
 let typeColumnLetter = '';
-if (values && values[0]) {
-  const typeIndex = values[0].indexOf(type);
-  if (typeIndex !== -1) {
-    typeColumnLetter = String.fromCharCode(65 + typeIndex); // Convert index to column letter
-  }
+if (typeIndex !== -1) {
+  typeColumnLetter = String.fromCharCode(65 + typeIndex); // Convert index to column letter
 }
 
 console.log("Type Index: " + typeColumnLetter);
