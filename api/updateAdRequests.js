@@ -146,9 +146,8 @@ module.exports = async (req, res) => {
         range: `${String.fromCharCode(65 + values[0].length)}1`, // Append at the end of the header row
         valueInputOption: 'RAW',
         resource: {
-  
+          console.log(`${String.fromCharCode(65 + values[0].length)}1`);
           values: [[type]], // Value for the new column
-  
         },
     
       });
