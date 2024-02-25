@@ -87,6 +87,8 @@ module.exports = async (req, res) => {
       });
     }
 
+    todayIndex = values.findIndex((row) => row[0] === now);
+    
     // Find the index of the column containing the type in the header row
 
     let typeIndex = -1;
