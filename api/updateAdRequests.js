@@ -1,8 +1,5 @@
 const { google } = require('googleapis');
 
-// Store the initialization timestamp
-const initTimestamp = Date.now();
-
 // Google Sheets API credentials
 const credentials = {
   // Your service account credentials here
@@ -82,12 +79,12 @@ module.exports = async (req, res) => {
     }
 
     // Once the asynchronous operation is completed, send the response
-    res.status(200).end('Hello Cron!');
+    res.status(200).end(JSON.stringify("{status:200, message:'Value Changed!'}"));
     
   } catch (error) {
 
     // If an error occurs during the asynchronous operation, handle it here
-    res.status(500).end('Internal Server Error');
+    res.status(500).end(JSON.stringify("{status:500, message:'Internal Server Error'}"));
 
   }
 
