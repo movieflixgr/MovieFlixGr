@@ -1,12 +1,4 @@
 const { google } = require('googleapis');
-const express = require('express');
-const bodyParser = require('body-parser');
-
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Middleware to parse JSON bodies
-app.use(bodyParser.json());
 
 // Google Sheets API credentials
 const credentials = {
@@ -34,32 +26,32 @@ const auth = new google.auth.JWT(
 
 const sheets = google.sheets({ version: 'v4', auth });
 
-// Endpoint to update Google Sheet
-app.post('/update-sheet', async (req, res) => {
+exports.handler = async (event, context) => {
   try {
-    const { spreadsheetId, sheetName, rowData } = req.body;
+    const { spreadsheetId, sheetName, rowData } = JSON.parse(event.body);
 
     // Prepare request body
-const request = {
-  spreadsheetId,
-  range: `${sheetName}!A1:C`, // Assuming data is in columns A, B, and C, starting from row 1
-  valueInputOption: 'USER_ENTERED',
-  resource: {
-    values: [rowData]
-  }
-};
+    const request = {
+      spreadsheetId,
+      range: `${sheetName}!A1:C`, // Assuming data is in columns A, B, and C, starting from row 1
+      valueInputOption: 'USER_ENTERED',
+      resource: {
+        values: [rowData]
+      }
+    };
 
     // Make update request to Google Sheets API
     const response = await sheets.spreadsheets.values.append(request);
 
-    res.status(200).json({ message: 'Data updated successfully', response });
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: 'Data updated successfully', response })
+    };
   } catch (error) {
     console.error('Error updating Google Sheet:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Internal server error' })
+    };
   }
-});
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+};
