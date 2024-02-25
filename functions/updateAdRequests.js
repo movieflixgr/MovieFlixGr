@@ -30,21 +30,19 @@ exports.handler = async (event, context) => {
   try {
     // Get today's date
     const today = new Date().toISOString().split('T')[0];
-    const adRequests = new AdRequests().toISOString().split('T')[0];
-    const sheetName = 'MovieFlix Ad Requests';
-    const range = `A:A`;
+    const range = `A:B`; // Update range to include both Date and Requests columns
 
     // Query the Google Sheet to find today's date
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
       range: range,
     });
-    const dates = response.data.values;
+    const values = response.data.values;
 
     // Find the index of today's date in the Dates column
     let todayIndex = -1;
-    if (dates) {
-      todayIndex = dates.findIndex((row) => row[0] === today);
+    if (values) {
+      todayIndex = values.findIndex((row) => row[0] === today);
     }
 
     // If today's date is not found, append a new row
@@ -60,19 +58,20 @@ exports.handler = async (event, context) => {
       });
     } else {
       // If today's date is found, update the Requests column value
-      // If today's date is found, update the Requests column value
       let currentRequests = 0;
-      if (!isNaN(parseInt(adRequests[todayIndex][1]))) {
-        currentRequests = parseInt(adRequests[todayIndex][1]);
+      if (!isNaN(parseInt(values[todayIndex][1]))) {
+        currentRequests = parseInt(values[todayIndex][1]);
       }
       const newRequests = currentRequests + 1;
-      const rangeToUpdate = `$A${todayIndex + 1}:B${todayIndex + 1}`; // A and B columns (Date and Requests)
+      console.log('Previous Requests:', currentRequests);
+      console.log('New Requests:', newRequests);
+      const rangeToUpdate = `$B${todayIndex + 1}`; // B column (Requests)
       await sheets.spreadsheets.values.update({
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
         range: rangeToUpdate,
         valueInputOption: 'RAW',
         resource: {
-          values: [[today, newRequests]], // Wrap the values in an array
+          values: [[newRequests]], // Wrap the value in an array
         },
       });
     }
