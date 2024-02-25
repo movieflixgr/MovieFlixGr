@@ -78,10 +78,15 @@ module.exports = async (req, res) => {
       });
     }
 
-// Find the index of the type in the header row
+// Find the index of the column containing the type in the header row
 let typeIndex = -1;
 if (values && values[0]) {
-  typeIndex = values[0].indexOf(type);
+  for (let i = 0; i < values[0].length; i++) {
+    if (values[0][i] === type) {
+      typeIndex = i;
+      break;
+    }
+  }
 }
 
 // Find the letter of the column containing the type in the header row
@@ -90,7 +95,7 @@ if (typeIndex !== -1) {
   typeColumnLetter = String.fromCharCode(65 + typeIndex); // Convert index to column letter
 }
 
-console.log("Type Index: " + typeColumnLetter);
+console.log("Type Index: " + typeColumnLetter + typeIndex);
 
 // If type's index is not found, append a new column named "Type"
 if (typeIndex === -1) {
