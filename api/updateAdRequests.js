@@ -29,13 +29,9 @@ const auth = new google.auth.JWT(
 
 const sheets = google.sheets({ version: 'v4', auth });
 
-module.exports = async (event, context) => {
+module.exports = async (req, res) => {
 
   try {
-
-    // Calculate the time difference in seconds
-    const secondsAfterInit = (Date.now() - initTimestamp) / 1000;
-    console.log(`Execution started ${secondsAfterInit} seconds after initialization.`);
 
     // Get today's date
     const today = new Date().toISOString().split('T')[0];
@@ -65,11 +61,6 @@ module.exports = async (event, context) => {
           values: newRowValues,
         },
       });
-      
-      // Calculate the time difference in seconds
-      const secondsAfterInit2000 = (Date.now() - initTimestamp) / 1000;
-      console.log(`Execution started ${secondsAfterInit2000} seconds after 2000.`);
-
     } else {
       // If today's date is found, update the Requests column value
       let currentRequests = 0;
@@ -88,36 +79,16 @@ module.exports = async (event, context) => {
           values: [[newRequests]], // Wrap the value in an array
         },
       });
-
-      // Calculate the time difference in seconds
-      const secondsAfterInit200 = (Date.now() - initTimestamp) / 1000;
-      console.log(`Execution started ${secondsAfterInit200} seconds after 200.`);
-
     }
 
-    secondsAfterInit = (Date.now() - initTimestamp) / 1000;
-    console.log(`Execution started ${secondsAfterInit} seconds after 200.`);
-
-    // Return successful response
-    return {
-      statusCode: 200,
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ message: 'Value updated successfully' })
-    };
+    // Once the asynchronous operation is completed, send the response
+    res.status(200).end('Hello Cron!');
     
   } catch (error) {
 
-    // Return successful response
-        
-    return {
-      statusCode: 500,
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ message: 'Error updating Google Sheet' })
-    };
+    // If an error occurs during the asynchronous operation, handle it here
+    res.status(500).end('Internal Server Error');
 
   }
+
 };
