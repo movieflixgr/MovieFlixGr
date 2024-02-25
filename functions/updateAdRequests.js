@@ -30,10 +30,10 @@ exports.handler = async (event, context) => {
   try {
     // Increment the value by 1
     const sheetName = 'MovieFlix Ad Requests';
-    const cellAddress = 'C2';
+    const cell = 'C2';
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
-      range: `${sheetName}!${cellAddress}`
+        range: `${sheetName}!${cell}`, // Adjusted to specify a single cell
     });
     const values = response.data.values;
     const newValue = parseInt(values[0][0]) + 1;
