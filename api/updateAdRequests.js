@@ -82,7 +82,7 @@ module.exports = async (req, res) => {
 let typeIndex = -1;
 if (values && values[0]) {
   for (let i = 0; i < values[0].length; i++) {
-    if (values[0][i] === Banner) {
+    if (values[0][i] === 'Banner') {
       console.log(values[0][i]);
       typeIndex = i;
       break;
