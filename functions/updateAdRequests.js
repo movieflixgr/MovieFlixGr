@@ -30,6 +30,7 @@ exports.handler = async (event, context) => {
   try {
     // Get today's date
     const today = new Date().toISOString().split('T')[0];
+    const adRequests = new AdRequests().toISOString().split('T')[0];
     const sheetName = 'MovieFlix Ad Requests';
     const range = `A:A`;
 
@@ -59,10 +60,12 @@ exports.handler = async (event, context) => {
       });
     } else {
       // If today's date is found, update the Requests column value
-      const currentRequests = parseInt(dates[todayIndex][1]);
+      // If today's date is found, update the Requests column value
+      let currentRequests = 0;
+      if (!isNaN(parseInt(adRequests[todayIndex][1]))) {
+        currentRequests = parseInt(adRequests[todayIndex][1]);
+      }
       const newRequests = currentRequests + 1;
-      console.log('Previous Requests:', currentRequests);
-      console.log('New Requests:', newRequests);
       const rangeToUpdate = `$A${todayIndex + 1}:B${todayIndex + 1}`; // A and B columns (Date and Requests)
       await sheets.spreadsheets.values.update({
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
