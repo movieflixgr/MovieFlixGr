@@ -28,19 +28,19 @@ const sheets = google.sheets({ version: 'v4', auth });
 
 module.exports = async (req, res) => {
   try {
-    // Get parameters from the request
-    const { params } = req.body;
+    // Get the value of the "Type" query parameter
+    const type = req.query.Type;
 
     // Get today's date
     const today = new Date().toISOString().split('T')[0];
     const range = `A:B`; // Update range to include both Date and Requests columns
 
-    // Query the Google Sheet to find today's date and existing values
+    // Query the Google Sheet to find today's date
     const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
+      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
       range: range,
     });
-    const values = response.data.values || [];
+    const values = response.data.values;
 
     // Find the index of today's date in the Dates column
     let todayIndex = -1;
@@ -50,40 +50,74 @@ module.exports = async (req, res) => {
 
     // If today's date is not found, append a new row
     if (todayIndex === -1) {
-      const newRowValues = [Array(values[0].length).fill(''), today]; // Initialize row with empty values and set the date
-      values.push(newRowValues); // Add the new row to the values array
-      todayIndex = values.length - 1; // Update the index of today's date
-    }
-
-    // Iterate over parameters and update corresponding column values
-    for (const param of params) {
-      const paramName = param.name;
-      const columnIndex = values[0].indexOf(paramName);
-      if (columnIndex !== -1) {
-        let currentValue = parseInt(values[todayIndex][columnIndex]) || 0;
-        values[todayIndex][columnIndex] = currentValue + 1;
-      } else {
-        // If the parameter name doesn't exist in the sheet, add it to the first row
-        values[0].push(paramName);
-        values[todayIndex].push(1); // Initialize the value to 1
+      const newRowValues = [[today, 1]]; // Date and Requests columns
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+        range: range,
+        valueInputOption: 'RAW',
+        resource: {
+          values: newRowValues,
+        },
+      });
+    } else {
+      // If today's date is found, update the Requests column value
+      let currentRequests = 0;
+      if (!isNaN(parseInt(values[todayIndex][1]))) {
+        currentRequests = parseInt(values[todayIndex][1]);
       }
+      const rangeToUpdate = `$B${todayIndex + 1}`; // B column (Requests)
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+        range: rangeToUpdate,
+        valueInputOption: 'RAW',
+        resource: {
+          values: [[currentRequests + 1]], // Wrap the value in an array
+        },
+      });
     }
 
-    // Update the Google Sheet with the modified values
-    await sheets.spreadsheets.values.update({
-      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
-      range: range,
-      valueInputOption: 'RAW',
-      resource: {
-        values: values,
-      },
-    });
+    // Find the index of the type in the header row
+    let typeIndex = -1;
+    if (values && values[0]) {
+      typeIndex = values[0].indexOf(type);
+    }
+
+    // If type's index is not found, append a new column
+    if (typeIndex === -1) {
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+        range: `C1`, // Append at the end of existing columns
+        valueInputOption: 'RAW',
+        resource: {
+          values: [[type]], // Add the type to the header row
+        },
+      });
+      typeIndex = values[0].length; // Update the typeIndex
+    }
+
+    // Update the value in the column for the specified type
+    let currentTypeValue = 0;
+    if (todayIndex !== -1 && typeIndex !== -1) {
+      if (!isNaN(parseInt(values[todayIndex][typeIndex]))) {
+        currentTypeValue = parseInt(values[todayIndex][typeIndex]);
+      }
+      const rangeToUpdate = `${String.fromCharCode(65 + typeIndex)}${todayIndex + 1}`; // Column letter (A for index 0, B for index 1, etc.)
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+        range: rangeToUpdate,
+        valueInputOption: 'RAW',
+        resource: {
+          values: [[currentTypeValue + 1]], // Increment the value
+        },
+      });
+    }
 
     // Once the asynchronous operation is completed, send the response
-    res.status(200).end(JSON.stringify({ status: 200, message: 'Values updated successfully' }));
+    res.status(200).end(JSON.stringify({ status: 200, message: 'Value Changed!' }));
+
   } catch (error) {
     // If an error occurs during the asynchronous operation, handle it here
+    console.error(error);
     res.status(500).end(JSON.stringify({ status: 500, message: 'Internal Server Error' }));
   }
-
 };
