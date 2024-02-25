@@ -82,35 +82,84 @@ module.exports = async (req, res) => {
       typeIndex = values[0].indexOf(type);
     }
 
+  
     // If type's index is not found, append a new column
     if (typeIndex === -1) {
+  
       const newColumnLetter = String.fromCharCode(65 + values[0].length); // Calculate the new column letter
-      await sheets.spreadsheets.values.append({
+  
+      await sheets.spreadsheets.batchUpdate({
+  
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-        range: `${newColumnLetter}1`, // Append at the end of existing columns
-        valueInputOption: 'RAW',
+  
         resource: {
-          values: [[type]], // Add the type to the header row
-        },
+  
+          requests: [
+  
+            {
+  
+              appendDimension: {
+  
+                sheetId: 0, // Assuming it's the first sheet
+  
+                dimension: 'COLUMNS',
+  
+                length: 1
+  
+              }
+  
+            },
+  
+            {
+  
+              updateCells: {
+  
+                range: {
+  
+                  sheetId: 0, // Assuming it's the first sheet
+  
+                  startRowIndex: todayIndex,
+  
+                  endRowIndex: todayIndex + 1,
+  
+                  startColumnIndex: typeIndex,
+  
+                  endColumnIndex: typeIndex + 1
+  
+                },
+  
+                fields: '*',
+  
+                rows: [
+  
+                  {
+  
+                    values: [
+  
+                      {
+  
+                        userEnteredValue: { numberValue: 1 }
+  
+                      }
+  
+                    ]
+  
+                  }
+  
+                ]
+  
+              }
+  
+            }
+  
+          ]
+  
+        }
+  
       });
+  
       typeIndex = values[0].length; // Update the typeIndex
-    }
-
-    // Update the value in the column for the specified type
-    let currentTypeValue = 0;
-    if (todayIndex !== -1 && typeIndex !== -1) {
-      if (!isNaN(parseInt(values[todayIndex][typeIndex]))) {
-        currentTypeValue = parseInt(values[todayIndex][typeIndex]);
-      }
-      const rangeToUpdate = `${String.fromCharCode(65 + typeIndex)}${todayIndex + 1}`; // Column letter (A for index 0, B for index 1, etc.)
-      await sheets.spreadsheets.values.update({
-        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-        range: rangeToUpdate,
-        valueInputOption: 'RAW',
-        resource: {
-          values: [[currentTypeValue + 1]], // Increment the value
-        },
-      });
+      
     }
 
     // Once the asynchronous operation is completed, send the response
