@@ -1,6 +1,1 @@
-{
-  "builds": [
-    { "src": "", "use": "@vercel/node", "config": { "commands": ["npm install googleapis"] } }
-  ],
-  "version": 2
-}
+
