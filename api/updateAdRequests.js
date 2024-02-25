@@ -27,7 +27,9 @@ const auth = new google.auth.JWT(
 const sheets = google.sheets({ version: 'v4', auth });
 
 module.exports = async (req, res) => {
+
   try {
+    
     // Get the value of the "Type" query parameter
     const type = req.query.Type;
 
@@ -77,11 +79,14 @@ module.exports = async (req, res) => {
     }
 
     // Find the index of the type in the header row
-    let typeIndex = -1;
-    if (values && values[0]) {
-      typeIndex = values[0].indexOf(type);
-    }
 
+    let typeIndex = -1;
+
+    if (values && values.length > 0 && values[0]) {
+
+      typeIndex = values[0].indexOf(type);
+
+    }
   
     // If type's index is not found, append a new column
     if (typeIndex === -1) {
@@ -159,7 +164,7 @@ module.exports = async (req, res) => {
       });
   
       typeIndex = values[0].length; // Update the typeIndex
-      
+
     }
 
     // Once the asynchronous operation is completed, send the response
