@@ -113,12 +113,7 @@ module.exports = async (req, res) => {
 
     }
 
-
-    console.log("Type Index: " + typeColumnLetter + typeIndex);
-
-
     // Update the value in the column for the specified type
-
 
     if (todayIndex !== -1 && typeIndex !== -1) {
   
@@ -138,6 +133,28 @@ module.exports = async (req, res) => {
         valueInputOption: 'RAW',
         resource: {
           values: [[currentValue + 1]], // Increment the value
+        },
+
+      });
+
+    } else {
+
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+        range: `${String.fromCharCode(65 + row[0].length + 1)}0}`,
+        valueInputOption: 'RAW',
+        resource: {
+          values: [[Type]], // Increment the value
+        },
+
+      });
+
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+        range: `${String.fromCharCode(65 + row[0].length + 1)}${findIndex}}`,
+        valueInputOption: 'RAW',
+        resource: {
+          values: [[1]], // Increment the value
         },
 
       });
