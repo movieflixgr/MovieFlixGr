@@ -40,14 +40,14 @@ app.post('/update-sheet', async (req, res) => {
     const { spreadsheetId, sheetName, rowData } = req.body;
 
     // Prepare request body
-    const request = {
-      spreadsheetId,
-      range: `${sheetName}!A:A`, // Assumes data is written in column A
-      valueInputOption: 'USER_ENTERED',
-      resource: {
-        values: [rowData]
-      }
-    };
+const request = {
+  spreadsheetId,
+  range: `${sheetName}!A1:C`, // Assuming data is in columns A, B, and C, starting from row 1
+  valueInputOption: 'USER_ENTERED',
+  resource: {
+    values: [rowData]
+  }
+};
 
     // Make update request to Google Sheets API
     const response = await sheets.spreadsheets.values.append(request);
