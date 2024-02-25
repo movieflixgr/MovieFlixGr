@@ -84,9 +84,10 @@ module.exports = async (req, res) => {
 
     // If type's index is not found, append a new column
     if (typeIndex === -1) {
+      const newColumnLetter = String.fromCharCode(65 + values[0].length); // Calculate the new column letter
       await sheets.spreadsheets.values.append({
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-        range: `C1`, // Append at the end of existing columns
+        range: `${newColumnLetter}1`, // Append at the end of existing columns
         valueInputOption: 'RAW',
         resource: {
           values: [[type]], // Add the type to the header row
