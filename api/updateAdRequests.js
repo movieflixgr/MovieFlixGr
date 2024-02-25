@@ -30,7 +30,23 @@ const auth = new google.auth.JWT(
 const sheets = google.sheets({ version: 'v4', auth });
 
 module.exports = async (event, context) => {
+
   try {
+
+    // Simulating an asynchronous operation that returns a promise
+    const result = await new Promise((resolve, reject) => {
+
+      // Simulating an asynchronous operation that takes some time
+
+      setTimeout(() => {
+
+        // Resolve the promise with a value
+
+        resolve('Promise resolved!');
+
+      }, 9000);
+
+    });
 
     // Calculate the time difference in seconds
     const secondsAfterInit = (Date.now() - initTimestamp) / 1000;
