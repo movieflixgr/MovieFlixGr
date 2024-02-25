@@ -133,6 +133,9 @@ module.exports = async (req, res) => {
 
       }
 
+      console.log("Index of today's date:", values.findIndex((row) => row[0] === now));
+      console.log("Range to update:", rangeToUpdate);
+      
       const rangeToUpdate = `${String.fromCharCode(65 + values[0].length)}${values.findIndex((row) => row[0] === now)}`;
       
       console.log("Range to update:", rangeToUpdate);
