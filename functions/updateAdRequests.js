@@ -29,13 +29,11 @@ const sheets = google.sheets({ version: 'v4', auth });
 exports.handler = async (event, context) => {
   try {
     // Increment the value by 1
-    const {
-      sheetName = 'MovieFlix Ad Requests',
-      range = 'C2'
-    };
+    const sheetName = 'MovieFlix Ad Requests';
+    const cellAddress = 'C2';
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
-      range: `${sheetName}!${range}`
+      range: `${sheetName}!${cellAddress}`
     });
     const values = response.data.values;
     const newValue = parseInt(values[0][0]) + 1;
@@ -46,7 +44,7 @@ exports.handler = async (event, context) => {
     // Update the sheet with the new value
     const updateResponse = await sheets.spreadsheets.values.update({
       spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
-      range: `${sheetName}!${range}`,
+      range: `${sheetName}!${cellAddress}`,
       valueInputOption: 'RAW',
       resource: {
         values: updateValue
