@@ -27,19 +27,20 @@ const auth = new google.auth.JWT(
 const sheets = google.sheets({ version: 'v4', auth });
 
 module.exports = async (req, res) => {
-
   try {
+    // Get parameters from the request
+    const { params } = req.body;
 
     // Get today's date
     const today = new Date().toISOString().split('T')[0];
     const range = `A:B`; // Update range to include both Date and Requests columns
 
-    // Query the Google Sheet to find today's date
+    // Query the Google Sheet to find today's date and existing values
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
       range: range,
     });
-    const values = response.data.values;
+    const values = response.data.values || [];
 
     // Find the index of today's date in the Dates column
     let todayIndex = -1;
@@ -49,43 +50,40 @@ module.exports = async (req, res) => {
 
     // If today's date is not found, append a new row
     if (todayIndex === -1) {
-      const newRowValues = [[today, 1]]; // Date and Requests columns
-      await sheets.spreadsheets.values.append({
-        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
-        range: range,
-        valueInputOption: 'RAW',
-        resource: {
-          values: newRowValues,
-        },
-      });
-    } else {
-      // If today's date is found, update the Requests column value
-      let currentRequests = 0;
-      if (!isNaN(parseInt(values[todayIndex][1]))) {
-        currentRequests = parseInt(values[todayIndex][1]);
-      }
-      const newRequests = currentRequests + 1;
-      console.log('Previous Requests:', currentRequests);
-      console.log('New Requests:', newRequests);
-      const rangeToUpdate = `$B${todayIndex + 1}`; // B column (Requests)
-      await sheets.spreadsheets.values.update({
-        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
-        range: rangeToUpdate,
-        valueInputOption: 'RAW',
-        resource: {
-          values: [[newRequests]], // Wrap the value in an array
-        },
-      });
+      const newRowValues = [Array(values[0].length).fill(''), today]; // Initialize row with empty values and set the date
+      values.push(newRowValues); // Add the new row to the values array
+      todayIndex = values.length - 1; // Update the index of today's date
     }
 
+    // Iterate over parameters and update corresponding column values
+    for (const param of params) {
+      const paramName = param.name;
+      const columnIndex = values[0].indexOf(paramName);
+      if (columnIndex !== -1) {
+        let currentValue = parseInt(values[todayIndex][columnIndex]) || 0;
+        values[todayIndex][columnIndex] = currentValue + 1;
+      } else {
+        // If the parameter name doesn't exist in the sheet, add it to the first row
+        values[0].push(paramName);
+        values[todayIndex].push(1); // Initialize the value to 1
+      }
+    }
+
+    // Update the Google Sheet with the modified values
+    await sheets.spreadsheets.values.update({
+      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Replace 'your-spreadsheet-id' with your actual spreadsheet ID
+      range: range,
+      valueInputOption: 'RAW',
+      resource: {
+        values: values,
+      },
+    });
+
     // Once the asynchronous operation is completed, send the response
-    res.status(200).end(JSON.stringify({status:200, message:'Value Changed!'}));
-    
+    res.status(200).end(JSON.stringify({ status: 200, message: 'Values updated successfully' }));
   } catch (error) {
-
     // If an error occurs during the asynchronous operation, handle it here
-    res.status(500).end(JSON.stringify({status:500, message:'Internal Server Error'}));
-
+    res.status(500).end(JSON.stringify({ status: 500, message: 'Internal Server Error' }));
   }
 
 };
