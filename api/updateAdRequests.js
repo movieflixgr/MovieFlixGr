@@ -77,22 +77,28 @@ module.exports = async (event, context) => {
     }
 
     // Return successful response
-const response = {
-  statusCode: 200,
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({ message: 'Value updated successfully' })
-};
-
-return response;
+    const result = {
+      statusCode: 200,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message: 'Value updated successfully' })
+    };
+    
+    return result;
     
   } catch (error) {
-    console.error('Error updating Google Sheet:', error);
-    // Return error response
-    return {
+
+    // Return successful response
+    const result = {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Internal server error' }),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message: 'Error updating Google Sheet' })
     };
+        
+    return result;
+    
   }
 };
