@@ -1,4 +1,3 @@
-// netlify/functions/updateAdRequests.js
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 
 exports.handler = async (event, context) => {
