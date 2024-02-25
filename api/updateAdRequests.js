@@ -84,6 +84,8 @@ if (values && values[0]) {
   typeIndex = values[0].indexOf(type);
 }
 
+console.log("Type Index: " + typeIndex);
+
 // If type's index is not found, append a new column named "Type"
 if (typeIndex === -1) {
   await sheets.spreadsheets.values.append({
