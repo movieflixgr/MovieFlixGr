@@ -140,17 +140,16 @@ module.exports = async (req, res) => {
     } else {
 
       // Append a new column for the specified type
-  
+
+      console.log(`${String.fromCharCode(65 + values[0].length)}1` + "GEIAS");
+      
       await sheets.spreadsheets.values.append({  
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
         range: `${String.fromCharCode(65 + values[0].length)}1`, // Append at the end of the header row
         valueInputOption: 'RAW',
         resource: {
           values: [[type]], // Value for the new column
-        },
-        
-        console.log(`${String.fromCharCode(65 + values[0].length)}1` + "GEIAS");
-        
+        },        
       });
 
       // Update the value for today in the new column
