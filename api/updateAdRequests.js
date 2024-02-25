@@ -159,7 +159,7 @@ module.exports = async (req, res) => {
       
       await sheets.spreadsheets.values.append({  
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-        range: `${String.fromCharCode(65 + values[0].length)}1`, // Append at the end of the header row
+        range: `${String.fromCharCode(65 + values[0].length)}${1}`, // Append at the end of the header row
         valueInputOption: 'RAW',
         resource: {
           values: [[type]], // Value for the new column
@@ -170,7 +170,7 @@ module.exports = async (req, res) => {
   
       await sheets.spreadsheets.values.update({
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-        range: `${String.fromCharCode(65 + values[0].length)}${todayIndex + 1}`, // Range for today's value in the new column
+        range: `${String.fromCharCode(65 + values[0].length)}${todayIndex + 3}`, // Range for today's value in the new column
         valueInputOption: 'RAW',
         resource: {
           values: [[1]], // Increment the value
