@@ -1,5 +1,8 @@
 const { google } = require('googleapis');
 
+// Store the initialization timestamp
+const initTimestamp = Date.now();
+
 // Google Sheets API credentials
 const credentials = {
   // Your service account credentials here
@@ -28,6 +31,11 @@ const sheets = google.sheets({ version: 'v4', auth });
 
 module.exports = async (event, context) => {
   try {
+
+    // Calculate the time difference in seconds
+    const secondsAfterInit = (Date.now() - initTimestamp) / 1000;
+    console.log(`Execution started ${secondsAfterInit} seconds after initialization.`);
+
     // Get today's date
     const today = new Date().toISOString().split('T')[0];
     const range = `A:B`; // Update range to include both Date and Requests columns
@@ -75,6 +83,9 @@ module.exports = async (event, context) => {
         },
       });
     }
+
+    secondsAfterInit = (Date.now() - initTimestamp) / 1000;
+    console.log(`Execution started ${secondsAfterInit} seconds after 200.`);
 
     // Return successful response
     return {
