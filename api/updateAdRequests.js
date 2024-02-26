@@ -148,13 +148,7 @@ module.exports = async (req, res) => {
 
       }
       
-      const rangeToUpdate = `${String.fromCharCode(65 + values[0].length)}${todayIndex}`;
-
-      console.log("Index of today's date:", todayIndex);
-      console.log("Column letter:", String.fromCharCode(65 + values[0].length));
-      console.log("Range to update:", rangeToUpdate);
-      
-      console.log("Range to update:", rangeToUpdate);
+      const rangeToUpdate = `${String.fromCharCode(65 + values[0].length)}${appendedRowIndex}`;
       
       await sheets.spreadsheets.values.update({
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
