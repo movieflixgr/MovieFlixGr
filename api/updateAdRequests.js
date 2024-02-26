@@ -143,21 +143,21 @@ module.exports = async (req, res) => {
       let currentValue = 0;
 
       if (!isNaN(parseInt(values[appendedRowIndex][typeIndex]))) {
-
+ 
         currentValue = parseInt(values[appendedRowIndex][typeIndex]);
-
+    
       }
-      
-      const rangeToUpdate = `${String.fromCharCode(65 + typeIndex)}${appendRowIndex}`;
+
+      const rangeToUpdate = `${String.fromCharCode(65 + typeIndex)}${appendedRowIndex}`;
       
       await sheets.spreadsheets.values.update({
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-        range: rangeToUpdate,
-        valueInputOption: 'RAW',
-        resource: {
-          values: [[currentValue + 1]], // Increment the value
-        },
-
+        range: rangeToUpdate,   
+        valueInputOption: 'RAW',   
+        resource: { 
+          values: [[currentValue + 1]], // Increment the value    
+        },    
+     
       });
 
     } else {
