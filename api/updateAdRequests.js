@@ -61,15 +61,23 @@ module.exports = async (req, res) => {
 
     // If today's date is not found, append a new row
     if (todayIndex === -1) {
-      const newRowValues = [[now, 1]]; // Date and Requests columns
-      await sheets.spreadsheets.values.append({
-        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-        range: range,
-        valueInputOption: 'RAW',
-        resource: {
-          values: newRowValues,
-        },
+      // Append the new row
+      const appendResponse = await sheets.spreadsheets.values.append({
+        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', 
+        range: range,      
+        valueInputOption: 'RAW',      
+        resource: {      
+          values: newRowValues,         
+        }  
       });
+
+      // Extract the updated range from the response
+      const updatedRange = appendResponse.data.updates.updatedRange;
+
+      // Extract the index of the appended row from the updated range
+      const lastIndex = updatedRange.split(':')[1];
+      const appendedRowIndex = parseInt(lastIndex.match(/\d+/)[0]);
+      
     } else {
       // If today's date is found, update the Requests column value
       let currentRequests = 0;
