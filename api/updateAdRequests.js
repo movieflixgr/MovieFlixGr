@@ -142,7 +142,7 @@ module.exports = async (req, res) => {
   
       let currentValue = 0;
 
-      if (!isNaN(parseInt(values[appendedRowIndex][typeIndex]))) {
+      if (values[appendedRowIndex] && !isNaN(parseInt(values[appendedRowIndex][typeIndex]))) {
  
         currentValue = parseInt(values[appendedRowIndex][typeIndex]);
     
