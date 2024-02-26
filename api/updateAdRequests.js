@@ -29,6 +29,8 @@ const sheets = google.sheets({ version: 'v4', auth });
 module.exports = async (req, res) => {
 
   try {
+
+    const appendedRowIndex = -1;
     
     // Get the value of the "Type" query parameter
     const type = req.query.Type;
@@ -79,7 +81,7 @@ module.exports = async (req, res) => {
 
       // Extract the index of the appended row from the updated range
       const lastIndex = updatedRange.split(':')[1];
-      const appendedRowIndex = parseInt(lastIndex.match(/\d+/)[0]);
+      appendedRowIndex = parseInt(lastIndex.match(/\d+/)[0]);
       
     } else {
       // If today's date is found, update the Requests column value
