@@ -142,9 +142,9 @@ module.exports = async (req, res) => {
   
       let currentValue = 0;
 
-      if (!isNaN(parseInt(values[todayIndex][typeIndex]))) {
+      if (!isNaN(parseInt(values[appendedRowIndex][typeIndex]))) {
 
-        currentValue = parseInt(values[todayIndex][typeIndex]);
+        currentValue = parseInt(values[appendedRowIndex][typeIndex]);
 
       }
       
@@ -161,10 +161,6 @@ module.exports = async (req, res) => {
       });
 
     } else {
-
-      // Append a new column for the specified type
-
-      console.log(`${String.fromCharCode(65 + values[0].length)}1` + "GEIAS");
       
       await sheets.spreadsheets.values.append({  
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
