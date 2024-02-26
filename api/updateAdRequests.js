@@ -183,7 +183,7 @@ module.exports = async (req, res) => {
   
       await sheets.spreadsheets.values.update({
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-        range: `${String.fromCharCode(65 + values[0].length)}${todayIndex}`, // Range for today's value in the new column
+        range: `${String.fromCharCode(65 + values[0].length)}${appendedRowIndex}`, // Range for today's value in the new column
         valueInputOption: 'RAW',
         resource: {
           values: [[1]], // Increment the value
