@@ -148,7 +148,7 @@ module.exports = async (req, res) => {
 
       }
       
-      const rangeToUpdate = `${String.fromCharCode(65 + appendRowIndex)}${typeIndex}`;
+      const rangeToUpdate = `${String.fromCharCode(65 + typeIndex)}${appendRowIndex}`;
       
       await sheets.spreadsheets.values.update({
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
