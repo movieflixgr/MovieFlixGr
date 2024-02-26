@@ -138,7 +138,7 @@ module.exports = async (req, res) => {
 
     // Update the value in the column for the specified type
 
-    if (todayIndex !== -1 && typeIndex !== -1) {
+    if (appendedRowIndex !== -1 && typeIndex !== -1) {
   
       let currentValue = 0;
 
