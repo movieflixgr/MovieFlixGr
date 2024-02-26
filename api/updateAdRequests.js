@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
 
   try {
 
-    const appendedRowIndex = -1;
+    let appendedRowIndex = -1;
     
     // Get the value of the "Type" query parameter
     const type = req.query.Type;
