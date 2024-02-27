@@ -3,29 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Internet TV Caster</title>
+<title>Video Casting</title>
 </head>
 <body>
-<h1>Internet TV Caster</h1>
+<h1>Video Casting</h1>
 <div>
   <label for="videoUrl">Enter Video URL:</label><br>
   <input type="text" id="videoUrl" placeholder="Paste video URL here"><br>
   <button onclick="castVideo()">Cast Video</button>
 </div>
-<div id="tvScreen">
-  <!-- Video will be casted here -->
-</div>
 
+<script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
 <script>
-function castVideo() {
-  var videoUrl = document.getElementById("videoUrl").value;
-  if (videoUrl) {
-    var tvScreen = document.getElementById("tvScreen");
-    tvScreen.innerHTML = `<iframe width="560" height="315" src="${videoUrl}" frameborder="0" allowfullscreen></iframe>`;
-  } else {
-    alert("Please enter a video URL.");
+  function castVideo() {
+    var videoUrl = document.getElementById("videoUrl").value;
+    if (videoUrl) {
+      var mediaInfo = new chrome.cast.media.MediaInfo(videoUrl);
+      var request = new chrome.cast.media.LoadRequest(mediaInfo);
+      
+      chrome.cast.requestSession(function(session) {
+        session.loadMedia(request,
+          function() { /* Success */ },
+          function(err) { console.error('Error while loading media:', err); });
+      },
+      function(err) { console.error('Error while requesting session:', err); });
+    } else {
+      alert("Please enter a video URL.");
+    }
   }
-}
 </script>
 </body>
 </html>
