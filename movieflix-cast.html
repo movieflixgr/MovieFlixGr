@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internet TV Caster</title>
+</head>
+<body>
+<h1>Internet TV Caster</h1>
+<div>
+  <label for="videoUrl">Enter Video URL:</label><br>
+  <input type="text" id="videoUrl" placeholder="Paste video URL here"><br>
+  <button onclick="castVideo()">Cast Video</button>
+</div>
+<div id="tvScreen">
+  <!-- Video will be casted here -->
+</div>
+
+<script>
+function castVideo() {
+  var videoUrl = document.getElementById("videoUrl").value;
+  if (videoUrl) {
+    var tvScreen = document.getElementById("tvScreen");
+    tvScreen.innerHTML = `<iframe width="560" height="315" src="${videoUrl}" frameborder="0" allowfullscreen></iframe>`;
+  } else {
+    alert("Please enter a video URL.");
+  }
+}
+</script>
+</body>
+</html>
