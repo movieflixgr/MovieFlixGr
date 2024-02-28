@@ -64,7 +64,7 @@ module.exports = async (req, res) => {
       Banner: 0,
       Interstitial: 0,
       Rewarded: 0,
-      InterstitialRewarded: 0,
+      RewardedInterstitial: 0,
       AppOpen: 0,
     };
 
@@ -72,7 +72,7 @@ module.exports = async (req, res) => {
       Banner: 0,
       Interstitial: 0,
       Rewarded: 0,
-      InterstitialRewarded: 0,
+      RewardedInterstitial: 0,
       AppOpen: 0,
     };
 
@@ -84,7 +84,7 @@ module.exports = async (req, res) => {
       Banner: 0,
       Interstitial: 0,
       Rewarded: 0,
-      InterstitialRewarded: 0,
+      RewardedInterstitial: 0,
       AppOpen: 0,
     };
 
@@ -92,7 +92,7 @@ module.exports = async (req, res) => {
       Banner: 0,
       Interstitial: 0,
       Rewarded: 0,
-      InterstitialRewarded: 0,
+      RewardedInterstitial: 0,
       AppOpen: 0,
     };
 
@@ -107,7 +107,7 @@ module.exports = async (req, res) => {
           currentTypeAdRequestsDaily.Banner += parseInt(row[2]) || 0;
           currentTypeAdRequestsDaily.Interstitial += parseInt(row[3]) || 0;
           currentTypeAdRequestsDaily.Rewarded += parseInt(row[4]) || 0;
-          currentTypeAdRequestsDaily.InterstitialRewarded += parseInt(row[5]) || 0;
+          currentTypeAdRequestsDaily.RewardedInterstitial += parseInt(row[5]) || 0;
           currentTypeAdRequestsDaily.AppOpen += parseInt(row[6]) || 0;
           currentTotalAdRequestsDaily += (parseInt(row[2]) || 0) + (parseInt(row[3]) || 0) + (parseInt(row[4]) || 0) + (parseInt(row[5]) || 0) + (parseInt(row[6]) || 0);
 
@@ -115,7 +115,7 @@ module.exports = async (req, res) => {
             currentTypeAdRequestsHourly.Banner += parseInt(row[2]) || 0;
             currentTypeAdRequestsHourly.Interstitial += parseInt(row[3]) || 0;
             currentTypeAdRequestsHourly.Rewarded += parseInt(row[4]) || 0;
-            currentTypeAdRequestsHourly.InterstitialRewarded += parseInt(row[5]) || 0;
+            currentTypeAdRequestsHourly.RewardedInterstitial += parseInt(row[5]) || 0;
             currentTypeAdRequestsHourly.AppOpen += parseInt(row[6]) || 0;
             currentTotalAdRequestsHourly += (parseInt(row[2]) || 0) + (parseInt(row[3]) || 0) + (parseInt(row[4]) || 0) + (parseInt(row[5]) || 0) + (parseInt(row[6]) || 0);
           }
@@ -135,7 +135,7 @@ module.exports = async (req, res) => {
           maxTypeAdRequestsHourly.Banner = parseInt(row[1]) || 0;
           maxTypeAdRequestsHourly.Interstitial = parseInt(row[2]) || 0;
           maxTypeAdRequestsHourly.Rewarded = parseInt(row[3]) || 0;
-          maxTypeAdRequestsHourly.InterstitialRewarded = parseInt(row[4]) || 0;
+          maxTypeAdRequestsHourly.RewardedInterstitial = parseInt(row[4]) || 0;
           maxTypeAdRequestsHourly.AppOpen = parseInt(row[5]) || 0;
           maxTotalAdRequestsHourly = parseInt(row[1]) + parseInt(row[2]) + parseInt(row[3]) + parseInt(row[4]) + parseInt(row[5]);
         }
@@ -146,7 +146,7 @@ module.exports = async (req, res) => {
         maxTypeAdRequestsDaily.Banner = parseInt(maxValues[25][1]) || 0;
         maxTypeAdRequestsDaily.Interstitial = parseInt(maxValues[25][2]) || 0;
         maxTypeAdRequestsDaily.Rewarded = parseInt(maxValues[25][3]) || 0;
-        maxTypeAdRequestsDaily.InterstitialRewarded = parseInt(maxValues[25][4]) || 0;
+        maxTypeAdRequestsDaily.RewardedInterstitial = parseInt(maxValues[25][4]) || 0;
         maxTypeAdRequestsDaily.AppOpen = parseInt(maxValues[25][5]) || 0;
         maxTotalAdRequestsDaily = maxTypeAdRequestsDaily.Banner + maxTypeAdRequestsDaily.Interstitial + maxTypeAdRequestsDaily.Rewarded + maxTypeAdRequestsDaily.InterstitialRewarded + maxTypeAdRequestsDaily.AppOpen;
       } else {
@@ -154,7 +154,7 @@ module.exports = async (req, res) => {
         maxTypeAdRequestsDaily.Banner = 0;
         maxTypeAdRequestsDaily.Interstitial = 0;
         maxTypeAdRequestsDaily.Rewarded = 0;
-        maxTypeAdRequestsDaily.InterstitialRewarded = 0;
+        maxTypeAdRequestsDaily.RewardedInterstitial = 0;
         maxTypeAdRequestsDaily.AppOpen = 0;
         maxTotalAdRequestsDaily = 0;
       }
