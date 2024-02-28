@@ -142,15 +142,15 @@ module.exports = async (req, res) => {
 
       }
 
-      if (maxValues && maxValues.length > 27 && maxValues[27]) {
-        maxTypeAdRequestsDaily.Banner = parseInt(maxValues[27][1]) || 0;
-        maxTypeAdRequestsDaily.Interstitial = parseInt(maxValues[27][2]) || 0;
-        maxTypeAdRequestsDaily.Rewarded = parseInt(maxValues[27][3]) || 0;
-        maxTypeAdRequestsDaily.InterstitialRewarded = parseInt(maxValues[27][4]) || 0;
-        maxTypeAdRequestsDaily.AppOpen = parseInt(maxValues[27][5]) || 0;
+      if (maxValues && maxValues.length > 25 && maxValues[25]) {
+        maxTypeAdRequestsDaily.Banner = parseInt(maxValues[25][1]) || 0;
+        maxTypeAdRequestsDaily.Interstitial = parseInt(maxValues[25][2]) || 0;
+        maxTypeAdRequestsDaily.Rewarded = parseInt(maxValues[25][3]) || 0;
+        maxTypeAdRequestsDaily.InterstitialRewarded = parseInt(maxValues[25][4]) || 0;
+        maxTypeAdRequestsDaily.AppOpen = parseInt(maxValues[25][5]) || 0;
         maxTotalAdRequestsDaily = maxTypeAdRequestsDaily.Banner + maxTypeAdRequestsDaily.Interstitial + maxTypeAdRequestsDaily.Rewarded + maxTypeAdRequestsDaily.InterstitialRewarded + maxTypeAdRequestsDaily.AppOpen;
       } else {
-        // If maxValues[27] is undefined, set all values to 0
+        // If maxValues[25] is undefined, set all values to 0
         maxTypeAdRequestsDaily.Banner = 0;
         maxTypeAdRequestsDaily.Interstitial = 0;
         maxTypeAdRequestsDaily.Rewarded = 0;
