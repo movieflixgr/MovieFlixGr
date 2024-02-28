@@ -125,6 +125,7 @@ module.exports = async (req, res) => {
 
     // Iterate over the rows to find and calculate max total ad requests
     if (maxValues) {
+
       for (let i = 1; i < maxValues.length; i++) {
 
         const row = maxValues[i];
@@ -141,12 +142,12 @@ module.exports = async (req, res) => {
 
       }
 
-      maxTypeAdRequestsDaily.Banner = parseInt(row[26][1]) || 0;
-      maxTypeAdRequestsDaily.Interstitial = parseInt(row[26][2]) || 0;
-      maxTypeAdRequestsDaily.Rewarded = parseInt(row[26][3]) || 0;
-      maxTypeAdRequestsDaily.InterstitialRewarded = parseInt(row[26][4]) || 0;
-      maxTypeAdRequestsDaily.AppOpen = parseInt(row[26][5]) || 0;
-      maxTotalAdRequestsDaily = parseInt(row[26][1]) + parseInt(row[26][2]) + parseInt(row[26][3]) + parseInt(row[26][4]) + parseInt(row[26][5]);
+      maxTypeAdRequestsDaily.Banner = parseInt(maxValues[26][1]) || 0;
+      maxTypeAdRequestsDaily.Interstitial = parseInt(maxValues[26][2]) || 0;
+      maxTypeAdRequestsDaily.Rewarded = parseInt(maxValues[26][3]) || 0;
+      maxTypeAdRequestsDaily.InterstitialRewarded = parseInt(maxValues[26][4]) || 0;
+      maxTypeAdRequestsDaily.AppOpen = parseInt(maxValues[26][5]) || 0;
+      maxTotalAdRequestsDaily = parseInt(maxValues[26][1]) + parseInt(maxValues[26][2]) + parseInt(maxValues[26][3]) + parseInt(maxValues[26][4]) + parseInt(maxValues[26][5]);
 
     }
 
