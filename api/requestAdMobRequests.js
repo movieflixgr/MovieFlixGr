@@ -45,7 +45,7 @@ module.exports = async (req, res) => {
 
     // Fetch data from the "Current" sheet
     const currentResponse = await sheets.spreadsheets.values.get({
-      spreadsheetId: 'your_spreadsheet_id',
+      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
       range: currentSheetRange,
     });
 
@@ -53,7 +53,7 @@ module.exports = async (req, res) => {
 
     // Fetch data from the "Max" sheet
     const maxResponse = await sheets.spreadsheets.values.get({
-      spreadsheetId: 'your_spreadsheet_id',
+      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
       range: maxSheetRange,
     });
 
