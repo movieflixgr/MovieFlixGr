@@ -75,7 +75,7 @@ module.exports = async (req, res) => {
     }
 
     // Initialize an object to store total current requests for each ad type
-    const totalCurrentRequestsBasedOnHour = {
+    const totalCurrentRequestsBasedOnDate = {
       Banner: 0,
       Interstitial: 0,
       Rewarded: 0,
@@ -83,17 +83,19 @@ module.exports = async (req, res) => {
       AppOpen: 0,
     };
 
-    // Calculate total current requests for each ad type based on hour
+    // Calculate total current requests for each ad type based on date
     if (currentValues) {
       currentValues.forEach(row => {
-        // Skip the first row (header)
-        if (row[0] !== 'Hour') {
-          // Sum up the values for each ad type for the current hour
-          totalCurrentRequestsBasedOnHour.Banner += parseInt(row[2]) || 0;
-          totalCurrentRequestsBasedOnHour.Interstitial += parseInt(row[3]) || 0;
-          totalCurrentRequestsBasedOnHour.Rewarded += parseInt(row[4]) || 0;
-          totalCurrentRequestsBasedOnHour.InterstitialRewarded += parseInt(row[5]) || 0;
-          totalCurrentRequestsBasedOnHour.AppOpen += parseInt(row[6]) || 0;
+        // Extract the date from the first column (Date)
+        const date = row[0].split(' ')[0];
+        // Check if the date matches today's date
+        if (date === getCurrentDate()) {
+          // Sum up the values for each ad type for the current date
+          totalCurrentRequestsBasedOnDate.Banner += parseInt(row[2]) || 0;
+          totalCurrentRequestsBasedOnDate.Interstitial += parseInt(row[3]) || 0;
+          totalCurrentRequestsBasedOnDate.Rewarded += parseInt(row[4]) || 0;
+          totalCurrentRequestsBasedOnDate.InterstitialRewarded += parseInt(row[5]) || 0;
+          totalCurrentRequestsBasedOnDate.AppOpen += parseInt(row[6]) || 0;
         }
       });
     }
@@ -102,37 +104,37 @@ module.exports = async (req, res) => {
     const response = [
       {
         "Type": "Banner",
-        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnHour.Banner,
+        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnDate.Banner,
         "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][1]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnHour.Banner,
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Banner,
         "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.Banner
       },
       {
         "Type": "Interstitial",
-        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnHour.Interstitial,
+        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnDate.Interstitial,
         "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][2]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnHour.Interstitial,
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Interstitial,
         "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.Interstitial
       },
       {
         "Type": "Rewarded",
-        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnHour.Rewarded,
+        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnDate.Rewarded,
         "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][3]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnHour.Rewarded,
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Rewarded,
         "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.Rewarded
       },
       {
         "Type": "InterstitialRewarded",
-        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnHour.InterstitialRewarded,
+        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnDate.InterstitialRewarded,
         "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][4]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnHour.InterstitialRewarded,
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.InterstitialRewarded,
         "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.InterstitialRewarded
       },
       {
         "Type": "AppOpen",
-        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnHour.AppOpen,
+        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnDate.AppOpen,
         "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][5]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnHour.AppOpen,
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.AppOpen,
         "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.AppOpen
       }
     ];
@@ -145,3 +147,17 @@ module.exports = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+// Function to get the current date in the format 'YYYY-MM-DD'
+function getCurrentDate() {
+  const now = new Date();
+  const year = now.getFullYear();
+  let month = now.getMonth() + 1;
+  let day = now.getDate();
+
+  // Add leading zero if month or day is less than 10
+  month = month < 10 ? `0${month}` : month;
+  day = day < 10 ? `0${day}` : day;
+
+  return `${year}-${month}-${day}`;
+}
