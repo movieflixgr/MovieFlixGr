@@ -161,17 +161,26 @@ module.exports = async (req, res) => {
 
     }
 
+
     // Combine current and max total ad requests into a single response object
     const response = {
       currentTypeAdRequestsDaily,  
       currentTypeAdRequestsHourly,  
-      currentTotalAdRequestsDaily: currentTotalAdRequestsDaily != null ? currentTotalAdRequestsDaily : 0,  
-      currentTotalAdRequestsHourly: currentTotalAdRequestsHourly != null ? currentTotalAdRequestsHourly : 0,
+      currentTotalAdRequestsDaily: currentTotalAdRequestsDaily ?? 0,  
+      currentTotalAdRequestsHourly: currentTotalAdRequestsHourly ?? 0,  
       maxTypeAdRequestsDaily,  
       maxTypeAdRequestsHourly,  
-      maxTotalAdRequestsDaily: maxTotalAdRequestsDaily != null ? maxTotalAdRequestsDaily : 1000000,  
-      maxTotalAdRequestsHourly: maxTotalAdRequestsHourly != null ? maxTotalAdRequestsHourly : 1000000
+      maxTotalAdRequestsDaily: maxTotalAdRequestsDaily != null ? maxTotalAdRequestsDaily : 0,
+      maxTotalAdRequestsHourly: maxTotalAdRequestsHourly != null ? maxTotalAdRequestsHourly : 0
     };
+
+
+    // If there are any null values, set them to 0
+    for (let key in response) {
+      if (response[key] === null) {     
+        response[key] = 0;  
+      }
+    }
 
     // Send the response
     res.status(200).json(response);
