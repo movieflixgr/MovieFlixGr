@@ -28,14 +28,14 @@ const sheets = google.sheets({ version: 'v4', auth });
 
 module.exports = async (req, res) => {
   try {
-    // Range for fetching data from the current sheet
-    const currentSheetRange = `Current!A2:G`;
+    // Range for fetching data from the "Current" sheet
+    const currentSheetRange = `Current!A1:G26`;
     // Range for fetching data from the "Max" sheet
-    const maxSheetRange = `Max!A2:G`;
+    const maxSheetRange = `Max!A1:G26`;
 
-    // Fetch data from the current sheet
+    // Fetch data from the "Current" sheet
     const currentResponse = await sheets.spreadsheets.values.get({
-      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Specify your spreadsheet ID
       range: currentSheetRange,
     });
 
@@ -43,17 +43,14 @@ module.exports = async (req, res) => {
 
     // Fetch data from the "Max" sheet
     const maxResponse = await sheets.spreadsheets.values.get({
-      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Specify your spreadsheet ID
       range: maxSheetRange,
     });
 
     const maxValues = maxResponse.data.values;
 
-    // Get current date
-    const currentDate = new Date().toISOString().split('T')[0];
-
-    // Initialize an object to store total current requests for each ad type
-    const totalCurrentRequestsBasedOnDate = {
+    // Initialize an object to store max total ad requests for each ad type
+    const maxTotalAdRequests = {
       Banner: 0,
       Interstitial: 0,
       Rewarded: 0,
@@ -61,50 +58,44 @@ module.exports = async (req, res) => {
       AppOpen: 0,
     };
 
-    // Calculate total current requests for each ad type based on date
-    if (currentValues) {
-      currentValues.forEach(row => {
-        const rowDate = row[0];
-        // Check if the row date matches the current date
-        if (rowDate === currentDate) {
-          // Sum up the values for each ad type for the specific date
-          totalCurrentRequestsBasedOnDate.Banner += parseInt(row[2]) || 0;
-          totalCurrentRequestsBasedOnDate.Interstitial += parseInt(row[3]) || 0;
-          totalCurrentRequestsBasedOnDate.Rewarded += parseInt(row[4]) || 0;
-          totalCurrentRequestsBasedOnDate.InterstitialRewarded += parseInt(row[5]) || 0;
-          totalCurrentRequestsBasedOnDate.AppOpen += parseInt(row[6]) || 0;
-        }
-      });
+    // Iterate over the rows to sum up the values for each ad type in the "Max" sheet
+    if (maxValues) {
+      for (let i = 1; i < maxValues.length; i++) {
+        const row = maxValues[i];
+        maxTotalAdRequests.Banner += parseInt(row[1]) || 0;
+        maxTotalAdRequests.Interstitial += parseInt(row[2]) || 0;
+        maxTotalAdRequests.Rewarded += parseInt(row[3]) || 0;
+        maxTotalAdRequests.InterstitialRewarded += parseInt(row[4]) || 0;
+        maxTotalAdRequests.AppOpen += parseInt(row[5]) || 0;
+      }
     }
 
-    // Construct response object
-    const response = [
-      {
-        "Type": "Banner",
-        "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][1]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Banner
-      },
-      {
-        "Type": "Interstitial",
-        "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][2]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Interstitial
-      },
-      {
-        "Type": "Rewarded",
-        "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][3]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Rewarded
-      },
-      {
-        "Type": "InterstitialRewarded",
-        "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][4]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.InterstitialRewarded
-      },
-      {
-        "Type": "AppOpen",
-        "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][5]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.AppOpen
+    // Initialize an object to store current total ad requests for each ad type
+    const currentTotalAdRequests = {
+      Banner: 0,
+      Interstitial: 0,
+      Rewarded: 0,
+      InterstitialRewarded: 0,
+      AppOpen: 0,
+    };
+
+    // Iterate over the rows to sum up the values for each ad type in the "Current" sheet
+    if (currentValues) {
+      for (let i = 1; i < currentValues.length; i++) {
+        const row = currentValues[i];
+        currentTotalAdRequests.Banner += parseInt(row[2]) || 0;
+        currentTotalAdRequests.Interstitial += parseInt(row[3]) || 0;
+        currentTotalAdRequests.Rewarded += parseInt(row[4]) || 0;
+        currentTotalAdRequests.InterstitialRewarded += parseInt(row[5]) || 0;
+        currentTotalAdRequests.AppOpen += parseInt(row[6]) || 0;
       }
-    ];
+    }
+
+    // Combine max total ad requests and current total ad requests into a single response object
+    const response = {
+      maxTotalAdRequests,
+      currentTotalAdRequests,
+    };
 
     // Send the response
     res.status(200).json(response);
