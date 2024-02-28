@@ -42,19 +42,6 @@ module.exports = async (req, res) => {
 
     const hour = `${hours}:00`;
 
-    const rows = response.data.values;
-
-    const indexMax = -1;
-
-    if (rows) {
-      for (let i = 0; i < rows.length; i++) {
-        if (rows[i][0] === hour) {
-          // Found the row with the specific value in the specified column
-          indexMax = i;// Return the row number (adding 1 because row indices are 0-based)
-        }
-      }
-    }
-
     // Range for fetching data from the "Current" sheet
     const currentSheetRange = `Current!A1:G26`;
     // Range for fetching data from the "Max" sheet
@@ -73,6 +60,19 @@ module.exports = async (req, res) => {
       spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI', // Specify your spreadsheet ID
       range: maxSheetRange,
     });
+
+    const rows = maxResponse.data.values;
+
+    const indexMax = -1;
+
+    if (rows) {
+      for (let i = 0; i < rows.length; i++) {
+        if (rows[i][0] === hour) {
+          // Found the row with the specific value in the specified column
+          indexMax = i;// Return the row number (adding 1 because row indices are 0-based)
+        }
+      }
+    }
 
     const maxValues = maxResponse.data.values;
 
