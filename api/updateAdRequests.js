@@ -31,6 +31,8 @@ module.exports = async (req, res) => {
     // Get the ad type from the query parameter
     const type = req.query.Type;
 
+    console.log("Type: ", type);
+
     // Get current date and hour
     const currentDate = new Date();
     const [year, month, day] = [
