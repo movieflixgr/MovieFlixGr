@@ -182,7 +182,7 @@ module.exports = async (req, res) => {
       maxTypeAdRequestsDaily,
       maxTypeAdRequestsHourly,
       maxTotalAdRequestsDaily: maxTotalAdRequestsDaily ?? 0,
-      maxTotalAdRequestsHourly: maxTotalAdRequestsHourly ?? 0,
+      maxTotalAdRequestsHourly: maxTotalAdRequestsHourly ?? 0
     };
 
     // Send the response
