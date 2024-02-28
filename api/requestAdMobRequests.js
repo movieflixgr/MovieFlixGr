@@ -59,25 +59,25 @@ module.exports = async (req, res) => {
 
     const maxValues = maxResponse.data.values;
 
-    // Initialize objects to store current total ad requests for each ad type with default value 1000000
+    // Initialize objects to store current total ad requests for each ad type with default value 0
     let currentTypeAdRequestsDaily = {
-      Banner: 1000000,
-      Interstitial: 1000000,
-      Rewarded: 1000000,
-      InterstitialRewarded: 1000000,
-      AppOpen: 1000000,
+      Banner: 0,
+      Interstitial: 0,
+      Rewarded: 0,
+      InterstitialRewarded: 0,
+      AppOpen: 0,
     };
 
     let currentTypeAdRequestsHourly = {
-      Banner: 1000000,
-      Interstitial: 1000000,
-      Rewarded: 1000000,
-      InterstitialRewarded: 1000000,
-      AppOpen: 1000000,
+      Banner: 0,
+      Interstitial: 0,
+      Rewarded: 0,
+      InterstitialRewarded: 0,
+      AppOpen: 0,
     };
 
-    let currentTotalAdRequestsDaily = 1000000;
-    let currentTotalAdRequestsHourly = 1000000;
+    let currentTotalAdRequestsDaily = 0;
+    let currentTotalAdRequestsHourly = 0;
 
     // Initialize objects to store max total ad requests for each ad type with default value 0
     let maxTypeAdRequestsDaily = {
