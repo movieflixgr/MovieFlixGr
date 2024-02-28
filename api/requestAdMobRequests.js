@@ -165,8 +165,8 @@ module.exports = async (req, res) => {
     const response = {  
       currentTypeAdRequestsDaily, 
       currentTypeAdRequestsHourly,  
-      currentTotalAdRequestsDaily: currentTotalAdRequestsDaily ?? 0,  
-      currentTotalAdRequestsHourly: currentTotalAdRequestsHourly ?? 0, 
+      currentTotalAdRequestsDaily: currentTotalAdRequestsDaily ?? 1000000,  
+      currentTotalAdRequestsHourly: currentTotalAdRequestsHourly ?? 1000000, 
       maxTypeAdRequestsDaily,
       maxTypeAdRequestsHourly,
       maxTotalAdRequestsDaily: maxTotalAdRequestsDaily ?? 0,
