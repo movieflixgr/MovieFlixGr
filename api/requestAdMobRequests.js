@@ -28,29 +28,22 @@ const sheets = google.sheets({ version: 'v4', auth });
 
 module.exports = async (req, res) => {
   try {
-    // Range for fetching data from the current sheet
-    const currentSheetRange = `Current!A2:G`;
-    // Range for fetching data from the "Max" sheet
-    const maxSheetRange = `Max!A2:G`;
-
     // Fetch data from the current sheet
+    const currentSheetRange = 'Current!A2:G';
     const currentResponse = await sheets.spreadsheets.values.get({
       spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
       range: currentSheetRange,
     });
-
     const currentValues = currentResponse.data.values;
 
-    // Fetch data from the "Max" sheet
-    const maxResponse = await sheets.spreadsheets.values.get({
-      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-      range: maxSheetRange,
-    });
+    // Get today's date
+    const today = new Date().toISOString().split('T')[0];
 
-    const maxValues = maxResponse.data.values;
+    // Filter current values to include only rows with today's date
+    const todayRows = currentValues.filter(row => row[0] === today);
 
-    // Initialize an object to store total max requests for each ad type
-    const totalMaxRequestsBasedOnDate = {
+    // Initialize an object to store total current requests for each ad type
+    const totalCurrentRequestsBasedOnDate = {
       Banner: 0,
       Interstitial: 0,
       Rewarded: 0,
@@ -58,57 +51,36 @@ module.exports = async (req, res) => {
       AppOpen: 0,
     };
 
-    // Calculate total max requests for each ad type based on date
-    if (maxValues) {
-      maxValues.forEach(row => {
-        // Skip the first row (header)
-        if (row[0] !== 'Hour') {
-          // Sum up the values for each ad type across all hours
-          totalMaxRequestsBasedOnDate.Banner += parseInt(row[1]) || 0;
-          totalMaxRequestsBasedOnDate.Interstitial += parseInt(row[2]) || 0;
-          totalMaxRequestsBasedOnDate.Rewarded += parseInt(row[3]) || 0;
-          totalMaxRequestsBasedOnDate.InterstitialRewarded += parseInt(row[4]) || 0;
-          totalMaxRequestsBasedOnDate.AppOpen += parseInt(row[5]) || 0;
-        }
-      });
-    }
+    // Calculate total current requests for each ad type based on today's date
+    todayRows.forEach(row => {
+      totalCurrentRequestsBasedOnDate.Banner += parseInt(row[2]) || 0;
+      totalCurrentRequestsBasedOnDate.Interstitial += parseInt(row[3]) || 0;
+      totalCurrentRequestsBasedOnDate.Rewarded += parseInt(row[4]) || 0;
+      totalCurrentRequestsBasedOnDate.InterstitialRewarded += parseInt(row[5]) || 0;
+      totalCurrentRequestsBasedOnDate.AppOpen += parseInt(row[6]) || 0;
+    });
 
     // Construct response object
     const response = [
       {
         "Type": "Banner",
-        "CurrentRequestsBasedOnHour": currentValues ? parseInt(currentValues[0][2]) || 0 : 0,
-        "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][1]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": currentValues ? currentValues.reduce((acc, row) => acc + (parseInt(row[2]) || 0), 0) : 0,
-        "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.Banner
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Banner
       },
       {
         "Type": "Interstitial",
-        "CurrentRequestsBasedOnHour": currentValues ? parseInt(currentValues[0][3]) || 0 : 0,
-        "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][2]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": currentValues ? currentValues.reduce((acc, row) => acc + (parseInt(row[3]) || 0), 0) : 0,
-        "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.Interstitial
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Interstitial
       },
       {
         "Type": "Rewarded",
-        "CurrentRequestsBasedOnHour": currentValues ? parseInt(currentValues[0][4]) || 0 : 0,
-        "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][3]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": currentValues ? currentValues.reduce((acc, row) => acc + (parseInt(row[4]) || 0), 0) : 0,
-        "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.Rewarded
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Rewarded
       },
       {
         "Type": "InterstitialRewarded",
-        "CurrentRequestsBasedOnHour": currentValues ? parseInt(currentValues[0][5]) || 0 : 0,
-        "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][4]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": currentValues ? currentValues.reduce((acc, row) => acc + (parseInt(row[5]) || 0), 0) : 0,
-        "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.InterstitialRewarded
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.InterstitialRewarded
       },
       {
         "Type": "AppOpen",
-        "CurrentRequestsBasedOnHour": currentValues ? parseInt(currentValues[0][6]) || 0 : 0,
-        "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][5]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": currentValues ? currentValues.reduce((acc, row) => acc + (parseInt(row[6]) || 0), 0) : 0,
-        "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.AppOpen
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.AppOpen
       }
     ];
 
