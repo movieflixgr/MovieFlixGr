@@ -107,13 +107,15 @@ module.exports = async (req, res) => {
 
     // Iterate over the rows to sum up the values for each ad type in the "Current" sheet
     if (currentValues) {
-      for (let i = 1; i < currentValues.length; i++) {
+      for (let i = 1; i < currentValues.length; i++) {            
         const row = currentValues[i];
-        currentTotalAdRequests.Banner += parseInt(row[2]) || 0;
-        currentTotalAdRequests.Interstitial += parseInt(row[3]) || 0;
-        currentTotalAdRequests.Rewarded += parseInt(row[4]) || 0;
-        currentTotalAdRequests.InterstitialRewarded += parseInt(row[5]) || 0;
-        currentTotalAdRequests.AppOpen += parseInt(row[6]) || 0;
+        if (currentValues[i][0] == now && currentValues[i][1] == hours) {
+          currentTotalAdRequests.Banner += parseInt(row[2]) || 0;
+          currentTotalAdRequests.Interstitial += parseInt(row[3]) || 0;
+          currentTotalAdRequests.Rewarded += parseInt(row[4]) || 0;
+          currentTotalAdRequests.InterstitialRewarded += parseInt(row[5]) || 0;
+          currentTotalAdRequests.AppOpen += parseInt(row[6]) || 0;
+        }
       }
     }
 
