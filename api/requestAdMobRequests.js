@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
     const hour = `${hours}:00`;
 
     // Range for fetching data from the "Current" sheet
-    const currentSheetRange = `Current!A1:G26`;
+    const currentSheetRange = `Current!A:G`;
     // Range for fetching data from the "Max" sheet
     const maxSheetRange = `Max!A1:G26`;
 
@@ -109,7 +109,7 @@ module.exports = async (req, res) => {
     if (currentValues) {
       for (let i = 1; i < currentValues.length; i++) {            
         const row = currentValues[i];
-        if (currentValues[i][0] == now && currentValues[i][1] == hour) {
+        if (row[0] == now) {
           currentTotalAdRequests.Banner += parseInt(row[2]) || 0;
           currentTotalAdRequests.Interstitial += parseInt(row[3]) || 0;
           currentTotalAdRequests.Rewarded += parseInt(row[4]) || 0;
