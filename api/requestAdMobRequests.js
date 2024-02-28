@@ -142,12 +142,12 @@ module.exports = async (req, res) => {
 
       }
 
-      maxTypeAdRequestsDaily.Banner = parseInt(maxValues[26][1]) || 0;
-      maxTypeAdRequestsDaily.Interstitial = parseInt(maxValues[26][2]) || 0;
-      maxTypeAdRequestsDaily.Rewarded = parseInt(maxValues[26][3]) || 0;
-      maxTypeAdRequestsDaily.InterstitialRewarded = parseInt(maxValues[26][4]) || 0;
-      maxTypeAdRequestsDaily.AppOpen = parseInt(maxValues[26][5]) || 0;
-      maxTotalAdRequestsDaily = parseInt(maxValues[26][1]) + parseInt(maxValues[26][2]) + parseInt(maxValues[26][3]) + parseInt(maxValues[26][4]) + parseInt(maxValues[26][5]);
+      maxTypeAdRequestsDaily.Banner = maxValues[26][1] !== undefined ? parseInt(maxValues[26][1]) : 0;
+      maxTypeAdRequestsDaily.Interstitial = maxValues[26][2] !== undefined ? parseInt(maxValues[26][2]) : 0;
+      maxTypeAdRequestsDaily.Rewarded = maxValues[26][3] !== undefined ? parseInt(maxValues[26][3]) : 0;
+      maxTypeAdRequestsDaily.InterstitialRewarded = maxValues[26][4] !== undefined ? parseInt(maxValues[26][4]) : 0;
+      maxTypeAdRequestsDaily.AppOpen = maxValues[26][5] !== undefined ? parseInt(maxValues[26][5]) : 0;
+      maxTotalAdRequestsDaily = maxTypeAdRequestsDaily.Banner + maxTypeAdRequestsDaily.Interstitial + maxTypeAdRequestsDaily.Rewarded + maxTypeAdRequestsDaily.InterstitialRewarded + maxTypeAdRequestsDaily.AppOpen;
 
     }
 
