@@ -142,12 +142,22 @@ module.exports = async (req, res) => {
 
       }
 
-      maxTypeAdRequestsDaily.Banner = maxValues[27][1] !== undefined ? parseInt(maxValues[27][1]) : 0;
-      maxTypeAdRequestsDaily.Interstitial = maxValues[27][2] !== undefined ? parseInt(maxValues[27][2]) : 0;
-      maxTypeAdRequestsDaily.Rewarded = maxValues[27][3] !== undefined ? parseInt(maxValues[27][3]) : 0;
-      maxTypeAdRequestsDaily.InterstitialRewarded = maxValues[27][4] !== undefined ? parseInt(maxValues[27][4]) : 0;
-      maxTypeAdRequestsDaily.AppOpen = maxValues[27][5] !== undefined ? parseInt(maxValues[27][5]) : 0;
-      maxTotalAdRequestsDaily = maxTypeAdRequestsDaily.Banner + maxTypeAdRequestsDaily.Interstitial + maxTypeAdRequestsDaily.Rewarded + maxTypeAdRequestsDaily.InterstitialRewarded + maxTypeAdRequestsDaily.AppOpen;
+      if (maxValues && maxValues.length > 27 && maxValues[27]) {
+        maxTypeAdRequestsDaily.Banner = parseInt(maxValues[27][1]) || 0;
+        maxTypeAdRequestsDaily.Interstitial = parseInt(maxValues[27][2]) || 0;
+        maxTypeAdRequestsDaily.Rewarded = parseInt(maxValues[27][3]) || 0;
+        maxTypeAdRequestsDaily.InterstitialRewarded = parseInt(maxValues[27][4]) || 0;
+        maxTypeAdRequestsDaily.AppOpen = parseInt(maxValues[27][5]) || 0;
+        maxTotalAdRequestsDaily = maxTypeAdRequestsDaily.Banner + maxTypeAdRequestsDaily.Interstitial + maxTypeAdRequestsDaily.Rewarded + maxTypeAdRequestsDaily.InterstitialRewarded + maxTypeAdRequestsDaily.AppOpen;
+      } else {
+        // If maxValues[27] is undefined, set all values to 0
+        maxTypeAdRequestsDaily.Banner = 0;
+        maxTypeAdRequestsDaily.Interstitial = 0;
+        maxTypeAdRequestsDaily.Rewarded = 0;
+        maxTypeAdRequestsDaily.InterstitialRewarded = 0;
+        maxTypeAdRequestsDaily.AppOpen = 0;
+        maxTotalAdRequestsDaily = 0;
+      }
 
     }
 
