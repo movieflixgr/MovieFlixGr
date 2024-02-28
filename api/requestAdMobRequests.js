@@ -16,7 +16,6 @@ const credentials = {
   "universe_domain": "googleapis.com"
 };
 
-
 // Initialize Google Sheets API
 const auth = new google.auth.JWT(
   credentials.client_email,
@@ -50,29 +49,8 @@ module.exports = async (req, res) => {
 
     const maxValues = maxResponse.data.values;
 
-    // Initialize an object to store total max requests for each ad type
-    const totalMaxRequestsBasedOnDate = {
-      Banner: 0,
-      Interstitial: 0,
-      Rewarded: 0,
-      InterstitialRewarded: 0,
-      AppOpen: 0,
-    };
-
-    // Calculate total max requests for each ad type based on date
-    if (maxValues) {
-      maxValues.forEach(row => {
-        // Skip the first row (header)
-        if (row[0] !== 'Hour') {
-          // Sum up the values for each ad type across all hours
-          totalMaxRequestsBasedOnDate.Banner += parseInt(row[1]) || 0;
-          totalMaxRequestsBasedOnDate.Interstitial += parseInt(row[2]) || 0;
-          totalMaxRequestsBasedOnDate.Rewarded += parseInt(row[3]) || 0;
-          totalMaxRequestsBasedOnDate.InterstitialRewarded += parseInt(row[4]) || 0;
-          totalMaxRequestsBasedOnDate.AppOpen += parseInt(row[5]) || 0;
-        }
-      });
-    }
+    // Get current date
+    const currentDate = new Date().toISOString().split('T')[0];
 
     // Initialize an object to store total current requests for each ad type
     const totalCurrentRequestsBasedOnDate = {
@@ -86,11 +64,10 @@ module.exports = async (req, res) => {
     // Calculate total current requests for each ad type based on date
     if (currentValues) {
       currentValues.forEach(row => {
-        // Extract the date from the first column (Date)
-        const date = row[0].split(' ')[0];
-        // Check if the date matches today's date
-        if (date === getCurrentDate()) {
-          // Sum up the values for each ad type for the current date
+        const rowDate = row[0];
+        // Check if the row date matches the current date
+        if (rowDate === currentDate) {
+          // Sum up the values for each ad type for the specific date
           totalCurrentRequestsBasedOnDate.Banner += parseInt(row[2]) || 0;
           totalCurrentRequestsBasedOnDate.Interstitial += parseInt(row[3]) || 0;
           totalCurrentRequestsBasedOnDate.Rewarded += parseInt(row[4]) || 0;
@@ -104,38 +81,28 @@ module.exports = async (req, res) => {
     const response = [
       {
         "Type": "Banner",
-        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnDate.Banner,
         "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][1]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Banner,
-        "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.Banner
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Banner
       },
       {
         "Type": "Interstitial",
-        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnDate.Interstitial,
         "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][2]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Interstitial,
-        "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.Interstitial
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Interstitial
       },
       {
         "Type": "Rewarded",
-        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnDate.Rewarded,
         "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][3]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Rewarded,
-        "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.Rewarded
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Rewarded
       },
       {
         "Type": "InterstitialRewarded",
-        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnDate.InterstitialRewarded,
         "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][4]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.InterstitialRewarded,
-        "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.InterstitialRewarded
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.InterstitialRewarded
       },
       {
         "Type": "AppOpen",
-        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnDate.AppOpen,
         "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][5]) || 0 : 0,
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.AppOpen,
-        "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.AppOpen
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.AppOpen
       }
     ];
 
@@ -147,17 +114,3 @@ module.exports = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
-
-// Function to get the current date in the format 'YYYY-MM-DD'
-function getCurrentDate() {
-  const now = new Date();
-  const year = now.getFullYear();
-  let month = now.getMonth() + 1;
-  let day = now.getDate();
-
-  // Add leading zero if month or day is less than 10
-  month = month < 10 ? `0${month}` : month;
-  day = day < 10 ? `0${day}` : day;
-
-  return `${year}-${month}-${day}`;
-}
