@@ -85,16 +85,16 @@ module.exports = async (req, res) => {
       AppOpen: 0,
     };
 
-    maxCurrentAdRequestsDaily.Banner = parseInt(maxTotalAdRequestsResponse.data.values[25][1]) || 0;
-    maxCurrentAdRequestsDaily.Interstitial = parseInt(maxTotalAdRequestsResponse.data.values[25][1]) || 0;
-    maxCurrentAdRequestsDaily.Rewarded = parseInt(maxTotalAdRequestsResponse.data.values[25][1]) || 0;
-    maxCurrentAdRequestsDaily.InterstitialRewarded = parseInt(maxTotalAdRequestsResponse.data.values[25][1]) || 0;
-    maxCurrentAdRequestsDaily.AppOpen = parseInt(maxTotalAdRequestsResponse.data.values[25][1]) || 0;
+    maxCurrentAdRequestsDaily.Banner = parseInt(maxResponse.data.values[25][1]) || 0;
+    maxCurrentAdRequestsDaily.Interstitial = parseInt(maxResponse.data.values[25][1]) || 0;
+    maxCurrentAdRequestsDaily.Rewarded = parseInt(maxResponse.data.values[25][1]) || 0;
+    maxCurrentAdRequestsDaily.InterstitialRewarded = parseInt(maxResponse.data.values[25][1]) || 0;
+    maxCurrentAdRequestsDaily.AppOpen = parseInt(maxResponse.data.values[25][1]) || 0;
 
     // Initialize an object to store max total ad requests for each ad type
-    const maxTotalAdRequestsHourly = parseInt(maxTotalAdRequestsResponse.data.values[indexMax][6]) || 0;
+    const maxTotalAdRequestsHourly = parseInt(maxResponse.data.values[indexMax][6]) || 0;
 
-    const maxTotalAdRequestsDaily = parseInt(maxTotalAdRequestsResponse.data.values[25][6]) || 0;
+    const maxTotalAdRequestsDaily = parseInt(maxResponse.data.values[25][6]) || 0;
 
     // Initialize an object to store current total ad requests for each ad type
     const currentTotalAdRequests = {
