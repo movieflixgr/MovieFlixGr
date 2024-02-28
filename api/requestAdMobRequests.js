@@ -97,34 +97,168 @@ module.exports = async (req, res) => {
     const maxTotalAdRequestsDaily = parseInt(maxResponse.data.values[25][6]) || 0;
 
     // Initialize an object to store current total ad requests for each ad type
-    const currentTotalAdRequests = {
-      Banner: 0,
-      Interstitial: 0,
-      Rewarded: 0,
-      InterstitialRewarded: 0,
-      AppOpen: 0,
+    const currentTypeAdRequestsDaily = {
+      Banner: 1000000,
+      Interstitial: 1000000,
+      Rewarded: 1000000,
+      InterstitialRewarded: 1000000,
+      AppOpen: 1000000
     };
+
+    // Initialize an object to store current total ad requests for each ad type
+    const currentTypeAdRequestsHourly = {
+      Banner: 1000000,
+      Interstitial: 1000000,
+      Rewarded: 1000000,
+      InterstitialRewarded: 1000000,
+      AppOpen: 1000000
+    };
+
+    const
+    currentTotalAdRequestsDaily = 1000000,
+    currentTotalAdRequestsHourly = 1000000;
 
     // Iterate over the rows to sum up the values for each ad type in the "Current" sheet
     if (currentValues) {
+
       for (let i = 1; i < currentValues.length; i++) {            
+
         const row = currentValues[i];
+
         if (row[0] == now) {
-          currentTotalAdRequests.Banner += parseInt(row[2]) || 0;
-          currentTotalAdRequests.Interstitial += parseInt(row[3]) || 0;
-          currentTotalAdRequests.Rewarded += parseInt(row[4]) || 0;
-          currentTotalAdRequests.InterstitialRewarded += parseInt(row[5]) || 0;
-          currentTotalAdRequests.AppOpen += parseInt(row[6]) || 0;
+
+          if (currentTypeAdRequestsDaily.Banner === 1000000) {
+
+            currentTypeAdRequestsDaily.Banner = 0;
+
+          }
+
+          
+          if (currentTypeAdRequestsDaily.Interstitial === 1000000) {
+
+            currentTypeAdRequestsDaily.Interstitial = 0;
+
+          }
+
+          
+          if (currentTypeAdRequestsDaily.Rewarded === 1000000) {
+
+            currentTypeAdRequestsDaily.Rewarded = 0;
+
+          }
+
+          
+          if (currentTypeAdRequestsDaily.InterstitialRewarded === 1000000) {
+
+            currentTypeAdRequestsDaily.InterstitialRewarded = 0;
+
+          }
+
+          if (currentTotalAdRequestsDaily.AppOpen === 1000000) {
+
+            currentTotalAdRequestsDaily.AppOpen = 0;
+                        
+          }
+
+          currentTypeAdRequestsDaily.Banner += parseInt(row[2]) || 0;
+          currentTypeAdRequestsDaily.Interstitial += parseInt(row[3]) || 0;
+          currentTypeAdRequestsDaily.Rewarded += parseInt(row[4]) || 0;
+          currentTypeAdRequestsDaily.InterstitialRewarded += parseInt(row[5]) || 0;
+          currentTypeAdRequestsDaily.AppOpen += parseInt(row[6]) || 0;
+
+          currentTotalAdRequestsDaily += parseInt(row[2]) || 0 + parseInt(row[3]) || 0 + parseInt(row[4]) || 0 + parseInt(row[5]) || 0 + parseInt(row[6]) || 0; 
+          
+          if (row[0] == hour) {
+
+            const currentTotalAdRequestsHourly = 0;
+
+            currentTotalAdRequestsHourly += parseInt(row[2]) || 0 + parseInt(row[3]) || 0 + parseInt(row[4]) || 0 + parseInt(row[5]) || 0 + parseInt(row[6]) || 0;
+
+            currentTypeAdRequestsHourly.Banner = parseInt(row[2]) || 0;
+            currentTypeAdRequestsHourly.Interstitial = parseInt(row[3]) || 0;
+            currentTypeAdRequestsHourly.Rewarded = parseInt(row[4]) || 0;
+            currentTypeAdRequestsHourly.InterstitialRewarded = parseInt(row[5]) || 0;
+            currentTypeAdRequestsHourly.AppOpen = parseInt(row[6]) || 0;  
+            
+          }
+
         }
+
       }
+
     }
+
+    // Initialize an object to store current total ad requests for each ad type
+    const maxTypeAdRequestsHourly = {
+      Banner: 1000000,
+      Interstitial: 1000000,
+      Rewarded: 1000000,
+      InterstitialRewarded: 1000000,
+      AppOpen: 1000000,
+    };
+
+    // Iterate over the rows to sum up the values for each ad type in the "Current" sheet
+    if (rows) {
+
+      for (let i = 1; i < currentValues.length; i++) {            
+
+        const row = currentValues[i];
+
+        if (row[0] == hour) {
+
+          if (maxTypeAdRequestsHourly.Banner === 1000000) {
+
+            maxTypeAdRequestsHourly.Banner = 0;
+
+            maxTypeAdRequestsHourly.Banner += parseInt(row[1]) || 0; // Use typeIndex to get the index of the type column
+
+          }
+
+          
+          if (maxTypeAdRequestsHourly.Interstitial === 1000000) {
+
+            maxTypeAdRequestsHourly.Interstitial = 0;
+
+            maxTypeAdRequestsHourly.Interstitial += parseInt(row[2]) || 0; // Use typeIndex to get the index of the type column
+
+          }
+
+          
+          if (maxTypeAdRequestsHourly.Rewarded === 1000000) {
+
+            maxTypeAdRequestsHourly.Rewarded = 0;
+
+            maxTypeAdRequestsHourly.Rewarded += parseInt(row[3]) || 0; // Use typeIndex to get the index of the type column
+
+          }
+
+          
+          if (maxTypeAdRequestsHourly.InterstitialRewarded === 1000000) {
+
+            maxTypeAdRequestsHourly.InterstitialRewarded = 0;
+
+            maxTypeAdRequestsHourly.InterstitialRewarded += parseInt(row[4]) || 0; // Use typeIndex to get the index of the type column
+
+          }
+
+        }
+
+      }
+
+    }
+
+    //Current Total Today Requests, Current Total Hourly Requests
 
     // Combine max total ad requests and current total ad requests into a single response object
     const response = {
-      currentTotalAdRequests,
-      maxCurrentAdRequestsDaily,
+      currentTotalAdRequestsDaily,
+      currentTotalAdRequestsHourly,
+      currentTypeAdRequestsDaily,
+      currentTypeAdRequestsHourly,
       maxTotalAdRequestsDaily,
-      maxTotalAdRequestsHourly
+      maxTotalAdRequestsHourly,
+      maxTypeAdRequestsDaily,
+      maxTypeAdRequestsHourly
     };
 
     // Send the response
