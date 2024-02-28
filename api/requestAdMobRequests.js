@@ -173,23 +173,14 @@ module.exports = async (req, res) => {
       maxTotalAdRequestsHourly: maxTotalAdRequestsHourly != null ? maxTotalAdRequestsHourly : 1000000
     };
 
-    // Combine current and max total ad requests into a single response object
-    const response = {  
-      currentTypeAdRequestsDaily, 
-      currentTypeAdRequestsHourly,  
-      currentTotalAdRequestsDaily: currentTotalAdRequestsDaily ?? 1000000,  
-      currentTotalAdRequestsHourly: currentTotalAdRequestsHourly ?? 1000000, 
-      maxTypeAdRequestsDaily,
-      maxTypeAdRequestsHourly,
-      maxTotalAdRequestsDaily: maxTotalAdRequestsDaily ?? 0,
-      maxTotalAdRequestsHourly: maxTotalAdRequestsHourly ?? 0
-    };
-
     // Send the response
     res.status(200).json(response);
+    
   } catch (error) {  
     // Handle errors
     console.error('Error:', error);
     res.status(500).json({ error: 'Internal Server Error' });
+  
   }
+  
 };
