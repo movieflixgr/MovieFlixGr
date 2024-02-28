@@ -16,6 +16,7 @@ const credentials = {
   "universe_domain": "googleapis.com"
 };
 
+
 // Initialize Google Sheets API
 const auth = new google.auth.JWT(
   credentials.client_email,
@@ -28,22 +29,29 @@ const sheets = google.sheets({ version: 'v4', auth });
 
 module.exports = async (req, res) => {
   try {
+    // Range for fetching data from the current sheet
+    const currentSheetRange = `Current!A2:G`;
+    // Range for fetching data from the "Max" sheet
+    const maxSheetRange = `Max!A2:G`;
+
     // Fetch data from the current sheet
-    const currentSheetRange = 'Current!A2:G';
     const currentResponse = await sheets.spreadsheets.values.get({
       spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
       range: currentSheetRange,
     });
+
     const currentValues = currentResponse.data.values;
 
-    // Get today's date
-    const today = new Date().toISOString().split('T')[0];
+    // Fetch data from the "Max" sheet
+    const maxResponse = await sheets.spreadsheets.values.get({
+      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+      range: maxSheetRange,
+    });
 
-    // Filter current values to include only rows with today's date
-    const todayRows = currentValues.filter(row => row[0] === today);
+    const maxValues = maxResponse.data.values;
 
-    // Initialize an object to store total current requests for each ad type
-    const totalCurrentRequestsBasedOnDate = {
+    // Initialize an object to store total max requests for each ad type
+    const totalMaxRequestsBasedOnDate = {
       Banner: 0,
       Interstitial: 0,
       Rewarded: 0,
@@ -51,36 +59,81 @@ module.exports = async (req, res) => {
       AppOpen: 0,
     };
 
-    // Calculate total current requests for each ad type based on today's date
-    todayRows.forEach(row => {
-      totalCurrentRequestsBasedOnDate.Banner += parseInt(row[2]) || 0;
-      totalCurrentRequestsBasedOnDate.Interstitial += parseInt(row[3]) || 0;
-      totalCurrentRequestsBasedOnDate.Rewarded += parseInt(row[4]) || 0;
-      totalCurrentRequestsBasedOnDate.InterstitialRewarded += parseInt(row[5]) || 0;
-      totalCurrentRequestsBasedOnDate.AppOpen += parseInt(row[6]) || 0;
-    });
+    // Calculate total max requests for each ad type based on date
+    if (maxValues) {
+      maxValues.forEach(row => {
+        // Skip the first row (header)
+        if (row[0] !== 'Hour') {
+          // Sum up the values for each ad type across all hours
+          totalMaxRequestsBasedOnDate.Banner += parseInt(row[1]) || 0;
+          totalMaxRequestsBasedOnDate.Interstitial += parseInt(row[2]) || 0;
+          totalMaxRequestsBasedOnDate.Rewarded += parseInt(row[3]) || 0;
+          totalMaxRequestsBasedOnDate.InterstitialRewarded += parseInt(row[4]) || 0;
+          totalMaxRequestsBasedOnDate.AppOpen += parseInt(row[5]) || 0;
+        }
+      });
+    }
+
+    // Initialize an object to store total current requests for each ad type
+    const totalCurrentRequestsBasedOnHour = {
+      Banner: 0,
+      Interstitial: 0,
+      Rewarded: 0,
+      InterstitialRewarded: 0,
+      AppOpen: 0,
+    };
+
+    // Calculate total current requests for each ad type based on hour
+    if (currentValues) {
+      currentValues.forEach(row => {
+        // Skip the first row (header)
+        if (row[0] !== 'Hour') {
+          // Sum up the values for each ad type for the current hour
+          totalCurrentRequestsBasedOnHour.Banner += parseInt(row[2]) || 0;
+          totalCurrentRequestsBasedOnHour.Interstitial += parseInt(row[3]) || 0;
+          totalCurrentRequestsBasedOnHour.Rewarded += parseInt(row[4]) || 0;
+          totalCurrentRequestsBasedOnHour.InterstitialRewarded += parseInt(row[5]) || 0;
+          totalCurrentRequestsBasedOnHour.AppOpen += parseInt(row[6]) || 0;
+        }
+      });
+    }
 
     // Construct response object
     const response = [
       {
         "Type": "Banner",
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Banner
+        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnHour.Banner,
+        "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][1]) || 0 : 0,
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnHour.Banner,
+        "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.Banner
       },
       {
         "Type": "Interstitial",
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Interstitial
+        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnHour.Interstitial,
+        "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][2]) || 0 : 0,
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnHour.Interstitial,
+        "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.Interstitial
       },
       {
         "Type": "Rewarded",
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.Rewarded
+        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnHour.Rewarded,
+        "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][3]) || 0 : 0,
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnHour.Rewarded,
+        "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.Rewarded
       },
       {
         "Type": "InterstitialRewarded",
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.InterstitialRewarded
+        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnHour.InterstitialRewarded,
+        "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][4]) || 0 : 0,
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnHour.InterstitialRewarded,
+        "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.InterstitialRewarded
       },
       {
         "Type": "AppOpen",
-        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnDate.AppOpen
+        "CurrentRequestsBasedOnHour": totalCurrentRequestsBasedOnHour.AppOpen,
+        "MaxRequestsBasedOnHour": maxValues ? parseInt(maxValues[6][5]) || 0 : 0,
+        "TotalCurrentRequestsBasedOnDate": totalCurrentRequestsBasedOnHour.AppOpen,
+        "TotalMaxRequestsBasedOnDate": totalMaxRequestsBasedOnDate.AppOpen
       }
     ];
 
