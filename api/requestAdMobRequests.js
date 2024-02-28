@@ -162,6 +162,18 @@ module.exports = async (req, res) => {
     }
 
     // Combine current and max total ad requests into a single response object
+    const response = {
+      currentTypeAdRequestsDaily,  
+      currentTypeAdRequestsHourly,  
+      currentTotalAdRequestsDaily: currentTotalAdRequestsDaily != null ? currentTotalAdRequestsDaily : 0,  
+      currentTotalAdRequestsHourly: currentTotalAdRequestsHourly != null ? currentTotalAdRequestsHourly : 0,
+      maxTypeAdRequestsDaily,  
+      maxTypeAdRequestsHourly,  
+      maxTotalAdRequestsDaily: maxTotalAdRequestsDaily != null ? maxTotalAdRequestsDaily : 1000000,  
+      maxTotalAdRequestsHourly: maxTotalAdRequestsHourly != null ? maxTotalAdRequestsHourly : 1000000
+    };
+
+    // Combine current and max total ad requests into a single response object
     const response = {  
       currentTypeAdRequestsDaily, 
       currentTypeAdRequestsHourly,  
