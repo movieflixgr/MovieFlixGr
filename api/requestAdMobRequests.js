@@ -63,7 +63,7 @@ module.exports = async (req, res) => {
 
     const rows = maxResponse.data.values;
 
-    const indexMax = -1;
+    let indexMax = -1;
 
     if (rows) {
       for (let i = 0; i < rows.length; i++) {
