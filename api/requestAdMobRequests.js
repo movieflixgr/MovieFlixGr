@@ -162,15 +162,15 @@ module.exports = async (req, res) => {
     }
 
     // Combine current and max total ad requests into a single response object
-    const response = {
-      currentTypeAdRequestsDaily,
-      currentTypeAdRequestsHourly,
-      currentTotalAdRequestsDaily,
-      currentTotalAdRequestsHourly,
+    const response = {  
+      currentTypeAdRequestsDaily, 
+      currentTypeAdRequestsHourly,  
+      currentTotalAdRequestsDaily: currentTotalAdRequestsDaily ?? 0,  
+      currentTotalAdRequestsHourly: currentTotalAdRequestsHourly ?? 0, 
       maxTypeAdRequestsDaily,
       maxTypeAdRequestsHourly,
-      maxTotalAdRequestsDaily,
-      maxTotalAdRequestsHourly,
+      maxTotalAdRequestsDaily: maxTotalAdRequestsDaily ?? 0,
+      maxTotalAdRequestsHourly: maxTotalAdRequestsHourly ?? 0,
     };
 
     // Send the response
