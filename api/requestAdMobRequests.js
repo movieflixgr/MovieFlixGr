@@ -174,12 +174,28 @@ module.exports = async (req, res) => {
       maxTotalAdRequestsHourly: maxTotalAdRequestsHourly != null ? maxTotalAdRequestsHourly : 0
     };
 
+    if (response.currentTotalAdRequestsDaily === null) {
 
-    // If there are any null values, set them to 0
-    for (let key in response) {
-      if (response[key] === null) {     
-        response[key] = 0;  
-      }
+      response.currentTotalAdRequestsDaily = 0;
+
+    }
+
+    if (response.currentTotalAdRequestsHourly === null) {
+
+      response.currentTotalAdRequestsHourly = 0;
+
+    }
+
+    if (response.maxTotalAdRequestsDaily === null) {
+
+      response.maxTotalAdRequestsDaily = 1000000;
+
+    }
+
+    if (response.maxTotalAdRequestsDaily === null) {
+
+      response.maxTotalAdRequestsDaily = 1000000;
+
     }
 
     // Send the response
