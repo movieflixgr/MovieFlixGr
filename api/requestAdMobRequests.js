@@ -109,7 +109,7 @@ module.exports = async (req, res) => {
     if (currentValues) {
       for (let i = 1; i < currentValues.length; i++) {            
         const row = currentValues[i];
-        if (currentValues[i][0] == now && currentValues[i][1] == hours) {
+        if (currentValues[i][0] == now && currentValues[i][1] == hour) {
           currentTotalAdRequests.Banner += parseInt(row[2]) || 0;
           currentTotalAdRequests.Interstitial += parseInt(row[3]) || 0;
           currentTotalAdRequests.Rewarded += parseInt(row[4]) || 0;
