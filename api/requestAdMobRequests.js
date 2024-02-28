@@ -119,13 +119,14 @@ module.exports = async (req, res) => {
 
     // Combine max total ad requests and current total ad requests into a single response object
     const response = {
-      maxTotalAdRequests,
       currentTotalAdRequests,
-      maxTotalAdRequestsDaily
+      maxCurrentAdRequestsDaily,
+      maxTotalAdRequestsDaily,
+      maxTotalAdRequestsHourly
     };
 
     // Send the response
-    res.status(200).json(response, maxTotalAdRequestsDaily, maxTotalAdRequestsHourly);
+    res.status(200).json(response);
 
   } catch (error) {
 
