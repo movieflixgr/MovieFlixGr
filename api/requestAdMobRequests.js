@@ -27,7 +27,34 @@ const auth = new google.auth.JWT(
 const sheets = google.sheets({ version: 'v4', auth });
 
 module.exports = async (req, res) => {
+
   try {
+
+    // Get today's date
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Adding 1 because getMonth() returns zero-based month
+    const day = String(currentDate.getDate()).padStart(2, '0');
+
+    const now = `${year}-${month}-${day}`;
+
+    const hours = String((currentDate.getHours() + 2) % 24).padStart(2, '0');
+
+    const hour = `${hours}:00`;
+
+    const rows = response.data.values;
+
+    const indexMax = -1;
+
+    if (rows) {
+      for (let i = 0; i < rows.length; i++) {
+        if (rows[i][0] === hour) {
+          // Found the row with the specific value in the specified column
+          indexMax = i;// Return the row number (adding 1 because row indices are 0-based)
+        }
+      }
+    }
+
     // Range for fetching data from the "Current" sheet
     const currentSheetRange = `Current!A1:G26`;
     // Range for fetching data from the "Max" sheet
@@ -50,7 +77,7 @@ module.exports = async (req, res) => {
     const maxValues = maxResponse.data.values;
 
     // Initialize an object to store max total ad requests for each ad type
-    const maxTotalAdRequests = {
+    const maxCurrentAdRequestsDaily = {
       Banner: 0,
       Interstitial: 0,
       Rewarded: 0,
@@ -58,17 +85,16 @@ module.exports = async (req, res) => {
       AppOpen: 0,
     };
 
-    // Iterate over the rows to sum up the values for each ad type in the "Max" sheet
-    if (maxValues) {
-      for (let i = 1; i < maxValues.length; i++) {
-        const row = maxValues[i];
-        maxTotalAdRequests.Banner += parseInt(row[1]) || 0;
-        maxTotalAdRequests.Interstitial += parseInt(row[2]) || 0;
-        maxTotalAdRequests.Rewarded += parseInt(row[3]) || 0;
-        maxTotalAdRequests.InterstitialRewarded += parseInt(row[4]) || 0;
-        maxTotalAdRequests.AppOpen += parseInt(row[5]) || 0;
-      }
-    }
+    maxCurrentAdRequestsDaily.Banner = parseInt(maxTotalAdRequestsResponse.data.values[25][1]) || 0;
+    maxCurrentAdRequestsDaily.Interstitial = parseInt(maxTotalAdRequestsResponse.data.values[25][1]) || 0;
+    maxCurrentAdRequestsDaily.Rewarded = parseInt(maxTotalAdRequestsResponse.data.values[25][1]) || 0;
+    maxCurrentAdRequestsDaily.InterstitialRewarded = parseInt(maxTotalAdRequestsResponse.data.values[25][1]) || 0;
+    maxCurrentAdRequestsDaily.AppOpen = parseInt(maxTotalAdRequestsResponse.data.values[25][1]) || 0;
+
+    // Initialize an object to store max total ad requests for each ad type
+    const maxTotalAdRequestsHourly = parseInt(maxTotalAdRequestsResponse.data.values[indexMax][6]) || 0;
+
+    const maxTotalAdRequestsDaily = parseInt(maxTotalAdRequestsResponse.data.values[25][6]) || 0;
 
     // Initialize an object to store current total ad requests for each ad type
     const currentTotalAdRequests = {
@@ -95,13 +121,20 @@ module.exports = async (req, res) => {
     const response = {
       maxTotalAdRequests,
       currentTotalAdRequests,
+      maxTotalAdRequestsDaily
     };
 
     // Send the response
-    res.status(200).json(response);
+    res.status(200).json(response, maxTotalAdRequestsDaily, maxTotalAdRequestsHourly);
+
   } catch (error) {
+
     // Handle errors
+
     console.error('Error:', error);
+
     res.status(500).json({ error: 'Internal Server Error' });
+
   }
+
 };
