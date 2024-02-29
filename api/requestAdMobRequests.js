@@ -30,8 +30,8 @@ module.exports = async (req, res) => {
   try {
 
     // Get today's date
-    const response = await fetch('http://worldtimeapi.org/api/ip');
-    const data = await response.json();
+    const responseDate = await fetch('http://worldtimeapi.org/api/ip');
+    const data = await responseDate.json();
     
     const currentDate = new Date(data.datetime);
     const year = currentDate.getFullYear();
