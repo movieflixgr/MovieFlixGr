@@ -29,6 +29,7 @@ const sheets = google.sheets({ version: 'v4', auth });
 module.exports = async (req, res) => {
   try {
 
+    // Get today's date
     const response = await fetch('http://worldtimeapi.org/api/ip');
     const data = await response.json();
     
@@ -44,7 +45,6 @@ module.exports = async (req, res) => {
     console.log("Current Date:", now);
     console.log("Current Time:", hour);
     
-    // Get today's date
     //const currentDate = new Date();
     //const year = currentDate.getFullYear();
     //const month = String(currentDate.getMonth() + 1).padStart(2, '0');
