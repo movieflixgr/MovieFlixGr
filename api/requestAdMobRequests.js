@@ -28,15 +28,31 @@ const sheets = google.sheets({ version: 'v4', auth });
 
 module.exports = async (req, res) => {
   try {
-    // Get today's date
-    const currentDate = new Date();
+
+    const response = await fetch('http://worldtimeapi.org/api/ip');
+    const data = await response.json();
+    
+    const currentDate = new Date(data.datetime);
     const year = currentDate.getFullYear();
     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-    const day = String(currentDate.getDate()).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');    
     const now = `${year}-${month}-${day}`;
 
     const hours = String((currentDate.getHours() + 2) % 24).padStart(2, '0');
     const hour = `${hours}:00`;
+        
+    console.log("Current Date:", now);
+    console.log("Current Time:", hour);
+    
+    // Get today's date
+    //const currentDate = new Date();
+    //const year = currentDate.getFullYear();
+    //const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    //const day = String(currentDate.getDate()).padStart(2, '0');
+    //const now = `${year}-${month}-${day}`;
+
+    //const hours = String((currentDate.getHours() + 2) % 24).padStart(2, '0');
+    //const hour = `${hours}:00`;
 
     // Range for fetching data from the "Current" sheet
     const currentSheetRange = `Current!A:G`;
