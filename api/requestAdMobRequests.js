@@ -148,7 +148,7 @@ module.exports = async (req, res) => {
         maxTypeAdRequestsDaily.Rewarded = parseInt(maxValues[25][3]) || 0;
         maxTypeAdRequestsDaily.RewardedInterstitial = parseInt(maxValues[25][4]) || 0;
         maxTypeAdRequestsDaily.AppOpen = parseInt(maxValues[25][5]) || 0;
-        maxTotalAdRequestsDaily = maxTypeAdRequestsDaily.Banner + maxTypeAdRequestsDaily.Interstitial + maxTypeAdRequestsDaily.Rewarded + maxTypeAdRequestsDaily.InterstitialRewarded + maxTypeAdRequestsDaily.AppOpen;
+        maxTotalAdRequestsDaily = parseInt(maxValues[25][6]) || 0;
       } else {
         // If maxValues[25] is undefined, set all values to 0
         maxTypeAdRequestsDaily.Banner = 0;
