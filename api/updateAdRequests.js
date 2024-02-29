@@ -28,25 +28,34 @@ const sheets = google.sheets({ version: 'v4', auth });
 
 module.exports = async (req, res) => {
   try {
+    
     // Get the ad type from the query parameter
     const type = req.query.Type;
 
-    console.log("Type: ", type);
-
-    // Get current date and hour
-    const currentDate = new Date();
-    const [year, month, day] = [
-      currentDate.getFullYear(),
-      String(currentDate.getMonth() + 1).padStart(2, '0'),
-      String(currentDate.getDate()).padStart(2, '0')
-    ];
-    const [hours, minutes, seconds] = [
-      String((currentDate.getHours() + 2) % 24).padStart(2, '0'),
-      String(currentDate.getMinutes()).padStart(2, '0'),
-      String(currentDate.getSeconds()).padStart(2, '0')
-    ];
+    // Get today's date
+    const response = await fetch('http://worldtimeapi.org/api/ip');
+    const data = await response.json();
+    
+    const currentDate = new Date(data.datetime);
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');    
     const now = `${year}-${month}-${day}`;
+
+    const hours = String((currentDate.getHours() + 2) % 24).padStart(2, '0');
     const hour = `${hours}:00`;
+        
+    console.log("Current Date:", now);
+    console.log("Current Time:", hour);
+    
+    //const currentDate = new Date();
+    //const year = currentDate.getFullYear();
+    //const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    //const day = String(currentDate.getDate()).padStart(2, '0');
+    //const now = `${year}-${month}-${day}`;
+
+    //const hours = String((currentDate.getHours() + 2) % 24).padStart(2, '0');
+    //const hour = `${hours}:00`;
 
     // Retrieve values from the "Current" sheet
     const response = await sheets.spreadsheets.values.get({
