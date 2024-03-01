@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
     // Get the formatted time (HH:00)
     const hour = currentDateTime.format('HH:00');
 
-    console.log("Current Response:", data.datetime);
+    console.log("Current Response:", data.utc_datetime);
     console.log("Current Date:", now);
     console.log("Current Time:", hour);
     
