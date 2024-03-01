@@ -41,7 +41,7 @@ module.exports = async (req, res) => {
     const year = currentDateTime.getFullYear();
 
     const hours = String(currentDate.getHours() % 24).padStart(2, '0');
-    const hour = `${hour}:00`;
+    const hour = `${hours}:00`;
         
     console.log("Current Date:", now);
     console.log("Current Time:", hour);
