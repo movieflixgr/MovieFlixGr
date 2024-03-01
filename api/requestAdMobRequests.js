@@ -36,18 +36,16 @@ module.exports = async (req, res) => {
 
     // Extract time, month, day, and year from the datetime field
     const currentDateTime = moment.tz(data.datetime, 'Europe/Athens');
-    const month = String(currentDateTime.getMonth() + 1).padStart(2, '0');
-    const day = String(currentDateTime.getDate()).padStart(2, '0');
-    const year = currentDateTime.getFullYear();
-    const now = `${year}-${month}-${day}`;
-    
-    const hours = String((currentDateTime.getHours() + 2) % 24).padStart(2, '0');
-    const hour = `${hours}:00`;
 
-    // Extract time, month, day, and year from the datetime field
+    // Get the formatted date (DD/MM/YYYY)
+    const formattedDate = currentDateTime.format('DD/MM/YYYY');
+
+    // Get the formatted time (HH:00)
+    const formattedTime = currentDateTime.format('HH:00');
+
     console.log("Current Response:", data.datetime);
-    console.log("Current Date:", now);
-    console.log("Current Time:", hour);
+    console.log("Current Date:", formattedDate);
+    console.log("Current Time:", formattedTime);
     
     //const currentDate = new Date();
     //const year = currentDate.getFullYear();
