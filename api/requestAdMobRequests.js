@@ -29,20 +29,20 @@ const sheets = google.sheets({ version: 'v4', auth });
 module.exports = async (req, res) => {
   try {
 
-    // Get today's date
+    // Fetch current date and time from the World Time API for Athens
     const responseDate = await fetch('https://worldtimeapi.org/api/timezone/Europe/Athens');
     const data = await responseDate.json();
 
     // Extract time, month, day, and year from the datetime field
     const currentDateTime = new Date(data.datetime);
-    const hour = String(currentDateTime.getHours()).padStart(2, '0');
     const month = String(currentDateTime.getMonth() + 1).padStart(2, '0');
     const day = String(currentDateTime.getDate()).padStart(2, '0');
     const year = currentDateTime.getFullYear();
 
-    const hours = String(currentDate.getHours() % 24).padStart(2, '0');
+    const hours = String(currentDateTime.getHours() % 24).padStart(2, '0');
     const hour = `${hours}:00`;
-        
+
+    // Extract time, month, day, and year from the datetime field
     console.log("Current Date:", now);
     console.log("Current Time:", hour);
     
