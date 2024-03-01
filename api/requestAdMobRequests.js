@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
     const year = currentDateTime.getFullYear();
     const now = `${year}-${month}-${day}`;
     
-    const hours = String(currentDateTime.getHours() % 24).padStart(2, '0');
+    const hours = String((currentDateTime.getHours() + 2) % 24).padStart(2, '0');
     const hour = `${hours}:00`;
 
     // Extract time, month, day, and year from the datetime field
