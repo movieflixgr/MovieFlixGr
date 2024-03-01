@@ -42,7 +42,7 @@ module.exports = async (req, res) => {
     const day = String(currentDate.getDate()).padStart(2, '0');    
     const now = `${year}-${month}-${day}`;
 
-    const hours = String((currentDate.getHours() + 2) % 24).padStart(2, '0');
+    const hours = String(currentDate.getHours() % 24).padStart(2, '0');
     const hour = `${hours}:00`;
         
     console.log("Current Date:", now);
