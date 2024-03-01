@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
     const currentDateTime = moment.tz(data.datetime, 'Europe/Athens');
 
     // Get the formatted date (DD/MM/YYYY)
-    const formattedDate = currentDateTime.format('DD/MM/YYYY');
+    const formattedDate = currentDateTime.format('DD-MM-YYYY');
 
     // Get the formatted time (HH:00)
     const formattedTime = currentDateTime.format('HH:00');
