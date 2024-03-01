@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
     const type = req.query.Type;
 
     // Get today's date
-    const responseDate = await fetch('http://worldtimeapi.org/api/ip');
+    const responseDate = await fetch('https://worldtimeapi.org/api/timezone/Europe/Athens');
     const data = await responseDate.json();
     
     const currentDate = new Date(data.datetime);
