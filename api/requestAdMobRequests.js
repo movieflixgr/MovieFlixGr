@@ -38,10 +38,10 @@ module.exports = async (req, res) => {
     const currentDateTime = moment.tz(data.datetime, 'Europe/Athens');
 
     // Get the formatted date (DD/MM/YYYY)
-    const formattedDate = currentDateTime.format('DD-MM-YYYY');
+    const now = currentDateTime.format('DD-MM-YYYY');
 
     // Get the formatted time (HH:00)
-    const formattedTime = currentDateTime.format('HH:00');
+    const hour = currentDateTime.format('HH:00');
 
     console.log("Current Response:", data.datetime);
     console.log("Current Date:", formattedDate);
