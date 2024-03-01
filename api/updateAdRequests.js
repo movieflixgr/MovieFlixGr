@@ -1,4 +1,5 @@
 const { google } = require('googleapis');
+const moment = require('moment-timezone');
 
 // Google Sheets API credentials
 const credentials = {
@@ -37,15 +38,14 @@ module.exports = async (req, res) => {
     const data = await responseDate.json();
 
     // Extract time, month, day, and year from the datetime field
-    const currentDateTime = new Date(data.datetime);
-    const month = String(currentDateTime.getMonth() + 1).padStart(2, '0');
-    const day = String(currentDateTime.getDate()).padStart(2, '0');
-    const year = currentDateTime.getFullYear();
-    const now = `${year}-${month}-${day}`;
-    
-    const hours = String((currentDateTime.getHours() + 2) % 24).padStart(2, '0');
-    const hour = `${hours}:00`;
-        
+    const currentDateTime = moment.tz(data.datetime, 'Europe/Athens');
+
+    // Get the formatted date (DD/MM/YYYY)
+    const now = currentDateTime.format('YYYY-MM-DD');
+
+    // Get the formatted time (HH:00)
+    const hour = currentDateTime.format('HH:00');
+
     console.log("Current Date:", now);
     console.log("Current Time:", hour);
     
