@@ -44,6 +44,7 @@ module.exports = async (req, res) => {
     const hour = `${hours}:00`;
 
     // Extract time, month, day, and year from the datetime field
+    console.log("Current Response:", data.datetime);
     console.log("Current Date:", now);
     console.log("Current Time:", hour);
     
