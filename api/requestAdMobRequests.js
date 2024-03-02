@@ -42,9 +42,6 @@ module.exports = async (req, res) => {
 
     // Get the formatted time (HH:00)
     const hour = currentDateTime.format('HH:00');
-
-    console.log("Current Date:", now);
-    console.log("Current Time:", hour);
     
     //const currentDate = new Date();
     //const year = currentDate.getFullYear();
