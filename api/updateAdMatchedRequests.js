@@ -82,7 +82,7 @@ module.exports = async (req, res) => {
       // Update the values in the "Current" sheet
       await sheets.spreadsheets.values.update({
         spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-        range: `Current!A${rowIndex + 1}`,
+        range: `CurrentMatched!A${rowIndex + 1}`,
         valueInputOption: 'RAW',
         resource: {
           values: [currentValues[rowIndex]]
