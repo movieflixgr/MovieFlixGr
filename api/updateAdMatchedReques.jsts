@@ -61,7 +61,7 @@ module.exports = async (req, res) => {
     // Retrieve values from the "Current" sheet
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
-      range: 'Current'
+      range: 'CurrentMatched'
     });
 
     const currentValues = response.data.values || [];
