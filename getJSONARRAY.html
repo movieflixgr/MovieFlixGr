@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreekMovies</title>
+    <link rel="icon" href="https://lh3.googleusercontent.com/GOUbW1NrtqbUcHSCyCWPEjbfB-5xVgR-uUkHSnir55Ilmw7SabWcxba4ESu3MQlO1-XXdxJobaVqa-vQh9Mnk-M=w16383" type="image/x-icon">
+</head>
+<body>
+    <!-- Button to trigger the sendData function -->
+    <button onclick="sendData()">Send JSON Array</button>
+
+    <!-- Include Firebase SDK (UMD version) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+
+    <script>
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyC7iQNTqDBSQlrotr0s4fWZc2W7yHNUdmw",
+            authDomain: "peirama-38dd0.firebaseapp.com",
+            databaseURL: "https://peirama-38dd0-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "peirama-38dd0",
+            storageBucket: "peirama-38dd0.appspot.com",
+            messagingSenderId: "251729576806",
+            appId: "1:251729576806:web:026322c41c8627b7d0bea7",
+            measurementId: "G-F8ZCXNCJS2"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        // Get a reference to the Firebase Realtime Database
+        const database = firebase.database();
+
+        // Function to send JSON array to Firebase
+        function sendData() {
+            // Get the JSON array string from the URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const jsonArrayString = urlParams.get('jsonArray');
+
+            // Make sure jsonArrayString is not null
+            if (jsonArrayString) {
+                // Convert the JSON array string to JavaScript object
+                const jsonArray = JSON.parse(jsonArrayString);
+
+                // Push the JSON array data to Firebase
+                database.ref('jsonArrayData').push(jsonArray)
+                    .then(() => {
+                        console.log('JSON array data pushed to Firebase successfully.');
+                        // Handle success as needed
+                    })
+                    .catch(error => {
+                        console.error('Error pushing JSON array data to Firebase:', error);
+                        // Handle error
+                    });
+            } else {
+                console.error('No JSON array found in the URL parameter.');
+                // Handle case when no JSON array is found in the URL parameter
+            }
+        }
+    </script>
+</body>
+</html>
