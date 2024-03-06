@@ -7,9 +7,6 @@
     <link rel="icon" href="https://lh3.googleusercontent.com/GOUbW1NrtqbUcHSCyCWPEjbfB-5xVgR-uUkHSnir55Ilmw7SabWcxba4ESu3MQlO1-XXdxJobaVqa-vQh9Mnk-M=w16383" type="image/x-icon">
 </head>
 <body>
-    <!-- Button to trigger the sendData function -->
-    <button onclick="sendData()">Send JSON Array</button>
-
     <!-- Include Firebase SDK (UMD version) -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
@@ -31,32 +28,34 @@
         // Get a reference to the Firebase Realtime Database
         const database = firebase.database();
 
-        // Function to send JSON array to Firebase
-        function sendData() {
-            // Get the JSON array string from the URL parameter
-            const urlParams = new URLSearchParams(window.location.search);
-            const jsonArrayString = urlParams.get('jsonArray');
-
-            // Make sure jsonArrayString is not null
-            if (jsonArrayString) {
-                // Convert the JSON array string to JavaScript object
-                const jsonArray = JSON.parse(jsonArrayString);
-
-                // Push the JSON array data to Firebase
-                database.ref('jsonArrayData').push(jsonArray)
+        // Function to send string data to Firebase
+        function sendStringData(dataString) {
+            // Make sure dataString is not null
+            if (dataString) {
+                // Push the string data to Firebase
+                database.ref('stringData').push(dataString)
                     .then(() => {
-                        console.log('JSON array data pushed to Firebase successfully.');
+                        console.log('String data pushed to Firebase successfully.');
                         // Handle success as needed
                     })
                     .catch(error => {
-                        console.error('Error pushing JSON array data to Firebase:', error);
+                        console.error('Error pushing string data to Firebase:', error);
                         // Handle error
                     });
             } else {
-                console.error('No JSON array found in the URL parameter.');
-                // Handle case when no JSON array is found in the URL parameter
+                console.error('No string data provided.');
+                // Handle case when no string data is provided
             }
         }
+
+        // Automatically send string data when the page loads
+        window.onload = function() {
+            // Example string data
+            const stringData = "This is a sample string.";
+
+            // Send the string data to Firebase
+            sendStringData(stringData);
+        };
     </script>
 </body>
 </html>
