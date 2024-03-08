@@ -1,18 +1,39 @@
 // api/today-match-rate.js
-const axios = require('axios');
+const { google } = require('googleapis');
+
+// Service account credentials
+const serviceAccountCredentials = {
+    client_email: 'admob-416@red-league-416615.iam.gserviceaccount.com',
+    private_key: '6f81a2fa7d6f33d9dcf61bbc3a755f8b23c0d62e'
+};
+
+// Authenticate using service account credentials
+const auth = new google.auth.GoogleAuth({
+    credentials: serviceAccountCredentials,
+    scopes: ['https://www.googleapis.com/auth/admob.readonly']
+});
 
 module.exports = async (req, res) => {
     try {
+        // Create a client using the authenticated credentials
+        const client = await auth.getClient();
+
         // Make a request to the AdMob API to get today's match rate
-        const response = await axios.get('https://admob.googleapis.com/v1/accounts/YOUR_ACCOUNT_ID/reports:generate', {
-            headers: {
-                Authorization: `Bearer $AIzaSyBPzSiimkdAN9usC7ZaIs3dpiupd3cd9wA`
-            },
-            params: {
-                // Customize your query parameters as needed
-                // For example, you might specify the date range for today's data
-                startDate: new Date().toISOString().split('T')[0],
-                endDate: new Date().toISOString().split('T')[0]
+        const admob = google.admob({
+            version: 'v1',
+            auth: client
+        });
+
+        // Make the API request to fetch the match rate data
+        const response = await admob.accounts.networkReport.generate({
+            parent: 'accounts/pub-4178615560355204',
+            requestBody: {
+                reportSpec: {
+                    dateRange: {
+                        startDate: { day: new Date().getDate(), month: new Date().getMonth() + 1, year: new Date().getFullYear() },
+                        endDate: { day: new Date().getDate(), month: new Date().getMonth() + 1, year: new Date().getFullYear() }
+                    }
+                }
             }
         });
 
