@@ -1,45 +1,48 @@
 const { google } = require('googleapis');
-const express = require('express');
-const app = express();
+
+// Load OAuth2 client ID and client secret
+const CLIENT_ID = '788811153358-nfjsvo557nki42nmm8kbeenqfpu6c82e.apps.googleusercontent.com';
+const CLIENT_SECRET = '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';
 
 // Set up OAuth2 client
 const oauth2Client = new google.auth.OAuth2(
-  'YOUR_CLIENT_ID',
-  'YOUR_CLIENT_SECRET',
-  'YOUR_REDIRECT_URI'
+    CLIENT_ID,
+    CLIENT_SECRET
 );
 
-// Generate consent page URL
-const consentUrl = oauth2Client.generateAuthUrl({
-  access_type: 'offline',
-  scope: 'https://www.googleapis.com/auth/admob.readonly'
+// Set up AdMob API client
+const admob = google.admob({
+    version: 'v1',
+    auth: oauth2Client
 });
 
-// Redirect user to consent page
-app.get('/auth', (req, res) => {
-  res.redirect(consentUrl);
-});
+async function getAdMobMatchRate() {
+    try {
+        // Get today's date in 'YYYY-MM-DD' format
+        const today = new Date().toISOString().split('T')[0];
+        
+        // Make API request to get mediation report for today
+        const response = await admob.accounts.mediationReport.generate({
+            parent: 'accounts/pub-4178615560355204',
+            requestBody: {
+                reportSpec: {
+                    dateRange: {
+                        startDate: today,
+                        endDate: today
+                    }
+                }
+            }
+        });
 
-// Handle redirect after user grants consent
-app.get('/auth/callback', async (req, res) => {
-  const { code } = req.query;
+        // Extract match rate from response
+        const matchRate = response.data.matchRate;
 
-  try {
-    // Exchange authorization code for access token
-    const { tokens } = await oauth2Client.getToken(code);
-    const accessToken = tokens.access_token;
+        console.log(`Today's match rate: ${matchRate}`);
+        return matchRate;
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+}
 
-    // Use access token to make API requests
-    // Call function to get today's match rate or perform other API requests
-
-    res.send(`Access token: ${accessToken}`);
-  } catch (error) {
-    res.status(500).send('Error getting access token');
-  }
-});
-
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Call the function to get today's match rate
+getAdMobMatchRate();
