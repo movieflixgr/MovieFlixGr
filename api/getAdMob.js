@@ -1,39 +1,27 @@
-const { google } = require('googleapis');
+// api/today-match-rate.js
+const axios = require('axios');
 
-// Set up AdMob API client with API key
-const apiKey = 'AIzaSyBPzSiimkdAN9usC7ZaIs3dpiupd3cd9wA';
-const admob = google.admob({
-    version: 'v1',
-    auth: apiKey
-});
-
-async function getAdMobMatchRate() {
+module.exports = async (req, res) => {
     try {
-        // Get today's date in 'YYYY-MM-DD' format
-        const today = new Date().toISOString().split('T')[0];
-        
-        // Make API request to get mediation report for today
-        const response = await admob.accounts.mediationReport.generate({
-            parent: 'accounts/pub-4178615560355204',
-            requestBody: {
-                reportSpec: {
-                    dateRange: {
-                        startDate: today,
-                        endDate: today
-                    }
-                }
+        // Make a request to the AdMob API to get today's match rate
+        const response = await axios.get('https://admob.googleapis.com/v1/accounts/YOUR_ACCOUNT_ID/reports:generate', {
+            headers: {
+                Authorization: `Bearer $AIzaSyBPzSiimkdAN9usC7ZaIs3dpiupd3cd9wA`
+            },
+            params: {
+                // Customize your query parameters as needed
+                // For example, you might specify the date range for today's data
+                startDate: new Date().toISOString().split('T')[0],
+                endDate: new Date().toISOString().split('T')[0]
             }
         });
 
-        // Extract match rate from response
+        // Extract and return the match rate from the response
         const matchRate = response.data.matchRate;
 
-        console.log(`Today's match rate: ${matchRate}`);
-        return matchRate;
+        res.status(200).json({ matchRate });
     } catch (error) {
-        console.error('Error:', error.message);
+        console.error('Error retrieving match rate from AdMob API:', error);
+        res.status(500).json({ error: 'An error occurred while retrieving match rate from AdMob API' });
     }
-}
-
-// Call the function to get today's match rate
-getAdMobMatchRate();
+};
