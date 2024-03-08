@@ -1,19 +1,10 @@
 const { google } = require('googleapis');
 
-// Load OAuth2 client ID and client secret
-const CLIENT_ID = '788811153358-nfjsvo557nki42nmm8kbeenqfpu6c82e.apps.googleusercontent.com';
-const CLIENT_SECRET = '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';
-
-// Set up OAuth2 client
-const oauth2Client = new google.auth.OAuth2(
-    CLIENT_ID,
-    CLIENT_SECRET
-);
-
-// Set up AdMob API client
+// Set up AdMob API client with API key
+const apiKey = 'AIzaSyBPzSiimkdAN9usC7ZaIs3dpiupd3cd9wA';
 const admob = google.admob({
     version: 'v1',
-    auth: oauth2Client
+    auth: apiKey
 });
 
 async function getAdMobMatchRate() {
