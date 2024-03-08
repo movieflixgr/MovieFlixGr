@@ -18,20 +18,32 @@ module.exports = async (req, res) => {
         // Create a client using the authenticated credentials
         const client = await auth.getClient();
 
-        // Make a request to the AdMob API to get today's match rate
+        // Make a request to the AdMob API to get yesterday's match rate
         const admob = google.admob({
             version: 'v1',
             auth: client
         });
 
-        // Make the API request to fetch the match rate data
+        // Calculate yesterday's date
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+
+        // Make the API request to fetch the match rate data for yesterday
         const response = await admob.accounts.networkReport.generate({
             parent: 'accounts/pub-4178615560355204',
             requestBody: {
                 reportSpec: {
                     dateRange: {
-                        startDate: { day: new Date().getDate(), month: new Date().getMonth() + 1, year: new Date().getFullYear() },
-                        endDate: { day: new Date().getDate(), month: new Date().getMonth() + 1, year: new Date().getFullYear() }
+                        startDate: {
+                            day: yesterday.getDate(),
+                            month: yesterday.getMonth() + 1,
+                            year: yesterday.getFullYear()
+                        },
+                        endDate: {
+                            day: yesterday.getDate(),
+                            month: yesterday.getMonth() + 1,
+                            year: yesterday.getFullYear()
+                        }
                     }
                 }
             }
