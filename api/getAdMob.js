@@ -1,4 +1,3 @@
-// api/today-match-rate.js
 const { google } = require('googleapis');
 
 // Service account credentials
@@ -18,39 +17,29 @@ module.exports = async (req, res) => {
         // Create a client using the authenticated credentials
         const client = await auth.getClient();
 
-        // Make a request to the AdMob API to get yesterday's match rate
+        // Create AdMob API client
         const admob = google.admob({
             version: 'v1',
             auth: client
         });
 
-        // Calculate yesterday's date
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-
-        // Make the API request to fetch the match rate data for yesterday
-        const response = await admob.accounts.networkReport.generate({
-            parent: 'accounts/pub-4178615560355204',
+        // Make the API request to fetch the match rate data
+        const response = await admob.accounts.mediationReport.generate({
+            parent: 'accounts/pub-417861556035520',
             requestBody: {
                 reportSpec: {
                     dateRange: {
-                        startDate: {
-                            day: yesterday.getDate(),
-                            month: yesterday.getMonth() + 1,
-                            year: yesterday.getFullYear()
-                        },
-                        endDate: {
-                            day: yesterday.getDate(),
-                            month: yesterday.getMonth() + 1,
-                            year: yesterday.getFullYear()
-                        }
-                    }
+                        startDate: { year: 2024, month: 3, day: 7 },
+                        endDate: { year: 2024, month: 3, day: 7 }
+                    },
+                    dimensions: ['DATE'],
+                    metrics: ['MATCH_RATE']
                 }
             }
         });
 
         // Extract and return the match rate from the response
-        const matchRate = response.data.matchRate;
+        const matchRate = response.data;
 
         res.status(200).json({ matchRate });
     } catch (error) {
