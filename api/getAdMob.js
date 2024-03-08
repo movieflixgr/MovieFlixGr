@@ -51,7 +51,7 @@ module.exports = async (req, res) => {
         });
 
         // Make the API request to fetch the match rate data
-        const response = await admob.accounts.mediationReport.generate({
+        const response = await admob.accounts.reports.generate({
             parent: 'accounts/pub-4178615560355204',
             requestBody: {
                 reportSpec: {
