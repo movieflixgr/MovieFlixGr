@@ -23,9 +23,9 @@ module.exports = async (req, res) => {
             auth: client
         });
 
-        // Make the API request to fetch the report data for AdMob ads
-        const response = await admob.accounts.reports.generate({
-            parent: 'accounts/pub-417861556035520', // Replace with your account ID
+        // Make the API request to fetch the report data
+        const response = await admob.accounts.networkReport.generate({
+            parent: 'accounts/pub-417861556035520', // Replace with your actual AdMob account ID
             requestBody: {
                 reportSpec: {
                     dateRange: {
@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
                         endDate: { year: 2024, month: 3, day: 7 }
                     },
                     dimensions: ['DATE'],
-                    metrics: ['IMPRESSIONS', 'CLICKS', 'REVENUE']
+                    metrics: ['IMPRESSIONS', 'CLICKS', 'ESTIMATED_EARNINGS']
                 }
             }
         });
