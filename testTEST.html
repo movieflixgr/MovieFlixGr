@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Source Code Example</title>
+</head>
+<body>
+    <input type="text" id="inputId" placeholder="Enter ID">
+    <button onclick="fetchSourceCode()">Fetch Source Code</button>
+
+    <script>
+        function fetchSourceCode() {
+            // Get the ID from the input field
+            const id = document.getElementById('inputId').value;
+
+            // Construct the URL with the ID
+            const url = 'https://coverapi.store/embed/' + id;
+
+            // Fetch the source code from the URL
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    // Do something with the HTML source code
+                    console.log(html);
+                    // Here you can display the HTML, manipulate it, etc.
+                })
+                .catch(error => {
+                    console.error('There was a problem fetching the source code:', error);
+                });
+        }
+    </script>
+</body>
+</html>
