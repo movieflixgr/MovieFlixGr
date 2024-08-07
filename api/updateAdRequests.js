@@ -66,7 +66,7 @@ module.exports = async (req, res) => {
     // Retrieve values from the "Current" sheet
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: speedId,
-      range: 'Current'
+      range: 'CurrentRequests'
     });
 
     const currentValues = response.data.values || [];
@@ -87,7 +87,7 @@ module.exports = async (req, res) => {
       // Update the values in the "Current" sheet
       await sheets.spreadsheets.values.update({
         spreadsheetId: speedId,
-        range: `Current!A${rowIndex + 1}`,
+        range: `CurrentRequests!A${rowIndex + 1}`,
         valueInputOption: 'RAW',
         resource: {
           values: [currentValues[rowIndex]]
