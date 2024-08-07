@@ -61,9 +61,9 @@ module.exports = async (req, res) => {
     //const hour = `${hours}:00`;
 
     // Range for fetching data from the "Current" sheet
-    const currentSheetRange = `CurrentRequests!A:G`;
+    const currentSheetRange = `Current!A:G`;
     // Range for fetching data from the "Max" sheet
-    const maxSheetRange = `MatchedRequests!A1:G26`;
+    const maxSheetRange = `Max!A1:G26`;
 
     // Fetch data from the "Current" sheet
     const currentResponse = await sheets.spreadsheets.values.get({
