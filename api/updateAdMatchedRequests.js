@@ -28,7 +28,15 @@ const auth = new google.auth.JWT(
 const sheets = google.sheets({ version: 'v4', auth });
 
 module.exports = async (req, res) => {
+  
   try {
+
+    // Extract Speed ID from query parameters
+    const speedId = req.query.speedId;
+
+    if (!speedId) {
+      return res.status(400).json({ error: 'Speed ID is required' });
+    }
     
     // Get the ad type from the query parameter
     const type = req.query.Type;
@@ -57,7 +65,7 @@ module.exports = async (req, res) => {
 
     // Retrieve values from the "Current" sheet
     const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+      spreadsheetId: speedId,
       range: 'CurrentMatched'
     });
 
@@ -78,7 +86,7 @@ module.exports = async (req, res) => {
 
       // Update the values in the "Current" sheet
       await sheets.spreadsheets.values.update({
-        spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+        spreadsheetId: speedId,
         range: `CurrentMatched!A${rowIndex + 1}`,
         valueInputOption: 'RAW',
         resource: {
