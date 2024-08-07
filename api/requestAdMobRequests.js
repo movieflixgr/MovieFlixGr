@@ -28,7 +28,15 @@ const auth = new google.auth.JWT(
 const sheets = google.sheets({ version: 'v4', auth });
 
 module.exports = async (req, res) => {
+  
   try {
+
+    // Extract Speed ID from query parameters
+    const speedId = req.query.speedId;
+
+    if (!speedId) {
+      return res.status(400).json({ error: 'Speed ID is required' });
+    }
 
     // Fetch current date and time from the World Time API for Athens
     const responseDate = await fetch('https://worldtimeapi.org/api/timezone/Europe/Athens');
@@ -59,7 +67,7 @@ module.exports = async (req, res) => {
 
     // Fetch data from the "Current" sheet
     const currentResponse = await sheets.spreadsheets.values.get({
-      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+      spreadsheetId: speedId,
       range: currentSheetRange,
     });
 
@@ -67,7 +75,7 @@ module.exports = async (req, res) => {
 
     // Fetch data from the "Max" sheet
     const maxResponse = await sheets.spreadsheets.values.get({
-      spreadsheetId: '12hGUObElwnEKCy616HvBtWfysf_j6o74QemUnZwihPI',
+      spreadsheetId: speedId,
       range: maxSheetRange,
     });
 
