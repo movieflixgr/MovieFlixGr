@@ -70,10 +70,11 @@ nav ul li a.active {
     color: #0A0E27;
 }
 
+/* Features Section with Yellow Background */
 .features {
     text-align: center;
     padding: 50px 20px;
-    background-color: #FFFFFF;
+    background-color: #FFD700; /* Yellow Background */
     color: #0A0E27;
 }
 
