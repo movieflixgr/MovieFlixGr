@@ -14,6 +14,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .logo img {
@@ -24,6 +25,7 @@ nav ul {
     list-style-type: none;
     display: flex;
     margin: 0;
+    padding: 0;
 }
 
 nav ul li {
@@ -97,7 +99,7 @@ nav ul li a.active {
 
 /* Feature Section */
 .feature-wrapper {
-    background-color: #0A0E27; /* Yellow background */
+    background-color: #0A0E27;
     padding: 50px 20px;
 }
 
@@ -111,8 +113,8 @@ nav ul li a.active {
 }
 
 .feature {
-    background-color: #FFD700; /* Dark Navy Blue for features */
-    color: #0A0E27; /* White text */
+    background-color: #FFD700; /* Yellow background for features */
+    color: #0A0E27; /* Dark Navy Blue text */
     padding: 20px;
     text-align: center;
     border-radius: 15px; /* Rounded corners */
@@ -135,4 +137,87 @@ footer {
     padding: 20px;
     background-color: #0A0E27;
     color: #FFFFFF;
+}
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        padding: 0;
+        width: 100%;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .hero {
+        padding: 50px 10px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .screenshot {
+        min-width: 150px;
+        max-width: 150px;
+        margin: 0 10px;
+    }
+
+    .feature-carousel {
+        grid-template-columns: 1fr; /* 1 Column */
+    }
+
+    .video-container iframe {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        height: 40px;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .cta-button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .screenshot {
+        min-width: 120px;
+        max-width: 120px;
+        margin: 0 5px;
+    }
+
+    .feature {
+        padding: 15px;
+    }
+
+    footer {
+        font-size: 0.9rem;
+    }
 }
