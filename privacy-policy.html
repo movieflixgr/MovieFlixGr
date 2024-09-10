@@ -7,59 +7,158 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="icon.png" type="image/png">
     <style>
-        /* Additional Styles for Privacy Policy Page */
-        .policy-container {
-            margin: 0 auto;
-            width: 60%; /* Set width to 60% of viewport */
-            padding: 20px; /* Add padding for spacing */
-        }
+    /* General Styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
 
+    header {
+        background-color: #0A0E27;
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .logo img {
+        width: 100px;
+        height: auto;
+    }
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: inline;
+        margin: 0 15px;
+    }
+
+    nav ul li a {
+        color: #FFD700;
+        text-decoration: none;
+        font-size: 1.2rem;
+    }
+
+    nav ul li a.active {
+        font-weight: bold;
+    }
+
+    main {
+        padding: 20px;
+        background-color: #fff;
+        margin: 20px auto;
+        max-width: 800px;
+    }
+
+    .policy-container {
+        margin: 0 auto;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .policy-title {
+        font-size: 2rem;
+        color: #0A0E27;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+        color: #0A0E27;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #FFD700;
+        padding-bottom: 5px;
+    }
+
+    .policy-text {
+        font-size: 1rem;
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+
+    .policy-link {
+        color: #FFD700;
+        text-decoration: underline;
+    }
+
+    .policy-link:hover {
+        color: #FF8C00;
+        text-decoration: none;
+    }
+
+    footer {
+        background-color: #0A0E27;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
         .policy-title {
-            font-size: 2.5rem; /* Larger font size for title */
-            color: #0A0E27; /* Dark Navy Blue for the title */
-            text-align: left; /* Left align the title */
-            margin-top: 40px; /* Space above title */
-            margin-bottom: 30px; /* Space below title */
+            font-size: 1.8rem;
         }
 
         .section-title {
-            font-size: 1.5rem; /* Slightly larger font size for section titles */
-            color: #0A0E27; /* Dark Navy Blue for section titles */
-            margin-top: 30px; /* Space above section titles */
-            margin-bottom: 15px; /* Space below section titles */
-            border-bottom: 2px solid #FFD700; /* Yellow underline */
-            padding-bottom: 10px; /* Space below text and underline */
+            font-size: 1.2rem;
         }
 
         .policy-text {
-            font-size: 1rem; /* Adjust font size for paragraphs */
-            margin-bottom: 20px;
-            line-height: 1.6; /* Improve readability */
+            font-size: 0.95rem;
         }
 
-        .policy-link {
-            color: #FFD700; /* Dark Navy Blue link color */
-            text-decoration: underline; /* Underline the links */
+        nav ul li {
+            display: block;
+            margin: 5px 0;
         }
 
-        .policy-link:hover {
-            color: #FFD700; /* Yellow link color on hover */
-            text-decoration: none; /* Remove underline on hover */
+        nav ul li a {
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .policy-title {
+            font-size: 1.6rem;
         }
 
-        /* Responsive adjustments for privacy policy */
-        @media (max-width: 768px) {
-            .policy-container {
-                width: 90%; /* Increase width for smaller screens */
-            }
+        .section-title {
+            font-size: 1rem;
         }
 
-        @media (max-width: 480px) {
-            .policy-container {
-                width: 100%; /* Full width for very small screens */
-            }
+        .policy-text {
+            font-size: 0.9rem;
         }
-    </style>
+
+        .logo img {
+            width: 80px;
+        }
+
+        nav ul li {
+            margin: 3px 0;
+        }
+
+        nav ul li a {
+            font-size: 0.9rem;
+        }
+
+        footer {
+            padding: 5px;
+            font-size: 0.9rem;
+        }
+    }
+</style>
 </head>
 <body>
     <header>
