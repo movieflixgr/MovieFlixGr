@@ -139,6 +139,36 @@ footer {
     color: #FFFFFF;
 }
 
+/* Privacy Policy Page Styles */
+.policy-title {
+    font-size: 2.5rem; /* Larger font size for title */
+    color: #FFD700; /* Yellow text color */
+    text-decoration: underline; /* Underline the title */
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 1.5rem; /* Slightly larger font size for section titles */
+    color: #FFD700; /* Yellow text color */
+    margin-top: 30px; /* Space above section titles */
+    text-decoration: underline; /* Underline section titles */
+}
+
+.policy-text {
+    font-size: 1rem; /* Adjust font size for paragraphs */
+    margin-bottom: 20px;
+    line-height: 1.6; /* Improve readability */
+}
+
+.policy-link {
+    color: #FFD700; /* Yellow link color */
+    text-decoration: underline; /* Underline the links */
+}
+
+.policy-link:hover {
+    text-decoration: none; /* Remove underline on hover */
+}
+
 /* Media Queries for Mobile Devices */
 @media (max-width: 768px) {
     header {
