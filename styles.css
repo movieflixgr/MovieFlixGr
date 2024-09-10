@@ -3,13 +3,15 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #0A0E27; /* Dark Navy Blue */
-    color: #FFFFFF; /* White */
-    text-align: center; /* Center content horizontally */
+    background-color: #F4F4F4; /* Light Gray Background */
+    color: #333333; /* Dark Gray Text */
+    text-align: left; /* Left align text for readability */
+    max-width: 1200px; /* Center align with max width */
+    margin: 0 auto; /* Center align the content */
 }
 
 header {
-    background-color: #0A0E27;
+    background-color: #0A0E27; /* Dark Navy Blue */
     padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -46,6 +48,7 @@ nav ul li a.active {
     padding: 100px 20px;
     background-color: #FFD700; /* Yellow Section for Hero */
     color: #0A0E27;
+    text-align: center; /* Center text in hero section */
 }
 
 .hero h1 {
@@ -142,16 +145,19 @@ footer {
 /* Privacy Policy Page Styles */
 .policy-title {
     font-size: 2.5rem; /* Larger font size for title */
-    color: #FFD700; /* Yellow text color */
-    text-decoration: underline; /* Underline the title */
-    margin-bottom: 20px;
+    color: #0A0E27; /* Dark Navy Blue for the title */
+    text-align: center; /* Center the title */
+    margin-top: 40px; /* Space above title */
+    margin-bottom: 30px; /* Space below title */
 }
 
 .section-title {
     font-size: 1.5rem; /* Slightly larger font size for section titles */
-    color: #FFD700; /* Yellow text color */
+    color: #0A0E27; /* Dark Navy Blue for section titles */
     margin-top: 30px; /* Space above section titles */
-    text-decoration: underline; /* Underline section titles */
+    margin-bottom: 15px; /* Space below section titles */
+    border-bottom: 2px solid #FFD700; /* Yellow underline */
+    padding-bottom: 10px; /* Space below text and underline */
 }
 
 .policy-text {
@@ -161,11 +167,12 @@ footer {
 }
 
 .policy-link {
-    color: #FFD700; /* Yellow link color */
+    color: #0A0E27; /* Dark Navy Blue link color */
     text-decoration: underline; /* Underline the links */
 }
 
 .policy-link:hover {
+    color: #FFD700; /* Yellow link color on hover */
     text-decoration: none; /* Remove underline on hover */
 }
 
