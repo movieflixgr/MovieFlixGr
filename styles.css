@@ -83,10 +83,15 @@ nav ul li a.active {
     font-size: 2rem;
 }
 
-.feature-grid {
+.feature-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.feature-carousel {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
 }
 
 .feature {
@@ -95,7 +100,7 @@ nav ul li a.active {
     padding: 20px;
     border-radius: 10px;
     width: 300px;
-    margin: 10px;
+    margin-right: 10px;
 }
 
 footer {
@@ -106,4 +111,29 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+}
+
+.contact {
+    text-align: center;
+    padding: 20px;
+    background-color: #0A0E27;
+    color: #FFD700;
+}
+
+.instagram-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFD700; /* Yellow Background */
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #0A0E27; /* Dark Navy Text */
+}
+
+.instagram-button img {
+    height: 24px;
+    width: 24px;
+    filter: brightness(0) invert(1); /* Invert and adjust brightness to make icon yellow */
+    margin-right: 10px;
 }
