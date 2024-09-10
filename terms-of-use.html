@@ -3,9 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Use - MovieFlix</title>
+    <title>Όροι Χρήσης - MovieFlix</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="icon.png" type="image/png">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #0A0E27;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .logo img {
+            width: 100px;
+            height: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        nav ul li a.active {
+            font-weight: bold;
+        }
+
+        main {
+            padding: 20px;
+            background-color: #fff;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        .policy-container {
+            margin: 0 auto;
+            width: 60%;
+            padding: 20px;
+        }
+
+        .policy-title {
+            font-size: 2.5rem;
+            color: #FFD700;
+            text-align: left;
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #FFD700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 10px;
+        }
+
+        .policy-text {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .policy-link {
+            color: #FFD700;
+            text-decoration: underline;
+        }
+
+        .policy-link:hover {
+            color: #FF8C00;
+            text-decoration: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .policy-container {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .policy-container {
+                width: 100%;
+            }
+
+            .policy-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .policy-text {
+                font-size: 0.95rem;
+            }
+
+            .logo img {
+                width: 80px;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 5px 0;
+            }
+
+            nav ul li a {
+                font-size: 1rem;
+            }
+
+            footer {
+                padding: 5px;
+                font-size: 0.9rem;
+            }
+        }
+
+        footer {
+            background-color: #0A0E27;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -14,17 +155,33 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                <li><a href="terms-of-use.html" class="active">Terms of Use</a></li>
+                <li><a href="index.html">Αρχική Σελίδα</a></li>
+                <li><a href="privacy-policy.html">Πολιτική Απορρήτου</a></li>
+                <li><a href="terms-of-use.html" class="active">Όροι Χρήσης</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <h2>Terms of Use</h2>
-        <p>By using the MovieFlix app, you agree to these terms and conditions.</p>
-        <p>[Insert detailed terms and conditions here]</p>
+    <main class="policy-container">
+        <h2 class="policy-title">Όροι Χρήσης - MovieFlix</h2>
+        <p class="policy-text">Καλωσορίσατε στην εφαρμογή MovieFlix. Παρακαλούμε, πριν από τη χρήση της εφαρμογής, διαβάστε προσεκτικά τους παρακάτω όρους. Η χρήση της εφαρμογής υποδηλώνει την αποδοχή και συμφωνία σας με αυτούς τους όρους.</p>
+        
+        <h3 class="section-title">1. Δικαιώματα Πνευματικής Ιδιοκτησίας:</h3>
+        <p class="policy-text">Υποχρεούστε να ενημερώνετε την εφαρμογή σε περίπτωση που διαπιστώσετε οποιαδήποτε παραβίαση πνευματικών δικαιωμάτων. Εάν είστε ο νόμιμος κάτοχος ή εκπρόσωπος πνευματικών δικαιωμάτων, υποχρεούστε να επικοινωνείτε με την ομάδα προγραμματιστών προτού προβείτε σε οποιαδήποτε άλλη νομική ή μη πράξη. Συμφωνείτε να αναφέρετε κάθε παραβίαση που αντιληφθείτε.</p>
+        
+        <h3 class="section-title">2. Ειδική Φόρμα Αναφοράς:</h3>
+        <p class="policy-text">Διαθέτουμε ειδική φόρμα αναφοράς περιεχομένου σύμφωνα με τη διαδικασία του Digital Millennium Copyright Act (DMCA) προκειμένου να διευκολύνουμε και να επιταχύνουμε τη χειρισμό των αναφορών παραβίασης. Την φόρμα μπορείτε να βρείτε <a href="https://forms.gle/etJwWXSagZz8gtwR7" class="policy-link">ΕΔΩ</a>.</p>
+        
+        <h3 class="section-title">3. Αποποίηση Νομικής Ευθύνης για Περιεχόμενο Χρηστών:</h3>
+        <p class="policy-text">Οι προγραμματιστές αποποιούνται οποιασδήποτε νομικής ευθύνης για το περιεχόμενο που δημιουργείται ή μοιράζεται από τους χρήστες. Δεν φέρουμε ευθύνη για πιθανές παραβιάσεις πνευματικών δικαιωμάτων ή άλλων νομικών πτυχών από τους χρήστες.</p>
+        
+        <h3 class="section-title">4. Νομοθεσία και Άρθρα:</h3>
+        <p class="policy-text">Οι όροι χρήσης συμμορφώνονται με την ισχύουσα νομοθεσία περί πνευματικών δικαιωμάτων και διαδικτυακής διάθεσης περιεχομένου. Παρακαλούνται οι χρήστες να ενημερωθούν για τους νόμους που διέπουν τη χρήση της εφαρμογής.</p>
+        
+        <h3 class="section-title">5. Εκτός Ευθύνης για Περιεχόμενο:</h3>
+        <p class="policy-text">Οι προγραμματιστές δηλώνουν ότι δεν έχουν έλεγχο επί του περιεχομένου που μοιράζονται οι χρήστες και δεν φέρουν ευθύνη για πιθανές παραβιάσεις πνευματικών δικαιωμάτων.</p>
+        
+        <p class="policy-text">Η εφαρμογή MovieFlix παρέχει μια πλατφόρμα για τη διαμοιρασμό ψυχαγωγικού περιεχομένου, με την αντίληψη της αποποίησης ευθύνης για το περιεχόμενο των χρηστών. Ευχαριστούμε που επιλέξατε την εφαρμογή μας.</p>
     </main>
 
     <footer>
