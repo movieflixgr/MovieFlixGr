@@ -65,75 +65,60 @@ nav ul li a.active {
     text-decoration: none;
 }
 
-.cta-button:hover {
-    background-color: #FFFFFF;
-    color: #0A0E27;
+.screenshots {
+    text-align: center;
+    padding: 50px 0;
 }
 
-/* Features Section with Yellow Background */
-.features {
+.screenshot-carousel {
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.screenshot {
+    min-width: 200px;
+    max-width: 200px;
+    margin: 0 10px;
+    transition: transform 0.5s ease;
+}
+
+.screenshot img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.screenshot.central {
+    transform: scale(1.2); /* Make the central image bigger */
+}
+
+.feature-wrapper, .video-container {
     text-align: center;
     padding: 50px 20px;
-    background-color: #FFD700; /* Yellow Background */
-    color: #0A0E27;
 }
 
-.features h2 {
-    margin-bottom: 40px;
-    font-size: 2rem;
-}
-
-.feature-wrapper {
-    overflow: hidden;
-    position: relative;
-}
-
-.feature-carousel {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-}
-
-.feature {
-    background-color: #0A0E27;
-    color: #FFD700;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    margin-right: 10px;
-}
-
-footer {
-    background-color: #0A0E27;
-    color: #FFFFFF;
-    text-align: center;
-    padding: 20px 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-
-.contact {
-    text-align: center;
-    padding: 20px;
-    background-color: #0A0E27;
-    color: #FFD700;
+.video-container iframe {
+    width: 80%;
+    height: 400px;
 }
 
 .instagram-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #FFD700; /* Yellow Background */
-    padding: 10px;
-    border-radius: 5px;
+    display: inline-block;
+    background-color: #E4405F;
+    color: white;
+    padding: 10px 20px;
     text-decoration: none;
-    color: #0A0E27; /* Dark Navy Text */
+    border-radius: 5px;
+    font-size: 1.2rem;
 }
 
-.instagram-button img {
-    height: 24px;
-    width: 24px;
-    filter: brightness(0) invert(1); /* Invert and adjust brightness to make icon yellow */
-    margin-right: 10px;
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #0A0E27;
+    color: #FFFFFF;
 }
