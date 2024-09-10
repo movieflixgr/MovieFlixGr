@@ -156,6 +156,10 @@ footer {
         margin: 10px 0;
     }
 
+    nav ul li a {
+        color: #FFFFFF; /* Ensure text color is white on mobile */
+    }
+
     .hero {
         padding: 50px 10px;
     }
