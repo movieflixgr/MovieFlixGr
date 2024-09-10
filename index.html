@@ -128,51 +128,44 @@
     </footer>
 
     <script>
-        // Array of screenshot URLs
-        const screenshots = [
-            'https://play-lh.googleusercontent.com/jg1wO7DOfHO_hAm6A4AnDhhQL9bbCfSyNNyxH0sdF_hXR-sTBH5d8GHyzCqa7bZgNPGc=w2560-h1440-rw',
-            'https://play-lh.googleusercontent.com/H8oscWdcxC2TGpvGQDNxwUKzq2hKFORQGV8pfY90RMFMrApQiCAKkMP_53-B-qe8WdBT=w2560-h1440-rw',
-            'https://play-lh.googleusercontent.com/47jrRcpzNS_cnhnnarPO7WgxZraBFGsa34KlBS9wtW62BfsryWP9nCGOrealZ6buvHU=w2560-h1440-rw',
-            'https://play-lh.googleusercontent.com/vt1SFEkiqX-oNSJhq8Z1lGbeCUTEze-B5qfExr7wQ4Di4pzJPFjnqiqFobLbqFiFCcq-=w2560-h1440-rw',
-            'https://play-lh.googleusercontent.com/AtPU6jRs7g8zUzw1nt9DPXlIBpsG3wQfN9ZFNyF8emjabaLv8SrNHyKa9AQHZmuYxOU=w2560-h1440-rw',
-            'https://play-lh.googleusercontent.com/-6C-E6RpvtSw0e7_q7P_EbYvn9sNi7xpkw3Nwq87dfEVy46DPAYdySlAJ7oPd60WJv50=w2560-h1440-rw',
-            'https://play-lh.googleusercontent.com/2ZQIiJX47cKTiWNb0ppcWOMPfdzNNBaDjCdnDdBwAJcAF1NN3_mCgrx7wHTGtiqRbA=w2560-h1440-rw',
-            'https://play-lh.googleusercontent.com/Pybw03z6LCsYEvPLwST7emx3gTbpxgiBLvIQ64H63PVmTirdAtvDa_wcgjeijP3UGd0=w2560-h1440-rw'
-        ];
+    const screenshots = [
+        "https://play-lh.googleusercontent.com/jg1wO7DOfHO_hAm6A4AnDhhQL9bbCfSyNNyxH0sdF_hXR-sTBH5d8GHyzCqa7bZgNPGc=w2560-h1440-rw",
+        "https://play-lh.googleusercontent.com/H8oscWdcxC2TGpvGQDNxwUKzq2hKFORQGV8pfY90RMFMrApQiCAKkMP_53-B-qe8WdBT=w2560-h1440-rw",
+        "https://play-lh.googleusercontent.com/47jrRcpzNS_cnhnnarPO7WgxZraBFGsa34KlBS9wtW62BfsryWP9nCGOrealZ6buvHU=w2560-h1440-rw",
+        "https://play-lh.googleusercontent.com/vt1SFEkiqX-oNSJhq8Z1lGbeCUTEze-B5qfExr7wQ4Di4pzJPFjnqiqFobLbqFiFCcq-=w2560-h1440-rw",
+        "https://play-lh.googleusercontent.com/AtPU6jRs7g8zUzw1nt9DPXlIBpsG3wQfN9ZFNyF8emjabaLv8SrNHyKa9AQHZmuYxOU=w2560-h1440-rw",
+        "https://play-lh.googleusercontent.com/-6C-E6RpvtSw0e7_q7P_EbYvn9sNi7xpkw3Nwq87dfEVy46DPAYdySlAJ7oPd60WJv50=w2560-h1440-rw",
+        "https://play-lh.googleusercontent.com/2ZQIiJX47cKTiWNb0ppcWOMPfdzNNBaDjCdnDdBwAJcAF1NN3_mCgrx7wHTGtiqRbA=w2560-h1440-rw",
+        "https://play-lh.googleusercontent.com/Pybw03z6LCsYEvPLwST7emx3gTbpxgiBLvIQ64H63PVmTirdAtvDa_wcgjeijP3UGd0=w2560-h1440-rw"
+    ];
 
-        // Function to inject screenshots into the carousel
-        const screenshotCarousel = document.querySelector('.screenshot-carousel');
+    const screenshotCarousel = document.querySelector('.screenshot-carousel');
+    let currentIndex = 0;
 
-        screenshots.forEach((url) => {
-            const screenshotDiv = document.createElement('div');
-            screenshotDiv.classList.add('screenshot');
-            const img = document.createElement('img');
-            img.src = url;
-            screenshotDiv.appendChild(img);
-            screenshotCarousel.appendChild(screenshotDiv);
+    function updateCarousel() {
+        const screenshotElements = screenshotCarousel.querySelectorAll('img');
+        
+        // Reset all images
+        screenshotElements.forEach((img) => {
+            img.style.transform = 'scale(1)';
+            img.classList.remove('central');
         });
 
-        let currentIndex = 0;
+        // Make central image bigger
+        const centralIndex = (currentIndex + 1) % screenshotElements.length;
+        screenshotElements[centralIndex].style.transform = 'scale(1.3)';
+        screenshotElements[centralIndex].classList.add('central');
 
-        // Function to update the central screenshot and scrolling
-        function updateCarousel() {
-            const screenshotElements = document.querySelectorAll('.screenshot');
-            screenshotElements.forEach((screenshot, index) => {
-                screenshot.classList.remove('central');
-                screenshot.style.transform = 'scale(1)'; // Reset the scale for non-central images
-            });
+        // Shift the carousel
+        const offset = currentIndex * (screenshotElements[0].offsetWidth + 20);
+        screenshotCarousel.style.transform = `translateX(-${offset}px)`;
 
-            const centralIndex = (currentIndex + 1) % screenshotElements.length;
-            screenshotElements[centralIndex].classList.add('central');
-            screenshotElements[centralIndex].style.transform = 'scale(1.3)'; // Central image scaling
+        currentIndex = (currentIndex + 1) % screenshotElements.length;
+    }
 
-            const carousel = document.querySelector('.screenshot-carousel');
-            carousel.style.transform = `translateX(-${currentIndex * (screenshotElements[0].offsetWidth + 20)}px)`;
-
-            currentIndex = (currentIndex + 1) % screenshotElements.length;
-        }
-
-        setInterval(updateCarousel, 2000); // Change screenshot every 2 seconds
-    </script>
+    // Start the carousel
+    setInterval(updateCarousel, 3000);
+</script>
+    
 </body>
 </html>
