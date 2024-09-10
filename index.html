@@ -6,47 +6,6 @@
     <title>MovieFlix - Δες τις αγαπημένες σου ταινίες</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="icon.png" type="image/png">
-    <style>
-        /* General Styles */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #0A0E27; /* Dark Navy Blue */
-            color: #FFFFFF; /* White */
-        }
-
-        .screenshots {
-            text-align: center;
-            padding: 50px 0;
-        }
-
-        .screenshot-carousel {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-            width: 90%;
-            margin: 0 auto;
-        }
-
-        .screenshot {
-            margin: 0 10px;
-            transition: transform 0.5s ease;
-        }
-
-        .screenshot img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .screenshot.central {
-            transform: scale(1.3); /* Scale the central image */
-        }
-
-    </style>
 </head>
 <body>
     <header>
@@ -68,41 +27,11 @@
         <a href="https://play.google.com/store/apps/details?id=com.gr.mf" class="cta-button">Κατεβάστε το τώρα στο Google Play</a>
     </section>
 
-    <section class="screenshots">
-        <h2>Δείτε Στιγμιότυπα από την Εφαρμογή</h2>
-        <div class="screenshot-carousel">
-            <!-- Images will be injected here by JavaScript -->
-        </div>
-    </section>
-
     <section class="features">
         <h2>Γιατί να επιλέξετε το MovieFlix;</h2>
         <div class="feature-wrapper">
             <div class="feature-carousel">
-                <div class="feature">
-                    <h3>Περισσότερες από 3.000 Ξένες Ταινίες</h3>
-                    <p>Πρόσβαση σε χιλιάδες ξένες ταινίες από όλες τις κατηγορίες με ελληνικούς υπότιτλους.</p>
-                </div>
-                <div class="feature">
-                    <h3>Προσωπική Παρακολούθηση</h3>
-                    <p>Συνέχισε να παρακολουθείς από το τελευταίο σημείο όπου σταμάτησες.</p>
-                </div>
-                <div class="feature">
-                    <h3>Φιλτράρισμα & Ταξινόμηση</h3>
-                    <p>Φιλτράρισε τις ταινίες με βάση τη χρονολογία, τη διάρκεια και τα είδη, ή ταξινόμησε με ποικίλους τρόπους.</p>
-                </div>
-                <div class="feature">
-                    <h3>Απεριόριστη Πρόσβαση</h3>
-                    <p>Απολαύστε χιλιάδες ελληνικές και ξένες σειρές και ταινίες χωρίς διαφημίσεις.</p>
-                </div>
-                <div class="feature">
-                    <h3>Ζωντανή Ελληνική Τηλεόραση</h3>
-                    <p>Παρακολουθήστε ζωντανά όλα τα πανελλήνια τηλεοπτικά κανάλια και ειδικά διαμορφωμένα κανάλια για παιδιά.</p>
-                </div>
-                <div class="feature">
-                    <h3>Νέα Υλικά Προστίθενται Καθημερινά</h3>
-                    <p>Διαθέτουμε καθημερινή ανανέωση περιεχομένου, χωρίς να χρειάζεστε ενημερώσεις ή πρόσθετα.</p>
-                </div>
+                <!-- Feature items will be injected here -->
             </div>
         </div>
     </section>
@@ -114,58 +43,10 @@
         </div>
     </section>
 
-    <section class="contact">
-        <h2>Ακολουθήστε μας στο Instagram</h2>
-        <p>Μείνετε συνδεδεμένοι μαζί μας για όλες τις τελευταίες ενημερώσεις και ταινίες!</p>
-        <a href="https://instagram.com/movieflixgr" class="instagram-button">
-            <img src="https://cdn4.iconfinder.com/data/icons/picons-social/57/38-instagram-2-512.png" alt="Instagram Icon">
-            Ακολουθήστε μας @movieflixgr
-        </a>
-    </section>
-
     <footer>
         <p>&copy; 2024 MovieFlix. Όλα τα δικαιώματα διατηρούνται.</p>
     </footer>
 
-    <script>
-    const screenshots = [
-        "https://play-lh.googleusercontent.com/jg1wO7DOfHO_hAm6A4AnDhhQL9bbCfSyNNyxH0sdF_hXR-sTBH5d8GHyzCqa7bZgNPGc=w2560-h1440-rw",
-        "https://play-lh.googleusercontent.com/H8oscWdcxC2TGpvGQDNxwUKzq2hKFORQGV8pfY90RMFMrApQiCAKkMP_53-B-qe8WdBT=w2560-h1440-rw",
-        "https://play-lh.googleusercontent.com/47jrRcpzNS_cnhnnarPO7WgxZraBFGsa34KlBS9wtW62BfsryWP9nCGOrealZ6buvHU=w2560-h1440-rw",
-        "https://play-lh.googleusercontent.com/vt1SFEkiqX-oNSJhq8Z1lGbeCUTEze-B5qfExr7wQ4Di4pzJPFjnqiqFobLbqFiFCcq-=w2560-h1440-rw",
-        "https://play-lh.googleusercontent.com/AtPU6jRs7g8zUzw1nt9DPXlIBpsG3wQfN9ZFNyF8emjabaLv8SrNHyKa9AQHZmuYxOU=w2560-h1440-rw",
-        "https://play-lh.googleusercontent.com/-6C-E6RpvtSw0e7_q7P_EbYvn9sNi7xpkw3Nwq87dfEVy46DPAYdySlAJ7oPd60WJv50=w2560-h1440-rw",
-        "https://play-lh.googleusercontent.com/2ZQIiJX47cKTiWNb0ppcWOMPfdzNNBaDjCdnDdBwAJcAF1NN3_mCgrx7wHTGtiqRbA=w2560-h1440-rw",
-        "https://play-lh.googleusercontent.com/Pybw03z6LCsYEvPLwST7emx3gTbpxgiBLvIQ64H63PVmTirdAtvDa_wcgjeijP3UGd0=w2560-h1440-rw"
-    ];
-
-    const screenshotCarousel = document.querySelector('.screenshot-carousel');
-    let currentIndex = 0;
-
-    function updateCarousel() {
-        const screenshotElements = screenshotCarousel.querySelectorAll('img');
-        
-        // Reset all images
-        screenshotElements.forEach((img) => {
-            img.style.transform = 'scale(1)';
-            img.classList.remove('central');
-        });
-
-        // Make central image bigger
-        const centralIndex = (currentIndex + 1) % screenshotElements.length;
-        screenshotElements[centralIndex].style.transform = 'scale(1.3)';
-        screenshotElements[centralIndex].classList.add('central');
-
-        // Shift the carousel
-        const offset = currentIndex * (screenshotElements[0].offsetWidth + 20);
-        screenshotCarousel.style.transform = `translateX(-${offset}px)`;
-
-        currentIndex = (currentIndex + 1) % screenshotElements.length;
-    }
-
-    // Start the carousel
-    setInterval(updateCarousel, 3000);
-</script>
-    
+    <script src="script.js"></script>
 </body>
 </html>
