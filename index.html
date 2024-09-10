@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MovieFlix - Δες τις αγαπημένες σου ταινίες</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="icon" href="icon.png" type="image/png"> <!-- Icon in tab -->
 </head>
 <body>
     <header>
@@ -29,24 +29,75 @@
 
     <section class="features">
         <h2>Γιατί να επιλέξετε το MovieFlix;</h2>
-        <div class="feature-grid">
-            <div class="feature">
-                <h3>Απεριόριστες Ταινίες</h3>
-                <p>Απόκτησε πρόσβαση σε χιλιάδες ταινίες από όλα τα είδη, από δράση μέχρι δράμα, όποτε θέλεις.</p>
-            </div>
-            <div class="feature">
-                <h3>Δες όπου Θες</h3>
-                <p>Παρακολούθησε ταινίες στο κινητό, στο τάμπλετ ή στην τηλεόραση σου όποτε σε βολεύει.</p>
-            </div>
-            <div class="feature">
-                <h3>Χωρίς Διαφημίσεις</h3>
-                <p>Απόλαυσε την κινηματογραφική εμπειρία χωρίς καμία διακοπή από διαφημίσεις.</p>
+        <div class="feature-wrapper">
+            <div class="feature-carousel">
+                <div class="feature">
+                    <h3>Περισσότερες από 3.000 Ξένες Ταινίες</h3>
+                    <p>Πρόσβαση σε χιλιάδες ξένες ταινίες από όλες τις κατηγορίες με ελληνικούς υπότιτλους.</p>
+                </div>
+                <div class="feature">
+                    <h3>Προσωπική Παρακολούθηση</h3>
+                    <p>Συνέχισε να παρακολουθείς από το τελευταίο σημείο όπου σταμάτησες.</p>
+                </div>
+                <div class="feature">
+                    <h3>Φιλτράρισμα & Ταξινόμηση</h3>
+                    <p>Φιλτράρισε τις ταινίες με βάση τη χρονολογία, τη διάρκεια και τα είδη, ή ταξινόμησε με ποικίλους τρόπους.</p>
+                </div>
+                <div class="feature">
+                    <h3>Απεριόριστη Πρόσβαση</h3>
+                    <p>Απολαύστε χιλιάδες ελληνικές και ξένες σειρές και ταινίες χωρίς διαφημίσεις.</p>
+                </div>
+                <div class="feature">
+                    <h3>Ζωντανή Ελληνική Τηλεόραση</h3>
+                    <p>Παρακολουθήστε ζωντανά όλα τα πανελλήνια τηλεοπτικά κανάλια και ειδικά διαμορφωμένα κανάλια για παιδιά.</p>
+                </div>
+                <div class="feature">
+                    <h3>Νέα Υλικά Προστίθενται Καθημερινά</h3>
+                    <p>Διαθέτουμε καθημερινή ανανέωση περιεχομένου, χωρίς να χρειάζεστε ενημερώσεις ή πρόσθετα.</p>
+                </div>
             </div>
         </div>
+    </section>
+
+    <section class="about">
+        <h2>MovieFlix: TV, Ταινίες, Σειρές</h2>
+        <p>Η εφαρμογή MovieFlix σας προσφέρει τις καλύτερες εμπειρίες προβολής ταινιών και σειρών. Εδώ είναι τα βασικά νέα χαρακτηριστικά:</p>
+        <ul>
+            <li>Προσθήκη 3.000+ νέων ξένων ταινιών</li>
+            <li>Ταχύτερη φόρτωση ταινιών</li>
+            <li>Επιλογή ποιότητας αναπαραγωγής</li>
+            <li>Συνέχιση προβολής από το τελευταίο σημείο προβολής</li>
+            <li>Φιλτράρισμα ταινιών κατά χρονολογία, διάρκεια και είδος</li>
+            <li>Δυνατότητα ταξινόμησης ταινιών με ποικίλους τρόπους</li>
+            <li>Διόρθωση σφαλμάτων ταινιών και ελαχιστοποίηση αποθηκευτικού χώρου</li>
+        </ul>
+    </section>
+
+    <section class="contact">
+        <h2>Ακολουθήστε μας στο Instagram</h2>
+        <p>Μείνετε συνδεδεμένοι μαζί μας για όλες τις τελευταίες ενημερώσεις και ταινίες!</p>
+        <a href="https://instagram.com/movieflixgr" class="instagram-button">
+            <img src="https://cdn4.iconfinder.com/data/icons/picons-social/57/38-instagram-2-512.png" alt="Instagram Icon">
+            Ακολουθήστε μας @movieflixgr
+        </a>
     </section>
 
     <footer>
         <p>&copy; 2024 MovieFlix. Όλα τα δικαιώματα διατηρούνται.</p>
     </footer>
+
+    <script>
+        // JavaScript to auto-scroll the features
+        const carousel = document.querySelector('.feature-carousel');
+        let scrollAmount = 0;
+        let step = 1; // Scroll by 1px each step
+        let scrollInterval = setInterval(() => {
+            scrollAmount += step;
+            carousel.scrollLeft = scrollAmount;
+            if (scrollAmount >= carousel.scrollWidth - carousel.clientWidth || scrollAmount <= 0) {
+                step = -step; // Reverse direction
+            }
+        }, 20); // Adjust speed of scroll (lower = faster)
+    </script>
 </body>
 </html>
