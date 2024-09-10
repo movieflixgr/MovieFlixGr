@@ -13,6 +13,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo img {
@@ -33,10 +34,15 @@ nav ul li a {
     color: #FFFFFF;
     text-decoration: none;
     font-size: 1.1rem;
+    transition: color 0.3s ease;
 }
 
 nav ul li a.active {
     border-bottom: 2px solid #FFD700; /* Yellow Highlight for Active Link */
+}
+
+nav ul li a:hover {
+    color: #FFD700; /* Yellow on hover */
 }
 
 .hero {
@@ -44,6 +50,7 @@ nav ul li a.active {
     padding: 100px 20px;
     background-color: #FFD700; /* Yellow Section for Hero */
     color: #0A0E27;
+    box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .hero h1 {
@@ -63,8 +70,15 @@ nav ul li a.active {
     font-size: 1.2rem;
     border-radius: 5px;
     text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.cta-button:hover {
+    background-color: #FFFFFF;
+    color: #0A0E27;
+}
+
+/* Screenshots Section */
 .screenshots {
     text-align: center;
     padding: 50px 0;
@@ -84,18 +98,22 @@ nav ul li a.active {
     min-width: 200px;
     max-width: 200px;
     margin: 0 10px;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0.7; /* Faded out for side images */
+}
+
+.screenshot.central {
+    transform: scale(1.2); /* Make the central image bigger */
+    opacity: 1; /* Central image fully opaque */
 }
 
 .screenshot img {
     width: 100%;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.screenshot.central {
-    transform: scale(1.2); /* Make the central image bigger */
-}
-
+/* Feature Wrapper and Video Container */
 .feature-wrapper, .video-container {
     text-align: center;
     padding: 50px 20px;
@@ -104,8 +122,13 @@ nav ul li a.active {
 .video-container iframe {
     width: 80%;
     height: 400px;
+    max-width: 800px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Instagram Button */
 .instagram-button {
     display: inline-block;
     background-color: #E4405F;
@@ -114,11 +137,49 @@ nav ul li a.active {
     text-decoration: none;
     border-radius: 5px;
     font-size: 1.2rem;
+    transition: background-color 0.3s ease;
 }
 
+.instagram-button:hover {
+    background-color: #ff5777; /* Slightly lighter on hover */
+}
+
+/* Footer */
 footer {
     text-align: center;
     padding: 20px;
     background-color: #0A0E27;
     color: #FFFFFF;
+    font-size: 0.9rem;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+
+    .cta-button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    .video-container iframe {
+        width: 90%;
+        height: 250px;
+    }
+
+    .screenshot {
+        min-width: 160px;
+        max-width: 160px;
+    }
+
+    .screenshot.central {
+        transform: scale(1.15); /* Slightly smaller enlargement for mobile */
+    }
 }
