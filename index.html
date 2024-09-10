@@ -30,14 +30,10 @@
     <section class="screenshots">
         <h2>Δείτε Στιγμιότυπα από την Εφαρμογή</h2>
         <div class="screenshot-carousel">
-            <div class="screenshot"><img src="https://play-lh.googleusercontent.com/jg1wO7DOfHO_hAm6A4AnDhhQL9bbCfSyNNyxH0sdF_hXR-sTBH5d8GHyzCqa7bZgNPGc=w2560-h1440-rw" alt="Screenshot 1"></div>
-            <div class="screenshot"><img src="https://play-lh.googleusercontent.com/H8oscWdcxC2TGpvGQDNxwUKzq2hKFORQGV8pfY90RMFMrApQiCAKkMP_53-B-qe8WdBT=w2560-h1440-rw" alt="Screenshot 2"></div>
-            <div class="screenshot central"><img src="https://play-lh.googleusercontent.com/47jrRcpzNS_cnhnnarPO7WgxZraBFGsa34KlBS9wtW62BfsryWP9nCGOrealZ6buvHU=w2560-h1440-rw" alt="Screenshot 3"></div>
-            <div class="screenshot"><img src="https://play-lh.googleusercontent.com/vt1SFEkiqX-oNSJhq8Z1lGbeCUTEze-B5qfExr7wQ4Di4pzJPFjnqiqFobLbqFiFCcq-=w2560-h1440-rw" alt="Screenshot 4"></div>
-            <div class="screenshot"><img src="https://play-lh.googleusercontent.com/AtPU6jRs7g8zUzw1nt9DPXlIBpsG3wQfN9ZFNyF8emjabaLv8SrNHyKa9AQHZmuYxOU=w2560-h1440-rw" alt="Screenshot 5"></div>
-            <div class="screenshot"><img src="https://play-lh.googleusercontent.com/-6C-E6RpvtSw0e7_q7P_EbYvn9sNi7xpkw3Nwq87dfEVy46DPAYdySlAJ7oPd60WJv50=w2560-h1440-rw" alt="Screenshot 6"></div>
-            <div class="screenshot"><img src="https://play-lh.googleusercontent.com/2ZQIiJX47cKTiWNb0ppcWOMPfdzNNBaDjCdnDdBwAJcAF1NN3_mCgrx7wHTGtiqRbA=w2560-h1440-rw" alt="Screenshot 7"></div>
-            <div class="screenshot"><img src="https://play-lh.googleusercontent.com/Pybw03z6LCsYEvPLwST7emx3gTbpxgiBLvIQ64H63PVmTirdAtvDa_wcgjeijP3UGd0=w2560-h1440-rw" alt="Screenshot 8"></div>
+            <!-- We will only have 3 visible screenshots at a time, loaded dynamically via JavaScript -->
+            <div class="screenshot"><img src="" alt="Screenshot 1"></div>
+            <div class="screenshot central"><img src="" alt="Screenshot 2"></div>
+            <div class="screenshot"><img src="" alt="Screenshot 3"></div>
         </div>
     </section>
 
@@ -82,18 +78,41 @@
     </footer>
 
     <script>
-        // JavaScript to auto-scroll the screenshots
-        const screenshotCarousel = document.querySelector('.screenshot-carousel');
-        let scrollAmount = 0;
-        const screenshotWidth = document.querySelector('.screenshot').offsetWidth;
+        
+        // Array to hold all 8 screenshot URLs
+        const screenshots = [
+            'https://play-lh.googleusercontent.com/jg1wO7DOfHO_hAm6A4AnDhhQL9bbCfSyNNyxH0sdF_hXR-sTBH5d8GHyzCqa7bZgNPGc=w2560-h1440-rw',
+            'https://play-lh.googleusercontent.com/H8oscWdcxC2TGpvGQDNxwUKzq2hKFORQGV8pfY90RMFMrApQiCAKkMP_53-B-qe8WdBT=w2560-h1440-rw',
+            'https://play-lh.googleusercontent.com/47jrRcpzNS_cnhnnarPO7WgxZraBFGsa34KlBS9wtW62BfsryWP9nCGOrealZ6buvHU=w2560-h1440-rw',
+            'https://play-lh.googleusercontent.com/vt1SFEkiqX-oNSJhq8Z1lGbeCUTEze-B5qfExr7wQ4Di4pzJPFjnqiqFobLbqFiFCcq-=w2560-h1440-rw',
+            'https://play-lh.googleusercontent.com/AtPU6jRs7g8zUzw1nt9DPXlIBpsG3wQfN9ZFNyF8emjabaLv8SrNHyKa9AQHZmuYxOU=w2560-h1440-rw',
+            'https://play-lh.googleusercontent.com/-6C-E6RpvtSw0e7_q7P_EbYvn9sNi7xpkw3Nwq87dfEVy46DPAYdySlAJ7oPd60WJv50=w2560-h1440-rw',
+            'https://play-lh.googleusercontent.com/2ZQIiJX47cKTiWNb0ppcWOMPfdzNNBaDjCdnDdBwAJcAF1NN3_mCgrx7wHTGtiqRbA=w2560-h1440-rw',
+            'https://play-lh.googleusercontent.com/Pybw03z6LCsYEvPLwST7emx3gTbpxgiBLvIQ64H63PVmTirdAtvDa_wcgjeijP3UGd0=w2560-h1440-rw'
+        ];
 
-        setInterval(() => {
-            scrollAmount += 1;
-            screenshotCarousel.scrollLeft = scrollAmount;
-            if (scrollAmount >= screenshotCarousel.scrollWidth - screenshotCarousel.offsetWidth) {
-                scrollAmount = 0; // Reset when reaching the end
+        // Select all screenshot img elements
+        const screenshotElements = document.querySelectorAll('.screenshot img');
+
+        let currentIndex = 0;
+
+        function updateScreenshots() {
+            // Set the source for the visible screenshots
+            for (let i = 0; i < screenshotElements.length; i++) {
+                let index = (currentIndex + i) % screenshots.length;
+                screenshotElements[i].src = screenshots[index];
             }
-        }, 30); // Adjust scroll speed
+        }
+
+        // Initial load
+        updateScreenshots();
+
+        // Auto-scroll functionality
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % screenshots.length;
+            updateScreenshots();
+        }, 3000); // Scroll every 3 seconds
+        
     </script>
 </body>
 </html>
