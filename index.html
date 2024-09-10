@@ -1,185 +1,178 @@
-/* General Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #0A0E27; /* Dark Navy Blue */
-    color: #FFFFFF; /* White */
-}
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieFlix - Δες τις αγαπημένες σου ταινίες</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icon.png" type="image/png">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0A0E27; /* Dark Navy Blue */
+            color: #FFFFFF; /* White */
+        }
 
-header {
-    background-color: #0A0E27;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+        .screenshots {
+            text-align: center;
+            padding: 50px 0;
+        }
 
-.logo img {
-    height: 50px;
-}
+        .screenshot-carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            width: 90%;
+            margin: 0 auto;
+        }
 
-nav ul {
-    list-style-type: none;
-    display: flex;
-    margin: 0;
-}
+        .screenshot {
+            margin: 0 10px;
+            transition: transform 0.5s ease;
+        }
 
-nav ul li {
-    margin-left: 20px;
-}
+        .screenshot img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
 
-nav ul li a {
-    color: #FFFFFF;
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-}
+        .screenshot.central {
+            transform: scale(1.3); /* Scale the central image */
+        }
 
-nav ul li a.active {
-    border-bottom: 2px solid #FFD700; /* Yellow Highlight for Active Link */
-}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="icon.png" alt="Λογότυπο MovieFlix">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Αρχική Σελίδα</a></li>
+                <li><a href="privacy-policy.html">Πολιτική Απορρήτου</a></li>
+                <li><a href="terms-of-use.html">Όροι Χρήσης</a></li>
+            </ul>
+        </nav>
+    </header>
 
-nav ul li a:hover {
-    color: #FFD700; /* Yellow on hover */
-}
+    <section class="hero">
+        <h1>Καλώς ήρθατε στο MovieFlix</h1>
+        <p>Δες τις αγαπημένες σου ταινίες οπουδήποτε και οποτεδήποτε</p>
+        <a href="https://play.google.com/store/apps/details?id=com.gr.mf" class="cta-button">Κατεβάστε το τώρα στο Google Play</a>
+    </section>
 
-.hero {
-    text-align: center;
-    padding: 100px 20px;
-    background-color: #FFD700; /* Yellow Section for Hero */
-    color: #0A0E27;
-    box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.1);
-}
+    <section class="screenshots">
+        <h2>Δείτε Στιγμιότυπα από την Εφαρμογή</h2>
+        <div class="screenshot-carousel">
+            <!-- Images will be injected here by JavaScript -->
+        </div>
+    </section>
 
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
+    <section class="features">
+        <h2>Γιατί να επιλέξετε το MovieFlix;</h2>
+        <div class="feature-wrapper">
+            <div class="feature-carousel">
+                <div class="feature">
+                    <h3>Περισσότερες από 3.000 Ξένες Ταινίες</h3>
+                    <p>Πρόσβαση σε χιλιάδες ξένες ταινίες από όλες τις κατηγορίες με ελληνικούς υπότιτλους.</p>
+                </div>
+                <div class="feature">
+                    <h3>Προσωπική Παρακολούθηση</h3>
+                    <p>Συνέχισε να παρακολουθείς από το τελευταίο σημείο όπου σταμάτησες.</p>
+                </div>
+                <div class="feature">
+                    <h3>Φιλτράρισμα & Ταξινόμηση</h3>
+                    <p>Φιλτράρισε τις ταινίες με βάση τη χρονολογία, τη διάρκεια και τα είδη, ή ταξινόμησε με ποικίλους τρόπους.</p>
+                </div>
+                <div class="feature">
+                    <h3>Απεριόριστη Πρόσβαση</h3>
+                    <p>Απολαύστε χιλιάδες ελληνικές και ξένες σειρές και ταινίες χωρίς διαφημίσεις.</p>
+                </div>
+                <div class="feature">
+                    <h3>Ζωντανή Ελληνική Τηλεόραση</h3>
+                    <p>Παρακολουθήστε ζωντανά όλα τα πανελλήνια τηλεοπτικά κανάλια και ειδικά διαμορφωμένα κανάλια για παιδιά.</p>
+                </div>
+                <div class="feature">
+                    <h3>Νέα Υλικά Προστίθενται Καθημερινά</h3>
+                    <p>Διαθέτουμε καθημερινή ανανέωση περιεχομένου, χωρίς να χρειάζεστε ενημερώσεις ή πρόσθετα.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-.hero p {
-    font-size: 1.5rem;
-    margin-bottom: 40px;
-}
+    <section class="video">
+        <h2>Δείτε το Video μας</h2>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/E80GaBYPuqk" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </section>
 
-.cta-button {
-    background-color: #0A0E27;
-    color: #FFD700;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
+    <section class="contact">
+        <h2>Ακολουθήστε μας στο Instagram</h2>
+        <p>Μείνετε συνδεδεμένοι μαζί μας για όλες τις τελευταίες ενημερώσεις και ταινίες!</p>
+        <a href="https://instagram.com/movieflixgr" class="instagram-button">
+            <img src="https://cdn4.iconfinder.com/data/icons/picons-social/57/38-instagram-2-512.png" alt="Instagram Icon">
+            Ακολουθήστε μας @movieflixgr
+        </a>
+    </section>
 
-.cta-button:hover {
-    background-color: #FFFFFF;
-    color: #0A0E27;
-}
+    <footer>
+        <p>&copy; 2024 MovieFlix. Όλα τα δικαιώματα διατηρούνται.</p>
+    </footer>
 
-/* Screenshots Section */
-.screenshots {
-    text-align: center;
-    padding: 50px 0;
-}
+    <script>
+        // Array of screenshot URLs
+        const screenshots = [
+            'https://play-lh.googleusercontent.com/jg1wO7DOfHO_hAm6A4AnDhhQL9bbCfSyNNyxH0sdF_hXR-sTBH5d8GHyzCqa7bZgNPGc=w2560-h1440-rw',
+            'https://play-lh.googleusercontent.com/H8oscWdcxC2TGpvGQDNxwUKzq2hKFORQGV8pfY90RMFMrApQiCAKkMP_53-B-qe8WdBT=w2560-h1440-rw',
+            'https://play-lh.googleusercontent.com/47jrRcpzNS_cnhnnarPO7WgxZraBFGsa34KlBS9wtW62BfsryWP9nCGOrealZ6buvHU=w2560-h1440-rw',
+            'https://play-lh.googleusercontent.com/vt1SFEkiqX-oNSJhq8Z1lGbeCUTEze-B5qfExr7wQ4Di4pzJPFjnqiqFobLbqFiFCcq-=w2560-h1440-rw',
+            'https://play-lh.googleusercontent.com/AtPU6jRs7g8zUzw1nt9DPXlIBpsG3wQfN9ZFNyF8emjabaLv8SrNHyKa9AQHZmuYxOU=w2560-h1440-rw',
+            'https://play-lh.googleusercontent.com/-6C-E6RpvtSw0e7_q7P_EbYvn9sNi7xpkw3Nwq87dfEVy46DPAYdySlAJ7oPd60WJv50=w2560-h1440-rw',
+            'https://play-lh.googleusercontent.com/2ZQIiJX47cKTiWNb0ppcWOMPfdzNNBaDjCdnDdBwAJcAF1NN3_mCgrx7wHTGtiqRbA=w2560-h1440-rw',
+            'https://play-lh.googleusercontent.com/Pybw03z6LCsYEvPLwST7emx3gTbpxgiBLvIQ64H63PVmTirdAtvDa_wcgjeijP3UGd0=w2560-h1440-rw'
+        ];
 
-.screenshot-carousel {
-    display: flex;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 90%;
-    margin: 0 auto;
-}
+        // Function to inject screenshots into the carousel
+        const screenshotCarousel = document.querySelector('.screenshot-carousel');
 
-.screenshot {
-    min-width: 200px;
-    max-width: 200px;
-    margin: 0 10px;
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    opacity: 0.7; /* Faded out for side images */
-}
+        screenshots.forEach((url) => {
+            const screenshotDiv = document.createElement('div');
+            screenshotDiv.classList.add('screenshot');
+            const img = document.createElement('img');
+            img.src = url;
+            screenshotDiv.appendChild(img);
+            screenshotCarousel.appendChild(screenshotDiv);
+        });
 
-.screenshot.central {
-    transform: scale(1.2); /* Make the central image bigger */
-    opacity: 1; /* Central image fully opaque */
-}
+        let currentIndex = 0;
 
-.screenshot img {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+        // Function to update the central screenshot and scrolling
+        function updateCarousel() {
+            const screenshotElements = document.querySelectorAll('.screenshot');
+            screenshotElements.forEach((screenshot, index) => {
+                screenshot.classList.remove('central');
+                screenshot.style.transform = 'scale(1)'; // Reset the scale for non-central images
+            });
 
-/* Feature Wrapper and Video Container */
-.feature-wrapper, .video-container {
-    text-align: center;
-    padding: 50px 20px;
-}
+            const centralIndex = (currentIndex + 1) % screenshotElements.length;
+            screenshotElements[centralIndex].classList.add('central');
+            screenshotElements[centralIndex].style.transform = 'scale(1.3)'; // Central image scaling
 
-.video-container iframe {
-    width: 80%;
-    height: 400px;
-    max-width: 800px;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+            const carousel = document.querySelector('.screenshot-carousel');
+            carousel.style.transform = `translateX(-${currentIndex * (screenshotElements[0].offsetWidth + 20)}px)`;
 
-/* Instagram Button */
-.instagram-button {
-    display: inline-block;
-    background-color: #E4405F;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    transition: background-color 0.3s ease;
-}
+            currentIndex = (currentIndex + 1) % screenshotElements.length;
+        }
 
-.instagram-button:hover {
-    background-color: #ff5777; /* Slightly lighter on hover */
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #0A0E27;
-    color: #FFFFFF;
-    font-size: 0.9rem;
-    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero p {
-        font-size: 1.2rem;
-    }
-
-    .cta-button {
-        font-size: 1rem;
-        padding: 10px 20px;
-    }
-
-    .video-container iframe {
-        width: 90%;
-        height: 250px;
-    }
-
-    .screenshot {
-        min-width: 160px;
-        max-width: 160px;
-    }
-
-    .screenshot.central {
-        transform: scale(1.15); /* Slightly smaller enlargement for mobile */
-    }
-}
+        setInterval(updateCarousel, 2000); // Change screenshot every 2 seconds
+    </script>
+</body>
+</html>
