@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .confirmation {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .button {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .button:hover {
+            background-color: #005f6b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="confirmation">
+        <p>Thank you for subscribing to our newsletter!</p>
+    </div>
+
+    <button class="button" onclick="goBack()">Return to Previous Page</button>
+
+    <script>
+        function goBack() {
+            // This will redirect the user back to the previous page in the browser history
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>
