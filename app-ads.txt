@@ -2819,4 +2819,4 @@ advangelists.com, 9766527f2b5d3e95d4a733fcfb77bd7e, RESELLER, 60d26397ec060f98
 thunder-monetize.com, 1252316774, RESELLER
 
 # AdMob
-google.com, pub-1981269273781608, DIRECT, f08c47fec0942fa0
+google.com, pub-8607202244251112, DIRECT, f08c47fec0942fa0
